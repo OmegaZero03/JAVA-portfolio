@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import com.beaystudio.sprite.Spritesheet;
 import com.beyastudio.entities.Entity;
 import com.beyastudio.entities.Player;
+import com.beyastudio.wolrd.World;
 
 public class Main extends Canvas implements Runnable, KeyListener{
 	
@@ -23,7 +24,7 @@ public class Main extends Canvas implements Runnable, KeyListener{
 	private static final long serialVersionUID = 1L;
 	private Thread th;
 	private boolean isRunning = true;
-	private static	final int width = 240;
+	private static	final int width = 120;
 	private static final int height = 120;
 	private static final int escala = 4, muxW = width * escala, muxH = height * escala;
 	private BufferedImage image;
@@ -31,14 +32,17 @@ public class Main extends Canvas implements Runnable, KeyListener{
 	public static Spritesheet spritesheet;
 	public Player player;
 	
+	public static World world;
+	
 	public Main() {
 		
 		this.addKeyListener(this);
 		setPreferredSize(new Dimension(muxW, muxH));
 		initFrame();
 		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-		entities = new ArrayList<Entity>();
 		spritesheet = new Spritesheet("/spritesheet.png");
+		world = new World("/wolrd.png");
+		entities = new ArrayList<Entity>();
 		player = new Player(0, 0, 8, 8, spritesheet.getSpritesheet(0, 0, 8, 8));
 		entities.add(player);
 		this.setFocusable(true);
@@ -99,6 +103,8 @@ public class Main extends Canvas implements Runnable, KeyListener{
 		g.setColor(new Color(19, 19, 19));
 		g.fillRect(0, 0, width, height);
 		
+		
+		world.render(g);
 		// renderizando cada entidade
 		for(int i = 0; i < entities.size(); i++) {
 			Entity e = entities.get(i);
