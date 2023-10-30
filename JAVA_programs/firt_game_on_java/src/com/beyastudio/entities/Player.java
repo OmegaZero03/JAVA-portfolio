@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import com.beyastudio.main.Main;
+import com.beyastudio.wolrd.Camera;
+import com.beyastudio.wolrd.World;
 
 public class Player extends Entity{
 
@@ -50,21 +52,22 @@ public class Player extends Entity{
 	@Override
 	public void tick() {
 		moved = false;
-		if(right) {
+		if(right && World.isFree((int)(x+spd), this.getY())) {
 			moved = true;
 			dir = right_dir;
 			x += spd;
-		}else if (left) {
+		}else if (left && World.isFree((int)(x-spd), this.getY())) {
 			moved = true;
 			dir = left_dir;
 			x -= spd;
 		}
 		
-		if(up) {
+		if(up && World.isFree(this.getX(), (int)(y-spd))) {
 			moved = true;
 			dir = down_dir;
 			y -= spd;
-		}else if(down) {
+			
+		}else if(down && World.isFree(this.getX(), (int)(y+spd))){
 			moved = true;
 			dir = up_dir;
 			y += spd;
@@ -86,21 +89,24 @@ public class Player extends Entity{
 			
 		}
 		
+		Camera.x = Camera.clamp(this.getX() - (Main.width / 2),0 , World.WIDTH * 8 - Main.width );
+		Camera.y = Camera.clamp(this.getY() - (Main.height / 2),0 , World.HEIGHT* 8 - Main.height );
+		
 	}
 	
 	@Override
 	public void render(Graphics g) {
 
 		if(dir == right_dir){
-			g.drawImage(rightPlayer[Xindex], this.getX(), this.getY(), null);
+			g.drawImage(rightPlayer[Xindex], this.getX() - Camera.x, this.getY() - Camera.y, null);
 		}else if(dir == left_dir) {
-			g.drawImage(leftPlayer[Xindex], this.getX(), this.getY() ,null);
+			g.drawImage(leftPlayer[Xindex], this.getX() - Camera.x, this.getY() - Camera.y ,null);
 		}
 		
 		if(dir == up_dir) {
-			g.drawImage(upPlayer[Yindex], this.getX(), this.getY(), null);
+			g.drawImage(upPlayer[Yindex], this.getX() - Camera.x, this.getY() - Camera.y, null);
 		}else if(dir == down_dir) {
-			g.drawImage(downPlayer[Yindex], this.getX(),this.getY(), null);
+			g.drawImage(downPlayer[Yindex], this.getX() - Camera.x,this.getY() - Camera.y, null);
 		}
 		
 	}

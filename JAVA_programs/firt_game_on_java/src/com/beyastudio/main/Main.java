@@ -14,6 +14,7 @@ import java.util.List;
 import javax.swing.JFrame;
 
 import com.beaystudio.sprite.Spritesheet;
+import com.beyastudio.entities.Enemy;
 import com.beyastudio.entities.Entity;
 import com.beyastudio.entities.Player;
 import com.beyastudio.wolrd.World;
@@ -24,27 +25,30 @@ public class Main extends Canvas implements Runnable, KeyListener{
 	private static final long serialVersionUID = 1L;
 	private Thread th;
 	private boolean isRunning = true;
-	private static	final int width = 120;
-	private static final int height = 120;
+	public static final int width = 120;
+	public static final int height = 120;
 	private static final int escala = 4, muxW = width * escala, muxH = height * escala;
 	private BufferedImage image;
-	public List<Entity> entities;
+	public static List<Entity> entities;
 	public static Spritesheet spritesheet;
-	public Player player;
 	
 	public static World world;
+	public static Player player;
+	public static Enemy enemy;
 	
 	public Main() {
 		
 		this.addKeyListener(this);
 		setPreferredSize(new Dimension(muxW, muxH));
 		initFrame();
+		
+		// Init Objects
 		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-		spritesheet = new Spritesheet("/spritesheet.png");
-		world = new World("/wolrd.png");
 		entities = new ArrayList<Entity>();
+		spritesheet = new Spritesheet("/spritesheet.png");
 		player = new Player(0, 0, 8, 8, spritesheet.getSpritesheet(0, 0, 8, 8));
 		entities.add(player);
+		world = new World("/world2.png");
 		this.setFocusable(true);
 		this.requestFocus();
 	}
