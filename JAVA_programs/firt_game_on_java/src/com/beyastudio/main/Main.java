@@ -48,7 +48,7 @@ public class Main extends Canvas implements Runnable, KeyListener{
 		spritesheet = new Spritesheet("/spritesheet.png");
 		player = new Player(0, 0, 8, 8, spritesheet.getSpritesheet(0, 0, 8, 8));
 		entities.add(player);
-		world = new World("/world2.png");
+		world = new World("/world.png");
 		this.setFocusable(true);
 		this.requestFocus();
 	}

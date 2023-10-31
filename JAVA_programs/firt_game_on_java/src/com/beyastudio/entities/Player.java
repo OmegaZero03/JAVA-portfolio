@@ -12,6 +12,8 @@ public class Player extends Entity{
 	public boolean left, right, up, down, moved;
 	public double spd = 1.4;
 	
+	private int life;
+	
 	private int frames = 0, 
 				Xindex= 0, 
 				Yindex = 0, 
@@ -36,6 +38,8 @@ public class Player extends Entity{
 		rightPlayer = new BufferedImage[2];
 		upPlayer = new BufferedImage[3];
 		downPlayer = new BufferedImage[3];
+		
+		life = 100;
 		
 		for(int i = 0; i < 2; i++){
 			rightPlayer[i] = Main.spritesheet.getSpritesheet(0 + (i * 8), 0, 8, 8);
@@ -89,9 +93,24 @@ public class Player extends Entity{
 			
 		}
 		
+		this.collidingEnemy();
+		
 		Camera.x = Camera.clamp(this.getX() - (Main.width / 2),0 , World.WIDTH * 8 - Main.width );
 		Camera.y = Camera.clamp(this.getY() - (Main.height / 2),0 , World.HEIGHT* 8 - Main.height );
 		
+	}
+	
+	public void collidingEnemy() {
+		for(int i = 0; i < Main.entities.size(); i++) {
+			Entity atual = Main.entities.get(i);
+			
+			if(atual instanceof Enemy){
+				if(Entity.isColliding(this, atual)){
+					life--;
+					System.out.println(life);
+				}
+			}
+		}
 	}
 	
 	@Override
