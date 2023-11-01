@@ -26,7 +26,7 @@ public class Enemy extends Entity{
 			this.x -= spd;
 		}
 		
-		if((int)this.y < Main.player.getY() && World.isFree(this.getX(), (int) (y+spd))) {
+		if((int)this.y < Main.player.getY() && World.isFree(this.getX(), (int)(y+spd))) {
 			this.y += spd;
 			
 		}else if((int)this.y > Main.player.getY() && World.isFree(this.getX(), (int)(y-spd))) {

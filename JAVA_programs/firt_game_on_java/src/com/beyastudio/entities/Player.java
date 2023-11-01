@@ -12,7 +12,7 @@ public class Player extends Entity{
 	public boolean left, right, up, down, moved;
 	public double spd = 1.4;
 	
-	private int life;
+	public double life, maxLife = 100;
 	
 	private int frames = 0, 
 				Xindex= 0, 
@@ -94,10 +94,18 @@ public class Player extends Entity{
 		}
 		
 		this.collidingEnemy();
+		this.death();
 		
 		Camera.x = Camera.clamp(this.getX() - (Main.width / 2),0 , World.WIDTH * 8 - Main.width );
 		Camera.y = Camera.clamp(this.getY() - (Main.height / 2),0 , World.HEIGHT* 8 - Main.height );
 		
+	}
+	
+	public void death() {
+		if(this.life > 0) {
+			return;
+		}
+		System.exit(1);
 	}
 	
 	public void collidingEnemy() {
@@ -106,6 +114,11 @@ public class Player extends Entity{
 			
 			if(atual instanceof Enemy){
 				if(Entity.isColliding(this, atual)){
+					
+					if(Main.ran.nextInt(100) >= 30) {
+						System.out.println("Falhou");
+						return;
+					}
 					life--;
 					System.out.println(life);
 				}

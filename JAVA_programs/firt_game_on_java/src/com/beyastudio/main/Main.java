@@ -10,10 +10,12 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.swing.JFrame;
 
 import com.beaystudio.sprite.Spritesheet;
+import com.beaystudio.sprite.UI;
 import com.beyastudio.entities.Enemy;
 import com.beyastudio.entities.Entity;
 import com.beyastudio.entities.Player;
@@ -35,6 +37,8 @@ public class Main extends Canvas implements Runnable, KeyListener{
 	public static World world;
 	public static Player player;
 	public static Enemy enemy;
+	public static UI ui;
+	public static Random ran;
 	
 	public Main() {
 		
@@ -43,6 +47,8 @@ public class Main extends Canvas implements Runnable, KeyListener{
 		initFrame();
 		
 		// Init Objects
+		ran = new Random();
+		ui = new UI();
 		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		entities = new ArrayList<Entity>();
 		spritesheet = new Spritesheet("/spritesheet.png");
@@ -109,6 +115,7 @@ public class Main extends Canvas implements Runnable, KeyListener{
 		
 		
 		world.render(g);
+		ui.render(g);
 		// renderizando cada entidade
 		for(int i = 0; i < entities.size(); i++) {
 			Entity e = entities.get(i);

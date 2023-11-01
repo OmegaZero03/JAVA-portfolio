@@ -61,7 +61,8 @@ public class World {
 							break;
 					
 						case 0xff26be46:
-							Main.entities.add(new Heal(xx * 8, yy * 8, 8, 8, Entity.HEAL_EN));
+							Heal heal = new Heal(xx * 8, yy * 8, 8, 8, Entity.HEAL_EN);
+							Main.entities.add(heal);
 							break;
 							
 						case 0xff00f2ff:
