@@ -13,6 +13,10 @@ public class Player extends Entity{
 	public double spd = 1.4;
 	
 	public double life, maxLife = 100;
+
+	
+	private int atackSpeed = 2;
+
 	
 	private int frames = 0, 
 				Xindex= 0, 
@@ -27,7 +31,15 @@ public class Player extends Entity{
 				down_dir = 3; 
 	
 	
+	
+	public double mx, my, nextShoot = 0;
+	
+	public double dx, dy;
+	
 	private int dir = right_dir;
+	
+	public boolean shoot = false;
+	public static boolean autoShoot = false;
 	
 	
 	private BufferedImage[] rightPlayer, leftPlayer, upPlayer, downPlayer;
@@ -93,13 +105,38 @@ public class Player extends Entity{
 			
 		}
 		
+		
 		this.collidingEnemy();
 		this.death();
 		
 		Camera.x = Camera.clamp(this.getX() - (Main.width / 2),0 , World.WIDTH * 8 - Main.width );
 		Camera.y = Camera.clamp(this.getY() - (Main.height / 2),0 , World.HEIGHT* 8 - Main.height );
 		
+
+		
+		if(System.currentTimeMillis()< nextShoot) {
+			return;
+		}
+		
+		nextShoot = System.currentTimeMillis() + (atackSpeed * 100);
+		
+		
+		
+		double angle = Math.atan2(my - (this.getY() - Camera.y + 5) , mx - (this.getX() - Camera.x + 5));
+		
+		dx = Math.cos(angle);
+		dy = Math.sin(angle);
+		
+		if(shoot || autoShoot) {
+			
+			Bullet b = new Bullet(this.getX(), this.getY(), 8, 8, Entity.BULLET_PL, dx, dy);
+			Main.bullets.add(b);
+		}
+		
+	
+		
 	}
+	
 	
 	public void death() {
 		if(this.life > 0) {
@@ -140,6 +177,8 @@ public class Player extends Entity{
 		}else if(dir == down_dir) {
 			g.drawImage(downPlayer[Yindex], this.getX() - Camera.x,this.getY() - Camera.y, null);
 		}
+		
+
 		
 	}
 	

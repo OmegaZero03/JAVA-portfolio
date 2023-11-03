@@ -3,6 +3,7 @@ package com.beyastudio.entities;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.util.List;
 
 import com.beyastudio.main.Main;
 import com.beyastudio.wolrd.Camera;
@@ -13,10 +14,11 @@ public class Entity {
 	public static BufferedImage ENEMY_EN = Main.spritesheet.getSpritesheet(32, 8, 8, 8);
 	public static BufferedImage FINN_EN = Main.spritesheet.getSpritesheet(16, 24, 16, 16);
 	public static BufferedImage PIKACHU_EN = Main.spritesheet.getSpritesheet(40, 0, 16, 16);
+	public static BufferedImage BULLET_PL = Main.spritesheet.getSpritesheet(72, 0, 8, 8);
 	
 	protected int width, height;
 	protected double x, y;
-	private int maskx, masky, mwidth, mheight;
+	protected int maskx, masky, mwidth, mheight;
 	private BufferedImage sprite;
 	
 	public Entity(int x, int y, int width, int height, BufferedImage sprite){
@@ -83,6 +85,20 @@ public class Entity {
 		
 		return e1Mask.intersects(e2Mask);
 	}
+	
+	public static boolean isCollidingArraylist(Entity e1, List<Entity> e2) {
+			
+			Rectangle e1Mask = new Rectangle(e1.getX() + e1.maskx, e1.getY() + e1.masky, e1.mwidth, e1.mheight);
+			Rectangle e2Mask = null;
+			for(int i = 0; i < e2.size(); i++) {
+				Entity r = e2.get(i);
+				e2Mask = new Rectangle(r.getX() + r.maskx, r.getY() + r.masky, r.mwidth, r.mheight);
+				
+			}
+			return e1Mask.intersects(e2Mask);
+			
+			
+		}
 	
 	
 }

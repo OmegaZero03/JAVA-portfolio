@@ -6,6 +6,9 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -16,12 +19,13 @@ import javax.swing.JFrame;
 
 import com.beaystudio.sprite.Spritesheet;
 import com.beaystudio.sprite.UI;
+import com.beyastudio.entities.Bullet;
 import com.beyastudio.entities.Enemy;
 import com.beyastudio.entities.Entity;
 import com.beyastudio.entities.Player;
 import com.beyastudio.wolrd.World;
 
-public class Main extends Canvas implements Runnable, KeyListener{
+public class Main extends Canvas implements Runnable, KeyListener, MouseListener, MouseMotionListener{
 	
 	
 	private static final long serialVersionUID = 1L;
@@ -29,10 +33,13 @@ public class Main extends Canvas implements Runnable, KeyListener{
 	private boolean isRunning = true;
 	public static final int width = 120;
 	public static final int height = 120;
-	private static final int escala = 4, muxW = width * escala, muxH = height * escala;
+	public static final int escala = 4, muxW = width * escala, muxH = height * escala;
 	private BufferedImage image;
 	public static List<Entity> entities;
+	public static List<Bullet> bullets;
 	public static Spritesheet spritesheet;
+	
+	private boolean sus = false;
 	
 	public static World world;
 	public static Player player;
@@ -42,7 +49,9 @@ public class Main extends Canvas implements Runnable, KeyListener{
 	
 	public Main() {
 		
+		this.addMouseMotionListener(this);
 		this.addKeyListener(this);
+		this.addMouseListener(this);
 		setPreferredSize(new Dimension(muxW, muxH));
 		initFrame();
 		
@@ -51,6 +60,7 @@ public class Main extends Canvas implements Runnable, KeyListener{
 		ui = new UI();
 		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		entities = new ArrayList<Entity>();
+		bullets = new ArrayList<Bullet>();
 		spritesheet = new Spritesheet("/spritesheet.png");
 		player = new Player(0, 0, 8, 8, spritesheet.getSpritesheet(0, 0, 8, 8));
 		entities.add(player);
@@ -93,10 +103,19 @@ public class Main extends Canvas implements Runnable, KeyListener{
 	//Logica do jogo
 	public void tick() {
 		
+		if(sus) {
+			System.out.println("MEXI");
+		}
+		
 		//lógica por tras de cada entidade
 		for(int i = 0; i < entities.size(); i++) {
 			Entity e = entities.get(i);
 			e.tick();
+		}
+		
+		for(int i = 0; i < bullets.size(); i++) {
+			Entity b = bullets.get(i);
+			b.tick();
 		}
 		
 	}
@@ -122,6 +141,13 @@ public class Main extends Canvas implements Runnable, KeyListener{
 			e.render(g);
 		}
 		
+		for(int i = 0; i < bullets.size(); i++) {
+			Entity b = bullets.get(i);
+			b.render(g);
+			
+		}
+		
+		ui.render(g);
 		
 		g.dispose();
 		g = bs.getDrawGraphics();
@@ -185,6 +211,10 @@ public class Main extends Canvas implements Runnable, KeyListener{
 		if(e.getKeyCode() == KeyEvent.VK_S ||
 			e.getKeyCode() == KeyEvent.VK_DOWN) player.down = true;
 		
+		if(e.getKeyCode() == KeyEvent.VK_E) {
+			Player.autoShoot = !Player.autoShoot;
+		}
+		
 	}
 
 	@Override
@@ -205,6 +235,58 @@ public class Main extends Canvas implements Runnable, KeyListener{
 		else if(e.getKeyCode() == KeyEvent.VK_S ||
 			e.getKeyCode() == KeyEvent.VK_DOWN) player.down = false;
 		
+		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		player.shoot = true;
+		player.mx = e.getX() / 4;
+		player.my = e.getY() / 4;
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		if(player != null) {
+			if(!Player.autoShoot) {
+				player.shoot = false;
+			}
+		}
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		
+	}
+
+	
+	
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		
+		player.shoot = true;
+		player.mx = e.getX() / 4;
+		player.my = e.getY() / 4;
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		if(player != null) {
+			if(Player.autoShoot) {
+				player.mx = e.getX() / 4;
+				player.my = e.getY() / 4;
+			}
+		}
 		
 	}
 	

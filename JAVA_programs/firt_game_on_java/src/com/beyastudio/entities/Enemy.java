@@ -8,17 +8,19 @@ import com.beyastudio.wolrd.World;
 public class Enemy extends Entity{
 
 	private double spd;
+	private int raioTrigger = 20;
 	
 	public Enemy(int x, int y, int width, int height, BufferedImage sprite) {
 		super(x, y, width, height, sprite);
-		
-		spd = 1;
+		spd = 0.8;
 	}
 
 	
 	@Override
 	public void tick(){
-		 
+		
+		if(!(Main.player.getX() + raioTrigger >= (int)this.x && !(Main.player.getY() - raioTrigger >= (int)this.y ))) return;
+		
 		if((int)this.x < Main.player.getX() && World.isFree((int)(x+spd), this.getY())) {
 			this.x += spd;
 			

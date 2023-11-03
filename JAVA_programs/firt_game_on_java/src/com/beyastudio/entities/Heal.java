@@ -17,12 +17,11 @@ public class Heal extends Entity{
 			if(atual instanceof Player){
 				if(Entity.isColliding(this, atual)) {
 					Main.player.life += 10;
-					System.out.println(Main.player.life);
 					Main.entities.remove(this);
+					System.out.println(Main.player.life);
 				}
-				
 			}
-			
 		}
+
 	}
 }
