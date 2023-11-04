@@ -129,8 +129,24 @@ public class Player extends Entity{
 		
 		if(shoot || autoShoot) {
 			
-			Bullet b = new Bullet(this.getX(), this.getY(), 8, 8, Entity.BULLET_PL, dx, dy);
-			Main.bullets.add(b);
+			if(dir == right_dir){
+				
+				Bullet b = new Bullet(this.getX()+ 3, this.getY() - 4, 8, 8, Entity.BULLET_PL, dx, dy);
+				Main.bullets.add(b);
+				
+			}else if(dir == left_dir) {
+				Bullet b = new Bullet(this.getX() - 3, this.getY() - 4, 8, 8, Entity.BULLET_PL, dx, dy);
+				Main.bullets.add(b);
+			}
+			
+			if(dir == down_dir) {
+				Bullet b = new Bullet(this.getX() - 3, this.getY() - 4, 8, 8, Entity.BULLET_PL, dx, dy);
+				Main.bullets.add(b);
+			}else if(dir == up_dir) {
+				Bullet b = new Bullet(this.getX() + 3, this.getY() - 4, 8, 8, Entity.BULLET_PL, dx, dy);
+				Main.bullets.add(b);
+			}
+			
 		}
 		
 	

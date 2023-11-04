@@ -86,19 +86,4 @@ public class Entity {
 		return e1Mask.intersects(e2Mask);
 	}
 	
-	public static boolean isCollidingArraylist(Entity e1, List<Entity> e2) {
-			
-			Rectangle e1Mask = new Rectangle(e1.getX() + e1.maskx, e1.getY() + e1.masky, e1.mwidth, e1.mheight);
-			Rectangle e2Mask = null;
-			for(int i = 0; i < e2.size(); i++) {
-				Entity r = e2.get(i);
-				e2Mask = new Rectangle(r.getX() + r.maskx, r.getY() + r.masky, r.mwidth, r.mheight);
-				
-			}
-			return e1Mask.intersects(e2Mask);
-			
-			
-		}
-	
-	
 }

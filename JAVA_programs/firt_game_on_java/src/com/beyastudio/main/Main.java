@@ -23,6 +23,7 @@ import com.beyastudio.entities.Bullet;
 import com.beyastudio.entities.Enemy;
 import com.beyastudio.entities.Entity;
 import com.beyastudio.entities.Player;
+import com.beyastudio.wolrd.WallTile;
 import com.beyastudio.wolrd.World;
 
 public class Main extends Canvas implements Runnable, KeyListener, MouseListener, MouseMotionListener{
@@ -35,11 +36,10 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	public static final int height = 120;
 	public static final int escala = 4, muxW = width * escala, muxH = height * escala;
 	private BufferedImage image;
+	public static List<WallTile> walls;
 	public static List<Entity> entities;
 	public static List<Bullet> bullets;
 	public static Spritesheet spritesheet;
-	
-	private boolean sus = false;
 	
 	public static World world;
 	public static Player player;
@@ -60,17 +60,18 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		ui = new UI();
 		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		entities = new ArrayList<Entity>();
+		walls = new ArrayList<WallTile>();
 		bullets = new ArrayList<Bullet>();
 		spritesheet = new Spritesheet("/spritesheet.png");
 		player = new Player(0, 0, 8, 8, spritesheet.getSpritesheet(0, 0, 8, 8));
 		entities.add(player);
-		world = new World("/world.png");
+		world = new World("/world2.png");
 		this.setFocusable(true);
 		this.requestFocus();
 	}
 	
 	public void initFrame() {
-		JFrame frame = new JFrame("Jogo #1");
+		JFrame frame = new JFrame("Game #1 JAVA");
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(this);
@@ -102,10 +103,6 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 
 	//Logica do jogo
 	public void tick() {
-		
-		if(sus) {
-			System.out.println("MEXI");
-		}
 		
 		//lógica por tras de cada entidade
 		for(int i = 0; i < entities.size(); i++) {

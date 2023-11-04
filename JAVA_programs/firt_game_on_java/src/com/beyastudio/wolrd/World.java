@@ -44,7 +44,9 @@ public class World {
 							//White Color / Cor Branca
 						case 0xffffffff:
 							// Wall / Parede
-							tiles[xx + (yy * WIDTH)] = new WallTile(xx * 8, yy * 8, Tile.TILE_WALL);
+							WallTile wall = new WallTile(xx * 8, yy * 8, Tile.TILE_WALL);
+							tiles[xx + (yy * WIDTH)] = wall;
+							Main.walls.add(wall);
 							break;
 							
 							//Blue Color / Cor Azul
@@ -57,6 +59,7 @@ public class World {
 							//Red Color / Cor Vermelha
 						case 0xffbe2633:
 							//Enemy / Inimigo
+							
 							Main.entities.add(new Enemy(xx * 8, yy * 8, 8, 8, Entity.ENEMY_EN));
 							break;
 					
