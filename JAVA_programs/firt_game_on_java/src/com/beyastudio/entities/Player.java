@@ -42,20 +42,36 @@ public class Player extends Entity{
 	public static boolean autoShoot = false;
 	
 	
-	private BufferedImage[] rightPlayer, leftPlayer, upPlayer, downPlayer;
+	private BufferedImage[] rightPlayer, leftPlayer, upPlayer, downPlayer,
+							rightAtack, leftAtack, upAtack, downAtack;
 	
 	public Player(int x, int y, int width, int height, BufferedImage sprite) {
 		super(x, y, width, height, sprite);
 		leftPlayer = new BufferedImage[2];
 		rightPlayer = new BufferedImage[2];
+		
+		leftAtack = new BufferedImage[2];
+		rightAtack = new BufferedImage[2];
+		
 		upPlayer = new BufferedImage[3];
 		downPlayer = new BufferedImage[3];
+		
+		upAtack = new BufferedImage[2];
+		downAtack = new BufferedImage[2];
 		
 		life = 100;
 		
 		for(int i = 0; i < 2; i++){
 			rightPlayer[i] = Main.spritesheet.getSpritesheet(0 + (i * 8), 0, 8, 8);
 			leftPlayer[i] = Main.spritesheet.getSpritesheet(16 + (i * 8), 0, 8, 8);
+			
+			upAtack[i] = Main.spritesheet.getSpritesheet(0 + (i * 8), 56, 8, 8);
+			downAtack[i] = Main.spritesheet.getSpritesheet(0 + (i * 8), 64, 8, 8);
+		}
+		
+		for(int i = 0; i < 2; i++) {
+			rightAtack[i] = Main.spritesheet.getSpritesheet(0 , 24 + (i * 8), 16, 8);
+			leftAtack[i] = Main.spritesheet.getSpritesheet(0 , 40 + (i * 8), 16, 8);
 		}
 		
 		for(int i = 0; i < 3; i++){
@@ -89,7 +105,7 @@ public class Player extends Entity{
 			y += spd;
 		}
 		
-		if(moved){
+		if(moved || shoot || autoShoot){
 			frames++;
 			if(frames == max_frames) {
 				frames = 0;
@@ -131,19 +147,19 @@ public class Player extends Entity{
 			
 			if(dir == right_dir){
 				
-				Bullet b = new Bullet(this.getX()+ 3, this.getY() - 4, 8, 8, Entity.BULLET_PL, dx, dy);
+				Bullet b = new Bullet(this.getX() + 5, this.getY() - 4, 8, 8, Entity.BULLET_PL, dx, dy);
 				Main.bullets.add(b);
 				
 			}else if(dir == left_dir) {
-				Bullet b = new Bullet(this.getX() - 3, this.getY() - 4, 8, 8, Entity.BULLET_PL, dx, dy);
+				Bullet b = new Bullet(this.getX() - 5, this.getY() - 4, 8, 8, Entity.BULLET_PL, dx, dy);
 				Main.bullets.add(b);
 			}
 			
 			if(dir == down_dir) {
-				Bullet b = new Bullet(this.getX() - 3, this.getY() - 4, 8, 8, Entity.BULLET_PL, dx, dy);
+				Bullet b = new Bullet(this.getX() - 2, this.getY() - 4, 8, 8, Entity.BULLET_PL, dx, dy);
 				Main.bullets.add(b);
 			}else if(dir == up_dir) {
-				Bullet b = new Bullet(this.getX() + 3, this.getY() - 4, 8, 8, Entity.BULLET_PL, dx, dy);
+				Bullet b = new Bullet(this.getX() + 2, this.getY() + 4, 8, 8, Entity.BULLET_PL, dx, dy);
 				Main.bullets.add(b);
 			}
 			
@@ -182,19 +198,33 @@ public class Player extends Entity{
 	@Override
 	public void render(Graphics g) {
 
-		if(dir == right_dir){
-			g.drawImage(rightPlayer[Xindex], this.getX() - Camera.x, this.getY() - Camera.y, null);
-		}else if(dir == left_dir) {
-			g.drawImage(leftPlayer[Xindex], this.getX() - Camera.x, this.getY() - Camera.y ,null);
-		}
-		
-		if(dir == up_dir) {
-			g.drawImage(upPlayer[Yindex], this.getX() - Camera.x, this.getY() - Camera.y, null);
-		}else if(dir == down_dir) {
-			g.drawImage(downPlayer[Yindex], this.getX() - Camera.x,this.getY() - Camera.y, null);
-		}
-		
+		if(shoot || autoShoot) {
+			
+			if(dir == right_dir){
+				g.drawImage(rightAtack[Xindex], this.getX() - Camera.x, this.getY() - Camera.y, null);
+			}else if(dir == left_dir) {
+				g.drawImage(leftAtack[Xindex], this.getX() - Camera.x - 8, this.getY() - Camera.y ,null);
+			}
+			if(dir == up_dir) {
+				g.drawImage(upAtack[Xindex], this.getX() - Camera.x, this.getY() - Camera.y, null);
+			}else if(dir == down_dir) {
+				g.drawImage(downAtack[Xindex], this.getX() - Camera.x,this.getY() - Camera.y, null);
+			}
+			
+		}else{
 
+			if(dir == right_dir){
+				g.drawImage(rightPlayer[Xindex], this.getX() - Camera.x, this.getY() - Camera.y, null);
+			}else if(dir == left_dir) {
+				g.drawImage(leftPlayer[Xindex], this.getX() - Camera.x, this.getY() - Camera.y ,null);
+			}
+			
+			if(dir == up_dir) {
+				g.drawImage(upPlayer[Yindex], this.getX() - Camera.x, this.getY() - Camera.y, null);
+			}else if(dir == down_dir) {
+				g.drawImage(downPlayer[Yindex], this.getX() - Camera.x,this.getY() - Camera.y, null);
+			}
+		}
 		
 	}
 	

@@ -3,7 +3,6 @@ package com.beyastudio.entities;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.util.List;
 
 import com.beyastudio.main.Main;
 import com.beyastudio.wolrd.Camera;
@@ -20,6 +19,7 @@ public class Entity {
 	protected double x, y;
 	protected int maskx, masky, mwidth, mheight;
 	private BufferedImage sprite;
+	public double life;
 	
 	public Entity(int x, int y, int width, int height, BufferedImage sprite){
 		

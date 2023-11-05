@@ -9,9 +9,13 @@ import com.beyastudio.wolrd.Tile;
 public class Bullet extends Entity{
 
 	private double dx, dy;
-	private int spd = 2;
 	
+	/******STATUS**********/
+	private int spd = 2;
+	private int damage = 3;
 	private int range = 5;
+	/**********************/
+	
 	private int range_mux = 8 * range;
 	private double lifeTime_right, lifeTime_left, lifeTime_up, lifeTime_down;
 	
@@ -68,10 +72,13 @@ public class Bullet extends Entity{
 		for(int i = 0; i < Main.entities.size(); i++) {
 			Entity atual = Main.entities.get(i);
 			boolean isEnemy = atual instanceof Enemy;
+			boolean isFinn = atual instanceof Finn;
+			boolean isPikachu = atual instanceof Pikachu;
 			
-			if(isEnemy) {
+			if(isEnemy || isFinn || isPikachu) {
 			if(Entity.isColliding(this, atual)) {
-				Main.entities.remove(atual);
+				atual.life -= damage;
+				System.out.println("vida = "+atual.life);
 				Main.bullets.remove(this);
 				return;
 				}
