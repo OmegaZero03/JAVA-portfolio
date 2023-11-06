@@ -23,6 +23,7 @@ import com.beyastudio.entities.Bullet;
 import com.beyastudio.entities.Enemy;
 import com.beyastudio.entities.Entity;
 import com.beyastudio.entities.Player;
+import com.beyastudio.entities.PlayerBullet;
 import com.beyastudio.wolrd.WallTile;
 import com.beyastudio.wolrd.World;
 
@@ -38,7 +39,8 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	private BufferedImage image;
 	public static List<WallTile> walls;
 	public static List<Entity> entities;
-	public static List<Bullet> bullets;
+	public static List<PlayerBullet> playerBullets;
+	public static List<Bullet> finnBullets;
 	public static Spritesheet spritesheet;
 	
 	public static World world;
@@ -61,7 +63,8 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		entities = new ArrayList<Entity>();
 		walls = new ArrayList<WallTile>();
-		bullets = new ArrayList<Bullet>();
+		playerBullets = new ArrayList<PlayerBullet>();
+		finnBullets = new ArrayList<Bullet>();
 		spritesheet = new Spritesheet("/spritesheet.png");
 		player = new Player(0, 0, 8, 8, spritesheet.getSpritesheet(0, 0, 8, 8));
 		entities.add(player);
@@ -110,9 +113,14 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 			e.tick();
 		}
 		
-		for(int i = 0; i < bullets.size(); i++) {
-			Entity b = bullets.get(i);
+		for(int i = 0; i < playerBullets.size(); i++) {
+			Entity b = playerBullets.get(i);
 			b.tick();
+		}
+		
+		for(int i = 0; i < finnBullets.size(); i++) {
+			Entity fb = finnBullets.get(i);
+			fb.tick();
 		}
 		
 	}
@@ -138,10 +146,15 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 			e.render(g);
 		}
 		
-		for(int i = 0; i < bullets.size(); i++) {
-			Entity b = bullets.get(i);
+		for(int i = 0; i < playerBullets.size(); i++) {
+			Entity b = playerBullets.get(i);
 			b.render(g);
 			
+		}
+		
+		for(int i = 0; i < finnBullets.size(); i++) {
+			Entity fb = finnBullets.get(i);
+			fb.render(g);
 		}
 		
 		ui.render(g);
@@ -209,7 +222,7 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 			e.getKeyCode() == KeyEvent.VK_DOWN) player.down = true;
 		
 		if(e.getKeyCode() == KeyEvent.VK_E) {
-			Player.autoShoot = !Player.autoShoot;
+			player.autoShoot = !player.autoShoot;
 		}
 		
 	}
@@ -245,12 +258,13 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		player.shoot = true;
 		player.mx = e.getX() / 4;
 		player.my = e.getY() / 4;
+		player.autoShoot = false;
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		if(player != null) {
-			if(!Player.autoShoot) {
+			if(!player.autoShoot) {
 				player.shoot = false;
 			}
 		}
@@ -279,7 +293,7 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		if(player != null) {
-			if(Player.autoShoot) {
+			if(player.autoShoot) {
 				player.mx = e.getX() / 4;
 				player.my = e.getY() / 4;
 			}

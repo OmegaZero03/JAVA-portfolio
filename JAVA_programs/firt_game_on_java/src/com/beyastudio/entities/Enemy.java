@@ -51,11 +51,13 @@ public class Enemy extends Entity{
 	@Override
 	public void render(Graphics g) {
 		super.render(g);
-		g.setColor(Color.red);
-		g.fillRect((int)x - Camera.x, (int)y - 4 - Camera.y, 10, 2);
-		g.setColor(Color.ORANGE);
-		g.fillRect((int)x - Camera.x, (int)y - 4 - Camera.y, (int)((life/maxLife)*10) , 2);
 		
+		if(life != maxLife) {
+			g.setColor(Color.red);
+			g.fillRect((int)x - Camera.x, (int)y - 4 - Camera.y, 10, 2);
+			g.setColor(Color.ORANGE);
+			g.fillRect((int)x - Camera.x, (int)y - 4 - Camera.y, (int)((life/maxLife)*10) , 2);
+		}
 	}
 	
 }

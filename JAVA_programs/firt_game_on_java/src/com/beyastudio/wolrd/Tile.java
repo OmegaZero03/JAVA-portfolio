@@ -11,9 +11,11 @@ public class Tile {
 
 	public static BufferedImage TILE_FLOOR = Main.spritesheet.getSpritesheet(24, 16, 8, 8);
 	public static BufferedImage TILE_WALL = Main.spritesheet.getSpritesheet(32, 16, 8, 8);
+	public static BufferedImage TILE_BLUE = Main.spritesheet.getSpritesheet(40, 16, 8, 8);
 	
 	private BufferedImage sprite;
-	private int x, y;
+	protected int x;
+	protected int y;
 	private int maskx, masky, mwidth, mheight;
 	private int width = 8, height = 8;
 	

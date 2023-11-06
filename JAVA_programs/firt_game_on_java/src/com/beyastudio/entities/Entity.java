@@ -14,12 +14,13 @@ public class Entity {
 	public static BufferedImage FINN_EN = Main.spritesheet.getSpritesheet(16, 24, 16, 16);
 	public static BufferedImage PIKACHU_EN = Main.spritesheet.getSpritesheet(40, 0, 16, 16);
 	public static BufferedImage BULLET_PL = Main.spritesheet.getSpritesheet(72, 0, 8, 8);
+	public static BufferedImage BULLET_FINN_1 = Main.spritesheet.getSpritesheet(48, 40, 16, 16);
 	
 	protected int width, height;
 	protected double x, y;
 	protected int maskx, masky, mwidth, mheight;
 	private BufferedImage sprite;
-	public double life;
+	public double life, maxLife;
 	
 	public Entity(int x, int y, int width, int height, BufferedImage sprite){
 		

@@ -26,10 +26,12 @@ public class Pikachu extends Entity{
 	@Override
 	public void render(Graphics g) {
 		super.render(g);
-		g.setColor(Color.red);
-		g.fillRect((int)x - Camera.x + 3, (int)y - 4 - Camera.y, 10, 2);
-		g.setColor(Color.ORANGE);
-		g.fillRect((int)x - Camera.x + 3, (int)y - 4 - Camera.y, (int)((life/300)*10) , 2);
+		if(life != 300) {
+			g.setColor(Color.red);
+			g.fillRect((int)x - Camera.x + 3, (int)y - 4 - Camera.y, 10, 2);
+			g.setColor(Color.ORANGE);
+			g.fillRect((int)x - Camera.x + 3, (int)y - 4 - Camera.y, (int)((life/300)*10) , 2);
+		}
 		
 	}
 	

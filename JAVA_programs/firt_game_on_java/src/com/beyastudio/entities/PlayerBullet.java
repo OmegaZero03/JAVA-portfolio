@@ -6,13 +6,13 @@ import com.beyastudio.main.Main;
 import com.beyastudio.wolrd.Camera;
 import com.beyastudio.wolrd.Tile;
 
-public class Bullet extends Entity{
+public class PlayerBullet extends Entity{
 
-private double dx, dy;
+	private double dx, dy;
 	
 	/******STATUS**********/
-	private double spd = 1.3;
-	private int damage = 10;
+	private int spd = 2;
+	private int damage = 3;
 	private int range = 5;
 	/**********************/
 	
@@ -20,7 +20,7 @@ private double dx, dy;
 	private double lifeTime_right, lifeTime_left, lifeTime_up, lifeTime_down;
 	
 	
-	public Bullet(int x, int y, int width, int height, BufferedImage sprite, double dx, double dy) {
+	public PlayerBullet(int x, int y, int width, int height, BufferedImage sprite, double dx, double dy) {
 		super(x, y, width, height, sprite);
 		this.dx = dx;
 		this.dy = dy;
@@ -34,16 +34,15 @@ private double dx, dy;
 	public void tick() {
 		x += dx * spd;
 		y += dy * spd;
-
+		collidingEnemy();
 		selfDestroy();
 		collidingWall();
-		isHitting();
-		/*if((x >= lifeTime_right) || (x <= lifeTime_left)
+		
+		if((x >= lifeTime_right) || (x <= lifeTime_left)
 		|| (y >= lifeTime_up) 	 || (y <= lifeTime_down)) {
 			Main.playerBullets.remove(this);
 		}
-		*/
-		
+
 	}
 	
 	public void setRange(int range) {
@@ -53,7 +52,7 @@ private double dx, dy;
 	public void selfDestroy() {
 		if((this.getX() >= (Main.width + Camera.x) - 8) || (this.getX() <= 0) 
 		|| (this.getY() >= (Main.height + Camera.y) - 8) || (this.getY() <= 0)) {
-			Main.finnBullets.remove(this);
+			Main.playerBullets.remove(this);
 		}
 		
 		
@@ -63,18 +62,29 @@ private double dx, dy;
 			Tile atual = Main.walls.get(i);
 			
 			if(Tile.isColliding(this, atual)) {
-				Main.finnBullets.remove(this);
+				Main.playerBullets.remove(this);
 				return;
 				}
 			}
 	}
 	
-	public void isHitting() {
-		if(isColliding(this, Main.player)) {
-			Main.finnBullets.remove(this);
-			Main.player.life -= damage;
+	public void collidingEnemy() {
+		for(int i = 0; i < Main.entities.size(); i++) {
+			Entity atual = Main.entities.get(i);
+			boolean isEnemy = atual instanceof Enemy;
+			boolean isFinn = atual instanceof Finn;
+			boolean isPikachu = atual instanceof Pikachu;
+			
+			if(isEnemy || isFinn || isPikachu) {
+			if(Entity.isColliding(this, atual)) {
+				atual.life -= damage;
+				System.out.println("vida = "+atual.life);
+				Main.playerBullets.remove(this);
+				return;
+				}
+			}
 		}
 	}
 	
-}
 
+}

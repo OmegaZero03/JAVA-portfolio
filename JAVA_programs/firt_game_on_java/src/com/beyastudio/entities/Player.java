@@ -39,7 +39,7 @@ public class Player extends Entity{
 	private int dir = right_dir;
 	
 	public boolean shoot = false;
-	public static boolean autoShoot = false;
+	public boolean autoShoot = false;
 	
 	
 	private BufferedImage[] rightPlayer, leftPlayer, upPlayer, downPlayer,
@@ -47,6 +47,9 @@ public class Player extends Entity{
 	
 	public Player(int x, int y, int width, int height, BufferedImage sprite) {
 		super(x, y, width, height, sprite);
+		this.mwidth = width / 2;
+		this.mheight = height / 2;
+		
 		leftPlayer = new BufferedImage[2];
 		rightPlayer = new BufferedImage[2];
 		
@@ -147,20 +150,20 @@ public class Player extends Entity{
 			
 			if(dir == right_dir){
 				
-				Bullet b = new Bullet(this.getX() + 5, this.getY() - 4, 8, 8, Entity.BULLET_PL, dx, dy);
-				Main.bullets.add(b);
+				PlayerBullet b = new PlayerBullet(this.getX() + 5, this.getY() - 4, 8, 8, Entity.BULLET_PL, dx, dy);
+				Main.playerBullets.add(b);
 				
 			}else if(dir == left_dir) {
-				Bullet b = new Bullet(this.getX() - 5, this.getY() - 4, 8, 8, Entity.BULLET_PL, dx, dy);
-				Main.bullets.add(b);
+				PlayerBullet b = new PlayerBullet(this.getX() - 5, this.getY() - 4, 8, 8, Entity.BULLET_PL, dx, dy);
+				Main.playerBullets.add(b);
 			}
 			
 			if(dir == down_dir) {
-				Bullet b = new Bullet(this.getX() - 2, this.getY() - 4, 8, 8, Entity.BULLET_PL, dx, dy);
-				Main.bullets.add(b);
+				PlayerBullet b = new PlayerBullet(this.getX() - 2, this.getY() - 4, 8, 8, Entity.BULLET_PL, dx, dy);
+				Main.playerBullets.add(b);
 			}else if(dir == up_dir) {
-				Bullet b = new Bullet(this.getX() + 2, this.getY() + 4, 8, 8, Entity.BULLET_PL, dx, dy);
-				Main.bullets.add(b);
+				PlayerBullet b = new PlayerBullet(this.getX() + 2, this.getY() + 4, 8, 8, Entity.BULLET_PL, dx, dy);
+				Main.playerBullets.add(b);
 			}
 			
 		}

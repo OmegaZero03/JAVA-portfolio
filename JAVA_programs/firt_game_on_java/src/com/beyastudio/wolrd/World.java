@@ -49,6 +49,12 @@ public class World {
 							Main.walls.add(wall);
 							break;
 							
+						case 0xff315a7b:
+							WallTile wallBlue = new BlueTile(xx*8, yy*8, Tile.TILE_BLUE);
+							tiles[xx + (yy * WIDTH)] = wallBlue;
+							Main.walls.add(wallBlue);
+							break;
+							
 							//Blue Color / Cor Azul
 						case 0xff225af6:
 							// Player / Jogador
@@ -99,7 +105,7 @@ public class World {
 		int x4 = (xnext + size - 1) / size;
 		int y4 = (ynext + size - 1) / size;
 		
-		return ! ((tiles[x1 + (y1*World.WIDTH)] instanceof WallTile) ||
+		return ! ((tiles[x1 + (y1*World.WIDTH)] instanceof WallTile)  ||
 				  (tiles[x2 + (y2*World.WIDTH)] instanceof WallTile)  ||
 				  (tiles[x3 + (y3*World.WIDTH)] instanceof WallTile)  ||
 				  (tiles[x4 + (y4*World.WIDTH)] instanceof WallTile));
