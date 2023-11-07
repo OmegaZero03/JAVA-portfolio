@@ -12,7 +12,7 @@ public class Finn extends Entity{
 	public int rangeWalk = 8 * 2;
 	public double spd = 1;
 	public int range, negaRange;
-	
+	int i = 0;
 	
 	private double dx, dy, nextShoot;
 	private int atackSpeed = 8;
@@ -26,6 +26,8 @@ public class Finn extends Entity{
 
 	@Override
 	public void tick() {
+		
+
 		
 		if(this.life < 0) {
 			Main.entities.remove(this);
@@ -48,7 +50,10 @@ public class Finn extends Entity{
 		
 		nextShoot = System.currentTimeMillis() + (atackSpeed * 100);
 		
-		double angle = Math.atan2(Main.player.getY() - (this.getY() - Camera.y ) ,Main.player.getX() - (this.getX() - Camera.x));
+		//double angle = Math.atan2(Main.player.getY() - (this.getY() - Camera.y ) ,Main.player.getX() - (this.getX() - Camera.x));
+	
+		double angle = Math.toRadians(90 + i);
+		i += 90;
 		
 		dx = Math.cos(angle);
 		dy = Math.sin(angle);
