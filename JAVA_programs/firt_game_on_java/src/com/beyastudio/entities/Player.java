@@ -1,5 +1,6 @@
 package com.beyastudio.entities;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
@@ -30,7 +31,7 @@ public class Player extends Entity{
 				up_dir = 2, 
 				down_dir = 3; 
 	
-	
+	public boolean debug = false;
 	
 	public double mx, my, nextShoot = 0;
 	
@@ -47,8 +48,10 @@ public class Player extends Entity{
 	
 	public Player(int x, int y, int width, int height, BufferedImage sprite) {
 		super(x, y, width, height, sprite);
-		this.mwidth = width / 2;
-		this.mheight = height / 2;
+		this.maskx = 2;
+		this.masky = 4;
+		this.mwidth = 4;
+		this.mheight = 4;
 		
 		leftPlayer = new BufferedImage[2];
 		rightPlayer = new BufferedImage[2];
@@ -201,6 +204,8 @@ public class Player extends Entity{
 	@Override
 	public void render(Graphics g) {
 
+
+		
 		if(shoot || autoShoot) {
 			
 			if(dir == right_dir){
@@ -229,6 +234,10 @@ public class Player extends Entity{
 			}
 		}
 		
+		if(debug) {
+			g.setColor(Color.RED);
+			g.fillRect((this.getX() + maskx) - Camera.x, (this.getY() + masky) - Camera.y, mwidth, mheight);
+		}
 	}
 	
 }

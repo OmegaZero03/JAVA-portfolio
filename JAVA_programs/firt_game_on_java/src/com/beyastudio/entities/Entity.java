@@ -1,5 +1,6 @@
 package com.beyastudio.entities;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -21,6 +22,8 @@ public class Entity {
 	protected int maskx, masky, mwidth, mheight;
 	private BufferedImage sprite;
 	public double life, maxLife;
+	
+	public static boolean geralDebug = false;
 	
 	public Entity(int x, int y, int width, int height, BufferedImage sprite){
 		
@@ -76,6 +79,11 @@ public class Entity {
 	
 	public void render(Graphics g) {
 		g.drawImage(sprite, this.getX() - Camera.x, this.getY() - Camera.y, null);
+		
+		if(geralDebug) {
+			g.setColor(Color.RED);
+			g.fillRect((this.getX() + maskx) - Camera.x, (this.getY() + masky) - Camera.y, mwidth, mheight);
+		}
 	}
 	 
 	

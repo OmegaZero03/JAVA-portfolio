@@ -10,18 +10,25 @@ import com.beyastudio.wolrd.Camera;
 public class Finn extends Entity{
 
 	public int rangeWalk = 8 * 2;
+	
 	public double spd = 1;
+	private double atackSpeed = 4;
+	
+	private double anglep, anglepp;
+	
 	public int range, negaRange;
 	int i = 0;
 	
 	private double dx, dy, nextShoot;
-	private int atackSpeed = 8;
 	
 	public Finn(int x, int y, int width, int height, BufferedImage sprite) {
 		super(x, y, width, height, sprite);
 		this.range = x + rangeWalk;
 		this.negaRange = x - rangeWalk;
 		this.life = 600;
+		
+		this.anglep = Math.toRadians(25);
+		this.anglepp = Math.toRadians(50);
 	}
 
 	@Override
@@ -50,10 +57,10 @@ public class Finn extends Entity{
 		
 		nextShoot = System.currentTimeMillis() + (atackSpeed * 100);
 		
-		//double angle = Math.atan2(Main.player.getY() - (this.getY() - Camera.y ) ,Main.player.getX() - (this.getX() - Camera.x));
+		double angle = Math.atan2(Main.player.getY() - this.getY() ,Main.player.getX() - this.getX());
 	
-		double angle = Math.toRadians(90 + i);
-		i += 90;
+		//double angle = Math.toRadians(90 + i);
+		//i += 10;
 		
 		dx = Math.cos(angle);
 		dy = Math.sin(angle);
@@ -61,17 +68,33 @@ public class Finn extends Entity{
 		
 		Bullet b = new Bullet(this.getX() - 5, this.getY() - 4, 16, 16, Entity.BULLET_FINN_1, dx, dy);
 		Main.finnBullets.add(b);
+		/****************************/
 		
-		Bullet b1 = new Bullet(this.getX() - 5, this.getY() - 4, 16, 16, Entity.BULLET_FINN_1, dx - .5, dy);
+		dx = Math.cos(angle + anglep);
+		dy = Math.sin(angle + anglep);
+		
+		Bullet b1 = new Bullet(this.getX() - 5, this.getY() - 4, 16, 16, Entity.BULLET_FINN_1, dx, dy);
 		Main.finnBullets.add(b1);
+		/****************************/
 		
+		dx = Math.cos(angle + anglepp);
+		dy = Math.sin(angle + anglepp);
 		
-		Bullet b2 = new Bullet(this.getX() - 5, this.getY() - 4, 16, 16, Entity.BULLET_FINN_1, dx - .7, dy);
+		Bullet b2 = new Bullet(this.getX() - 5, this.getY() - 4, 16, 16, Entity.BULLET_FINN_1, dx, dy);
 		Main.finnBullets.add(b2);
+		/****************************/
 		
-		Bullet b3 = new Bullet(this.getX() - 5, this.getY() - 4, 16, 16, Entity.BULLET_FINN_1, dx - .2, dy);
+		dx = Math.cos(angle - anglep);
+		dy = Math.sin(angle -  anglep);
+		
+		Bullet b3 = new Bullet(this.getX() - 5, this.getY() - 4, 16, 16, Entity.BULLET_FINN_1, dx, dy);
 		Main.finnBullets.add(b3);
+		/****************************/
+		dx = Math.cos(angle - anglepp);
+		dy = Math.sin(angle - anglepp);
 		
+		Bullet b4 = new Bullet(this.getX() - 5, this.getY() - 4, 16, 16, Entity.BULLET_FINN_1, dx, dy);
+		Main.finnBullets.add(b4);
 	}
 	
 	@Override

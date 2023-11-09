@@ -225,6 +225,14 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 			player.autoShoot = !player.autoShoot;
 		}
 		
+		if(e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+			Entity.geralDebug = !Entity.geralDebug;
+		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+			player.debug = !player.debug;
+		}
+		
 	}
 
 	@Override

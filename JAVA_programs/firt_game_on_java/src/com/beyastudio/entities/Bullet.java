@@ -24,6 +24,12 @@ private double dx, dy;
 		super(x, y, width, height, sprite);
 		this.dx = dx;
 		this.dy = dy;
+		
+		this.maskx = 4;
+		this.masky = 4;
+		this.mwidth = 8;
+		this.mheight = 8;
+		
 		lifeTime_right = x + range_mux;
 		lifeTime_left = x - range_mux;
 		lifeTime_up = y + range_mux;
