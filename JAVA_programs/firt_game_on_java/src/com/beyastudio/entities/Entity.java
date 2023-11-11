@@ -16,6 +16,10 @@ public class Entity {
 	public static BufferedImage PIKACHU_EN = Main.spritesheet.getSpritesheet(40, 0, 16, 16);
 	public static BufferedImage BULLET_PL = Main.spritesheet.getSpritesheet(72, 0, 8, 8);
 	public static BufferedImage BULLET_FINN_1 = Main.spritesheet.getSpritesheet(48, 40, 16, 16);
+	public static BufferedImage BULLET_FINN_SWORD_0 = Main.spritesheet.getSpritesheet(48, 56, 16, 16);
+	public static BufferedImage BULLET_FINN_SWORD_180 = Main.spritesheet.getSpritesheet(64, 56, 16, 16);
+	public static BufferedImage BULLET_FINN_SWORD_90 = Main.spritesheet.getSpritesheet(96, 56, 16, 16);
+	public static BufferedImage BULLET_FINN_SWORD_270 = Main.spritesheet.getSpritesheet(80, 56, 16, 16);
 	
 	protected int width, height;
 	protected double x, y;

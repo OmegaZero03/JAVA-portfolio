@@ -1,5 +1,6 @@
 package com.beyastudio.wolrd;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -11,7 +12,7 @@ public class Tile {
 
 	public static BufferedImage TILE_FLOOR = Main.spritesheet.getSpritesheet(24, 16, 8, 8);
 	public static BufferedImage TILE_WALL = Main.spritesheet.getSpritesheet(32, 16, 8, 8);
-	public static BufferedImage TILE_BLUE = Main.spritesheet.getSpritesheet(40, 16, 8, 8);
+	public static BufferedImage TILE_SHOOT = Main.spritesheet.getSpritesheet(40, 16, 8, 8);
 	
 	private BufferedImage sprite;
 	protected int x;
@@ -24,10 +25,10 @@ public class Tile {
 		this.y = y;
 		this.sprite = sprite;
 		
-		this.maskx = 0;
-		this.masky = 0;
-		this.mwidth = width;
-		this.mheight = height;
+		this.maskx = 4;
+		this.masky = 4;
+		this.mwidth = 1;
+		this.mheight = 1;
 	}
 	
 	public int getX() {
@@ -47,7 +48,7 @@ public class Tile {
 	}
 	
 	
-	public void render(Graphics g) {
+	public void render(Graphics g) {;
 		g.drawImage(sprite, x - Camera.x, y - Camera.y, null);
 	}
 }

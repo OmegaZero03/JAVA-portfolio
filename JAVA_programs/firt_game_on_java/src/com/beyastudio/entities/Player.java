@@ -49,9 +49,9 @@ public class Player extends Entity{
 	public Player(int x, int y, int width, int height, BufferedImage sprite) {
 		super(x, y, width, height, sprite);
 		this.maskx = 2;
-		this.masky = 4;
-		this.mwidth = 4;
-		this.mheight = 4;
+		this.masky = 2;
+		this.mwidth = 5;
+		this.mheight = 5;
 		
 		leftPlayer = new BufferedImage[2];
 		rightPlayer = new BufferedImage[2];

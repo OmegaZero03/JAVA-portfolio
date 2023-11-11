@@ -19,11 +19,13 @@ import javax.swing.JFrame;
 
 import com.beaystudio.sprite.Spritesheet;
 import com.beaystudio.sprite.UI;
-import com.beyastudio.entities.Bullet;
+import com.beyastudio.boss_1.Bullet;
+import com.beyastudio.boss_1.Finn;
 import com.beyastudio.entities.Enemy;
 import com.beyastudio.entities.Entity;
 import com.beyastudio.entities.Player;
 import com.beyastudio.entities.PlayerBullet;
+import com.beyastudio.wolrd.ShootTile;
 import com.beyastudio.wolrd.WallTile;
 import com.beyastudio.wolrd.World;
 
@@ -38,11 +40,15 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	public static final int escala = 4, muxW = width * escala, muxH = height * escala;
 	private BufferedImage image;
 	public static List<WallTile> walls;
+	public static List<ShootTile> shootWalls;
 	public static List<Entity> entities;
 	public static List<PlayerBullet> playerBullets;
 	public static List<Bullet> finnBullets;
 	public static Spritesheet spritesheet;
 	
+	public static boolean isBoss = false;
+	
+	public static Finn boss_1;
 	public static World world;
 	public static Player player;
 	public static Enemy enemy;
@@ -65,12 +71,24 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		walls = new ArrayList<WallTile>();
 		playerBullets = new ArrayList<PlayerBullet>();
 		finnBullets = new ArrayList<Bullet>();
+		shootWalls = new ArrayList<ShootTile>();
 		spritesheet = new Spritesheet("/spritesheet.png");
 		player = new Player(0, 0, 8, 8, spritesheet.getSpritesheet(0, 0, 8, 8));
 		entities.add(player);
-		world = new World("/world.png");
+		world = new World("/world2.png");
 		this.setFocusable(true);
 		this.requestFocus();
+		
+		//Init boss_1 Object
+		
+		//In the world 2
+		if(World.WIDTH == 60 && World.HEIGHT == 60) {
+			boss_1 = new Finn(220, 140, 16, 16, Entity.FINN_EN);
+			isBoss = true;
+		}
+		
+		
+		
 	}
 	
 	public void initFrame() {
@@ -107,6 +125,17 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	//Logica do jogo
 	public void tick() {
 		
+		//tick boss IF it EXIST
+		if(isBoss) {
+			boss_1.tick();
+			}
+		else boss_1 = null;
+
+		for(int i = 0; i < shootWalls.size(); i++) {
+			ShootTile e = shootWalls.get(i);
+			e.tick();
+		}
+
 		//lógica por tras de cada entidade
 		for(int i = 0; i < entities.size(); i++) {
 			Entity e = entities.get(i);
@@ -129,7 +158,7 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	public void render() {
 		BufferStrategy bs = this.getBufferStrategy();
 		if(bs == null) {
-			this.createBufferStrategy(3);
+			this.createBufferStrategy(4);
 			return;
 		}
 		
@@ -139,6 +168,15 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		
 		
 		world.render(g);
+		//render boss IF it EXIST
+		if(isBoss) {
+			boss_1.render(g);
+			for(int i = 0; i < shootWalls.size(); i++) {
+				ShootTile e = shootWalls.get(i);
+				e.render(g);
+			}
+		}
+		
 		ui.render(g);
 		// renderizando cada entidade
 		for(int i = 0; i < entities.size(); i++) {
@@ -157,7 +195,7 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 			fb.render(g);
 		}
 		
-		ui.render(g);
+	
 		
 		g.dispose();
 		g = bs.getDrawGraphics();

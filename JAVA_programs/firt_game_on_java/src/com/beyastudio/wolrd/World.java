@@ -50,9 +50,9 @@ public class World {
 							break;
 							
 						case 0xff315a7b:
-							WallTile wallBlue = new BlueTile(xx*8, yy*8, Tile.TILE_BLUE);
-							tiles[xx + (yy * WIDTH)] = wallBlue;
-							Main.walls.add(wallBlue);
+							//WallTile wallBlue = new ShootTile(xx*8, yy*8, Tile.TILE_BLUE);
+							//tiles[xx + (yy * WIDTH)] = wallBlue;
+							//Main.walls.add(wallBlue);
 							break;
 							
 							//Blue Color / Cor Azul
@@ -75,7 +75,9 @@ public class World {
 							break;
 							
 						case 0xff00f2ff:
-							Main.entities.add(new Finn(xx * 8, yy*8, 16, 16, Entity.FINN_EN));
+							//Finn f = new Finn(xx * 8, yy*8, 16, 16, Entity.FINN_EN);
+							//Main.entities.add(f);
+							//System.out.println(" X = " + f.getX() + "Y = " + f.getY());
 							break;
 							
 						case 0xfff2ff00:
