@@ -21,6 +21,8 @@ import com.beaystudio.sprite.Spritesheet;
 import com.beaystudio.sprite.UI;
 import com.beyastudio.boss_1.Bullet;
 import com.beyastudio.boss_1.Finn;
+import com.beyastudio.boss_2.FireP;
+import com.beyastudio.boss_3.IceKing;
 import com.beyastudio.entities.Enemy;
 import com.beyastudio.entities.Entity;
 import com.beyastudio.entities.Player;
@@ -49,6 +51,8 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	public static boolean isBoss = false;
 	
 	public static Finn boss_1;
+	public static FireP boss_2;
+	public static IceKing boss_3;
 	public static World world;
 	public static Player player;
 	public static Enemy enemy;
@@ -84,6 +88,8 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		//In the world 2
 		if(World.WIDTH == 60 && World.HEIGHT == 60) {
 			boss_1 = new Finn(220, 140, 16, 16, Entity.FINN_EN);
+			boss_2 = new FireP(80, 368, 16, 16, Entity.FIRE_EN);
+			boss_3 = new IceKing(392, 368, 16, 16, Entity.ICE_EN);
 			isBoss = true;
 		}
 		
@@ -128,6 +134,8 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		//tick boss IF it EXIST
 		if(isBoss) {
 			boss_1.tick();
+			boss_2.tick();
+			boss_3.tick();
 			}
 		else boss_1 = null;
 
@@ -166,18 +174,21 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		g.setColor(new Color(19, 19, 19));
 		g.fillRect(0, 0, width, height);
 		
+		/**Quanto mais em cima mais embaixo renderiza**/
+		
 		
 		world.render(g);
 		//render boss IF it EXIST
 		if(isBoss) {
 			boss_1.render(g);
+			boss_2.render(g);
+			boss_3.render(g);
 			for(int i = 0; i < shootWalls.size(); i++) {
 				ShootTile e = shootWalls.get(i);
 				e.render(g);
 			}
 		}
 		
-		ui.render(g);
 		// renderizando cada entidade
 		for(int i = 0; i < entities.size(); i++) {
 			Entity e = entities.get(i);
@@ -195,7 +206,9 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 			fb.render(g);
 		}
 		
+		ui.render(g);
 	
+		/**Quanto mais embaixo mais em cima renderiza**/
 		
 		g.dispose();
 		g = bs.getDrawGraphics();

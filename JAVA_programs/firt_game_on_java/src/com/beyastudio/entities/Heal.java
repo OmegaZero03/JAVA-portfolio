@@ -18,6 +18,10 @@ public class Heal extends Entity{
 				if(Entity.isColliding(this, atual)) {
 					Main.player.life += 10;
 					System.out.println("X = " + this.getX() + " " + "Y = " + this.getY());
+					
+					if(Main.player.life > 100) {
+						Main.player.life = 100;
+					}
 					Main.entities.remove(this);
 					System.out.println(Main.player.life);
 				}

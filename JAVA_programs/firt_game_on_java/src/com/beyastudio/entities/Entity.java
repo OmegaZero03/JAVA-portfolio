@@ -13,6 +13,8 @@ public class Entity {
 	public static BufferedImage HEAL_EN = Main.spritesheet.getSpritesheet(24, 8, 8, 8);
 	public static BufferedImage ENEMY_EN = Main.spritesheet.getSpritesheet(32, 8, 8, 8);
 	public static BufferedImage FINN_EN = Main.spritesheet.getSpritesheet(16, 24, 16, 16);
+	public static BufferedImage ICE_EN = Main.spritesheet.getSpritesheet(16, 40, 16, 16);
+	public static BufferedImage FIRE_EN = Main.spritesheet.getSpritesheet(32, 40, 16, 16);
 	public static BufferedImage PIKACHU_EN = Main.spritesheet.getSpritesheet(40, 0, 16, 16);
 	public static BufferedImage BULLET_PL = Main.spritesheet.getSpritesheet(72, 0, 8, 8);
 	public static BufferedImage BULLET_FINN_1 = Main.spritesheet.getSpritesheet(48, 40, 16, 16);

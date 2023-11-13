@@ -42,6 +42,8 @@ public class PlayerBullet extends Entity {
 		selfDestroy();
 		collidingWall();
 		collidingFinn();
+		collidingIce();
+		collidingFire();
 
 		if ((x >= lifeTime_right) || (x <= lifeTime_left) || (y >= lifeTime_up) || (y <= lifeTime_down)) {
 			Main.playerBullets.remove(this);
@@ -83,13 +85,36 @@ public class PlayerBullet extends Entity {
 			Main.playerBullets.remove(this);
 		}
 	}
+	
+	public void collidingFire() {
+		if (Main.boss_3 == null)
+			return;
+
+		if (Entity.isColliding(this, Main.boss_2)) {
+
+			Main.boss_2.life -= damage;
+			System.out.println("vida = " + Main.boss_2.life);
+			Main.playerBullets.remove(this);
+		}
+	}
+	public void collidingIce() {
+		if (Main.boss_3 == null)
+			return;
+
+		if (Entity.isColliding(this, Main.boss_3)) {
+
+			Main.boss_3.life -= damage;
+			System.out.println("vida = " + Main.boss_3.life);
+			Main.playerBullets.remove(this);
+		}
+	}
 
 	public void collidingEnemy() {
 		for (int i = 0; i < Main.entities.size(); i++) {
 			Entity atual = Main.entities.get(i);
 			boolean isEnemy = atual instanceof Enemy;
 			// boolean isFinn = atual instanceof Finn;
-			boolean isPikachu = atual instanceof Pikachu;
+			boolean isPikachu = atual instanceof Snorlax;
 
 			if (isEnemy || isPikachu) {
 				if (Entity.isColliding(this, atual)) {

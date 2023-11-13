@@ -10,9 +10,19 @@ import com.beyastudio.main.Main;
 
 public class Tile {
 
-	public static BufferedImage TILE_FLOOR = Main.spritesheet.getSpritesheet(24, 16, 8, 8);
-	public static BufferedImage TILE_WALL = Main.spritesheet.getSpritesheet(32, 16, 8, 8);
+	public static BufferedImage TILE_FLOOR = Main.spritesheet.getSpritesheet(32, 16, 8, 8);
+	public static BufferedImage TILE_WALL = Main.spritesheet.getSpritesheet(16, 88, 8, 8);
 	public static BufferedImage TILE_SHOOT = Main.spritesheet.getSpritesheet(40, 16, 8, 8);
+	
+	public static BufferedImage TILE_ICE_FLOOR = Main.spritesheet.getSpritesheet(16, 72, 8, 8);
+	public static BufferedImage TILE_ICE_WALL = Main.spritesheet.getSpritesheet(24, 72, 8, 8);
+	
+	public static BufferedImage TILE_FIRE_FLOOR = Main.spritesheet.getSpritesheet(16, 80, 8, 8);
+	public static BufferedImage TILE_FIRE_WALL = Main.spritesheet.getSpritesheet(24, 80, 8, 8);
+	
+	public static BufferedImage TILE_WOOD_FLOOR = Main.spritesheet.getSpritesheet(24, 88, 8, 8);
+	
+	
 	
 	private BufferedImage sprite;
 	protected int x;

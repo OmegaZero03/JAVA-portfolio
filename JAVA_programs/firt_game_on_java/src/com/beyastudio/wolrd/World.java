@@ -37,22 +37,50 @@ public class World {
 					
 							//Black Color / Cor Preta
 						case 0xff000000:
-							// Floor / chao
+							// GRASS Floor / chao de grama
 							tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_FLOOR);
+							break;
+							
+							//DARK GREY / Cinza escuro
+						case 0xff545455:
+							// FIRE Floor / chao de chão
+							tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_FIRE_FLOOR);
+							break;
+							
+							//BROWN COLOR / MARROM
+						case 0xffbb7547:
+							//WOOD TILE/ CHÃO DE MADEIRA
+							tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_WOOD_FLOOR);
+							break;
+							
+							//GREY COLOR / cor cinza
+						case 0xffb3b9d1:
+							//Ice FLOOR / Chão de gelo
+							tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_ICE_FLOOR);
+							break;
+							
+							// ORANGE COLOR / cor de laranja
+						case 0xfffa6a0a:
+							// Fire wall/ parede de fogo
+							WallTile fireWall = new WallTile(xx * 8, yy * 8, Tile.TILE_FIRE_WALL);
+							tiles[xx + (yy * WIDTH)] = fireWall;
+							Main.walls.add(fireWall);
 							break;
 							
 							//White Color / Cor Branca
 						case 0xffffffff:
-							// Wall / Parede
+							// leaf Wall / Parede de folhas
 							WallTile wall = new WallTile(xx * 8, yy * 8, Tile.TILE_WALL);
 							tiles[xx + (yy * WIDTH)] = wall;
 							Main.walls.add(wall);
 							break;
 							
-						case 0xff315a7b:
-							//WallTile wallBlue = new ShootTile(xx*8, yy*8, Tile.TILE_BLUE);
-							//tiles[xx + (yy * WIDTH)] = wallBlue;
-							//Main.walls.add(wallBlue);
+							//BLUE COLOR / COR AZUL
+						case 0xff24bede:
+							//ICE WALL / parede de gelo
+							WallTile iceWall = new WallTile(xx * 8, yy * 8, Tile.TILE_ICE_WALL);
+							tiles[xx + (yy * WIDTH)] = iceWall;
+							Main.walls.add(iceWall);
 							break;
 							
 							//Blue Color / Cor Azul
@@ -69,6 +97,7 @@ public class World {
 							Main.entities.add(new Enemy(xx * 8, yy * 8, 8, 8, Entity.ENEMY_EN));
 							break;
 					
+							//Green Color / Cor Verde
 						case 0xff26be46:
 							Heal heal = new Heal(xx * 8, yy * 8, 8, 8, Entity.HEAL_EN);
 							Main.entities.add(heal);
@@ -80,8 +109,9 @@ public class World {
 							//System.out.println(" X = " + f.getX() + "Y = " + f.getY());
 							break;
 							
+							//Yellow Color/ cor amarela
 						case 0xfff2ff00:
-							Main.entities.add(new Pikachu(xx*8, yy*8, 16, 16, Entity.PIKACHU_EN));
+							Main.entities.add(new Snorlax(xx*8 - 8, yy*8, 16, 16, Entity.PIKACHU_EN));
 							break;
 					}
 					

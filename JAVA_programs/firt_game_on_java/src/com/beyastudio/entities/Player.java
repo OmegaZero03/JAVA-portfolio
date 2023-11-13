@@ -20,15 +20,17 @@ public class Player extends Entity{
 
 	
 	private int frames = 0, 
-				Xindex= 0, 
-				Yindex = 0, 
+				Xindex = 0, 
+				Yindex = 0,
+				DYindex= 0,
 				max_frames = 10, 
-				maxYindex = 2, 
-				maxXindex = 1;
+				maxYindex  = 2,
+				DmaxYindex = 3,
+				maxXindex  = 1;
 	
-	private int right_dir = 0, 
+	private int right_dir= 0, 
 				left_dir = 1, 
-				up_dir = 2, 
+				up_dir   = 2, 
 				down_dir = 3; 
 	
 	public boolean debug = false;
@@ -60,8 +62,9 @@ public class Player extends Entity{
 		rightAtack = new BufferedImage[2];
 		
 		upPlayer = new BufferedImage[3];
-		downPlayer = new BufferedImage[3];
-		
+		/**** Cover animation****/
+		downPlayer = new BufferedImage[4];
+		/***********************/
 		upAtack = new BufferedImage[2];
 		downAtack = new BufferedImage[2];
 		
@@ -73,15 +76,15 @@ public class Player extends Entity{
 			
 			upAtack[i] = Main.spritesheet.getSpritesheet(0 + (i * 8), 56, 8, 8);
 			downAtack[i] = Main.spritesheet.getSpritesheet(0 + (i * 8), 64, 8, 8);
-		}
-		
-		for(int i = 0; i < 2; i++) {
+			
 			rightAtack[i] = Main.spritesheet.getSpritesheet(0 , 24 + (i * 8), 16, 8);
 			leftAtack[i] = Main.spritesheet.getSpritesheet(0 , 40 + (i * 8), 16, 8);
 		}
 		
 		for(int i = 0; i < 3; i++){
 			upPlayer[i] = Main.spritesheet.getSpritesheet(0 + (i * 8), 8, 8, 8);
+		}
+		for(int i = 0; i < 4; i++){
 			downPlayer[i] = Main.spritesheet.getSpritesheet(0 + (i * 8), 16, 8, 8);
 		}
 		
@@ -116,12 +119,16 @@ public class Player extends Entity{
 			if(frames == max_frames) {
 				frames = 0;
 				Yindex++;
+				DYindex++;
 				Xindex++;
 				if(Xindex > maxXindex) {
 					Xindex = 0;
 				}
 				if(Yindex > maxYindex) {
 					Yindex = 0;
+				}
+				if(DYindex > DmaxYindex) {
+					DYindex = 0;
 				}
 			}
 			
@@ -177,7 +184,7 @@ public class Player extends Entity{
 	
 	
 	public void death() {
-		if(this.life > 0) {
+		if(this.life >= 0) {
 			return;
 		}
 		System.exit(1);
@@ -230,7 +237,7 @@ public class Player extends Entity{
 			if(dir == up_dir) {
 				g.drawImage(upPlayer[Yindex], this.getX() - Camera.x, this.getY() - Camera.y, null);
 			}else if(dir == down_dir) {
-				g.drawImage(downPlayer[Yindex], this.getX() - Camera.x,this.getY() - Camera.y, null);
+				g.drawImage(downPlayer[DYindex], this.getX() - Camera.x,this.getY() - Camera.y, null);
 			}
 		}
 		

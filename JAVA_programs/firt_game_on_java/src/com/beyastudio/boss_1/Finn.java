@@ -9,6 +9,7 @@ import com.beyastudio.main.Main;
 import com.beyastudio.wolrd.Camera;
 import com.beyastudio.wolrd.ShootTile;
 import com.beyastudio.wolrd.Tile;
+import com.beyastudio.wolrd.WallTile;
 
 public class Finn extends Entity {
 
@@ -43,7 +44,7 @@ public class Finn extends Entity {
 	@Override
 	public void tick() {
 
-		if (this.life < 0) {
+		if (this.life <= 0) {
 			Main.isBoss = false;
 			Main.shootWalls.removeAll(Main.shootWalls);
 		}
@@ -108,6 +109,7 @@ public class Finn extends Entity {
 		case "atacando_tentacle":
 
 			if (canCreat) {
+				
 				/*-----------360_down-----------*/
 				
 				for(int i = 0; i < 4; i++) {
