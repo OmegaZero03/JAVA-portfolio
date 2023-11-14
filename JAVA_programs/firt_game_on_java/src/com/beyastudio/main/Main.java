@@ -48,7 +48,7 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	public static List<Bullet> finnBullets;
 	public static Spritesheet spritesheet;
 	
-	public static boolean isBoss = false;
+	public static boolean isBoss = false, isBossF = false, isBossI = false;
 	
 	public static Finn boss_1;
 	public static FireP boss_2;
@@ -91,6 +91,8 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 			boss_2 = new FireP(80, 368, 16, 16, Entity.FIRE_EN);
 			boss_3 = new IceKing(392, 368, 16, 16, Entity.ICE_EN);
 			isBoss = true;
+			isBossF = true;
+			isBossI = true;
 		}
 		
 		
@@ -134,10 +136,21 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		//tick boss IF it EXIST
 		if(isBoss) {
 			boss_1.tick();
-			boss_2.tick();
-			boss_3.tick();
 			}
 		else boss_1 = null;
+		
+		if(isBossF) {
+			boss_2.tick();
+		}else {
+			boss_2 = null;
+		}
+		
+		if(isBossI) {
+			boss_3.tick();
+		}else {
+			boss_3 = null;
+		}
+		
 
 		for(int i = 0; i < shootWalls.size(); i++) {
 			ShootTile e = shootWalls.get(i);
@@ -181,12 +194,17 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		//render boss IF it EXIST
 		if(isBoss) {
 			boss_1.render(g);
-			boss_2.render(g);
-			boss_3.render(g);
 			for(int i = 0; i < shootWalls.size(); i++) {
 				ShootTile e = shootWalls.get(i);
 				e.render(g);
 			}
+		}
+		
+		if(isBossF) {
+			boss_2.render(g);
+		}
+		if(isBossI) {
+			boss_3.render(g);
 		}
 		
 		// renderizando cada entidade

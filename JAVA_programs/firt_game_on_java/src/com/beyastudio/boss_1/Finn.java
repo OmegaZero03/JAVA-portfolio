@@ -10,6 +10,7 @@ import com.beyastudio.wolrd.Camera;
 import com.beyastudio.wolrd.ShootTile;
 import com.beyastudio.wolrd.Tile;
 import com.beyastudio.wolrd.WallTile;
+import com.beyastudio.wolrd.World;
 
 public class Finn extends Entity {
 
@@ -22,9 +23,16 @@ public class Finn extends Entity {
 
 	private String estado = "parado";
 
+	private boolean canChooseY, canChooseX;
+	
 	private double anglep, anglepp;
 
-	private int range, negaRange, maxLife = 600, angleAddOne = 1;
+	private int range,
+				negaRange,
+				maxLife = 600,
+				angleAddOne = 1,
+				locationY,
+				locationX;
 
 	private double dx, dy, nextShoot, angle;
 
@@ -217,8 +225,71 @@ public class Finn extends Entity {
 
 			Bullet b4 = new Bullet(this.getX() - 5, this.getY() - 4, 16, 16, Entity.BULLET_FINN_1, dx, dy);
 			Main.finnBullets.add(b4);
+			
+			if(life <= (maxLife * .8)) {
+				canChooseY = true;
+				Main.shootWalls.removeAll(Main.shootWalls);
+				estado = "fase_2";
+			}
+			break;
+			
+		case "fase_2":
+			
+			
+			canCreat = false;
+			
+			spd = 2;
+
+			
+			if(canChooseY) {
+				locationY = Main.ran.nextInt(1, 3);
+			}
+			if(canChooseX) {
+				locationX = Main.ran.nextInt(1, 3);
+			}
+			
+			
+			if(locationY == 1) {
+				if(y > 64) {
+					y -= spd;
+					canChooseY = false;
+				}
+				canChooseX = true;
+			}else if(locationY == 2) {
+				if(y < 208) {
+					y += spd;
+					canChooseY = false;
+				}
+				canChooseX = true;
+			}
+			
+			if(locationX == 1) {
+				double xx = x;
+				if(x > 168) {
+					x -= spd;
+				}
+				canChooseX = false;
+			}
+			else if(locationX == 2) {
+				double xx = x;
+				if(x < 280) {
+					x += spd;
+				}
+				canChooseX = false;
+				
+			}
+		
+			if(life <= maxLife * .5) {
+				estado = "fase_3";
+			}
+			
 			break;
 
+		case "fase_3":
+			System.out.println("locationX: " + locationX);
+			System.out.println("locationY: " + locationY);
+			break;
+			
 		}
 
 	}

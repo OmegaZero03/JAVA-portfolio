@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import com.beyastudio.entities.Entity;
+import com.beyastudio.main.Main;
 import com.beyastudio.wolrd.Camera;
 
 public class IceKing extends Entity{
@@ -12,8 +13,15 @@ public class IceKing extends Entity{
 	public IceKing(int x, int y, int width, int height, BufferedImage sprite) {
 		super(x, y, width, height, sprite);
 		
-		this.life = 200;
-		this.maxLife = 200;
+		this.life = 20;
+		this.maxLife = 20;
+	}
+	
+	@Override 
+	public void tick() {
+		if (life <= 0) {
+			Main.isBossI = false;
+		}
 	}
 
 	@Override

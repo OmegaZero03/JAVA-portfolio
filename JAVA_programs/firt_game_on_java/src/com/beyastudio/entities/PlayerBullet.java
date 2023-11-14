@@ -12,7 +12,7 @@ public class PlayerBullet extends Entity {
 
 	/****** STATUS **********/
 	private int spd = 2;
-	private int damage = 3;
+	private int damage = 110;
 	private int range = 6;
 	/**********************/
 
@@ -87,7 +87,7 @@ public class PlayerBullet extends Entity {
 	}
 	
 	public void collidingFire() {
-		if (Main.boss_3 == null)
+		if (Main.boss_2 == null)
 			return;
 
 		if (Entity.isColliding(this, Main.boss_2)) {
