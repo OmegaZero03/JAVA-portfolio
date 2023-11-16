@@ -73,6 +73,7 @@ public class World {
 							WallTile wall = new WallTile(xx * 8, yy * 8, Tile.TILE_WALL);
 							tiles[xx + (yy * WIDTH)] = wall;
 							Main.walls.add(wall);
+							
 							break;
 							
 							//BLUE COLOR / COR AZUL

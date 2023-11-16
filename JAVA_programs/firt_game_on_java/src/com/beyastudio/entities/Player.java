@@ -92,6 +92,8 @@ public class Player extends Entity{
 	
 	@Override
 	public void tick() {
+		
+		
 		moved = false;
 		if(right && World.isFree((int)(x+spd), this.getY())) {
 			moved = true;
@@ -242,6 +244,7 @@ public class Player extends Entity{
 		}
 		
 		if(debug) {
+			life = 100;
 			g.setColor(Color.RED);
 			g.fillRect((this.getX() + maskx) - Camera.x, (this.getY() + masky) - Camera.y, mwidth, mheight);
 		}

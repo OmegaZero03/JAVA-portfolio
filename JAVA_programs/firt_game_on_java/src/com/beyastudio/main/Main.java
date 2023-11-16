@@ -37,8 +37,8 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	private static final long serialVersionUID = 1L;
 	private Thread th;
 	private boolean isRunning = true;
-	public static final int width = 120;
-	public static final int height = 120;
+	public static final int width = 240;
+	public static final int height = 240;
 	public static final int escala = 4, muxW = width * escala, muxH = height * escala;
 	private BufferedImage image;
 	public static List<WallTile> walls;

@@ -22,6 +22,7 @@ public class Entity {
 	public static BufferedImage BULLET_FINN_SWORD_180 = Main.spritesheet.getSpritesheet(64, 56, 16, 16);
 	public static BufferedImage BULLET_FINN_SWORD_90 = Main.spritesheet.getSpritesheet(96, 56, 16, 16);
 	public static BufferedImage BULLET_FINN_SWORD_270 = Main.spritesheet.getSpritesheet(80, 56, 16, 16);
+	public static BufferedImage BULLET_FINN_SLASH = Main.spritesheet.getSpritesheet(32, 56, 16, 16);
 	
 	protected int width, height;
 	protected double x, y;

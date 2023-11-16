@@ -22,6 +22,8 @@ public class Tile {
 	
 	public static BufferedImage TILE_WOOD_FLOOR = Main.spritesheet.getSpritesheet(24, 88, 8, 8);
 	
+	public static BufferedImage TILE_INV = Main.spritesheet.getSpritesheet(104, 104, 8, 8);
+	
 	
 	
 	private BufferedImage sprite;
