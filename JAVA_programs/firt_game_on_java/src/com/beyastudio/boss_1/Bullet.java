@@ -25,10 +25,10 @@ public class Bullet extends Entity {
 		this.dx = dx;
 		this.dy = dy;
 
-		this.maskx = 4;
-		this.masky = 4;
-		this.mwidth = 8;
-		this.mheight = 8;
+		this.maskx = 5;
+		this.masky = 5;
+		this.mwidth = 6;
+		this.mheight = 6;
 
 		lifeTime_right = x + range_mux;
 		lifeTime_left = x - range_mux;
@@ -79,6 +79,14 @@ public class Bullet extends Entity {
 			Main.finnBullets.remove(this);
 			Main.player.life -= damage;
 		}
+	}
+
+	public void setSpd(double spd) {
+		this.spd = spd;
+	}
+
+	public void setDamage(int damage) {
+		this.damage = damage;
 	}
 
 

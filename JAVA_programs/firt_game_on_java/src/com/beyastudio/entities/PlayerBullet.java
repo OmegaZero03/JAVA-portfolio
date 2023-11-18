@@ -12,7 +12,7 @@ public class PlayerBullet extends Entity {
 
 	/****** STATUS **********/
 	private int spd = 2;
-	private int damage = 150;
+	private int damage = 3;
 	private int range = 6;
 	/**********************/
 

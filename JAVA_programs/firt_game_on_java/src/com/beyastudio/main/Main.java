@@ -28,6 +28,7 @@ import com.beyastudio.entities.Entity;
 import com.beyastudio.entities.Player;
 import com.beyastudio.entities.PlayerBullet;
 import com.beyastudio.wolrd.ShootTile;
+import com.beyastudio.wolrd.ShootTileSlow;
 import com.beyastudio.wolrd.WallTile;
 import com.beyastudio.wolrd.World;
 
@@ -38,11 +39,12 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	private Thread th;
 	private boolean isRunning = true;
 	public static final int width = 240;
-	public static final int height = 240;
+	public static final int height = 200;
 	public static final int escala = 4, muxW = width * escala, muxH = height * escala;
 	private BufferedImage image;
 	public static List<WallTile> walls;
 	public static List<ShootTile> shootWalls;
+	public static List<ShootTileSlow> shootWallsSlow;
 	public static List<Entity> entities;
 	public static List<PlayerBullet> playerBullets;
 	public static List<Bullet> finnBullets;
@@ -76,6 +78,7 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		playerBullets = new ArrayList<PlayerBullet>();
 		finnBullets = new ArrayList<Bullet>();
 		shootWalls = new ArrayList<ShootTile>();
+		shootWallsSlow = new ArrayList<ShootTileSlow>();
 		spritesheet = new Spritesheet("/spritesheet.png");
 		player = new Player(0, 0, 8, 8, spritesheet.getSpritesheet(0, 0, 8, 8));
 		entities.add(player);
@@ -157,6 +160,11 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 			e.tick();
 		}
 
+		for(int i = 0; i < shootWallsSlow.size(); i++) {
+			ShootTileSlow e = shootWallsSlow.get(i);
+			e.tick();
+		}
+		
 		//lógica por tras de cada entidade
 		for(int i = 0; i < entities.size(); i++) {
 			Entity e = entities.get(i);
@@ -196,6 +204,10 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 			boss_1.render(g);
 			for(int i = 0; i < shootWalls.size(); i++) {
 				ShootTile e = shootWalls.get(i);
+				e.render(g);
+				}
+			for(int i = 0; i < shootWallsSlow.size(); i++) {
+				ShootTileSlow e = shootWallsSlow.get(i);
 				e.render(g);
 			}
 		}

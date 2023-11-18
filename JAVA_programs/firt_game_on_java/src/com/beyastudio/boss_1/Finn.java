@@ -8,8 +8,8 @@ import com.beyastudio.entities.Entity;
 import com.beyastudio.main.Main;
 import com.beyastudio.wolrd.Camera;
 import com.beyastudio.wolrd.ShootTile;
+import com.beyastudio.wolrd.ShootTileSlow;
 import com.beyastudio.wolrd.Tile;
-import com.beyastudio.wolrd.WallTile;
 
 public class Finn extends Entity {
 
@@ -44,7 +44,7 @@ public class Finn extends Entity {
 
 		this.range = x + rangeWalk;
 		this.negaRange = x - rangeWalk;
-		this.life = 600;
+		this.life = maxLife;
 
 		this.anglep = Math.toRadians(90);
 		
@@ -61,6 +61,7 @@ public class Finn extends Entity {
 		if (this.life <= 0) {
 			Main.isBoss = false;
 			Main.shootWalls.removeAll(Main.shootWalls);
+			Main.shootWallsSlow.removeAll(Main.shootWallsSlow);
 		}
 
 		stateMachine();
@@ -199,7 +200,7 @@ public class Finn extends Entity {
 			Bullet b4 = new Bullet(this.getX() - 5, this.getY() - 4, 16, 16, Entity.BULLET_FINN_1, dx, dy);
 			Main.finnBullets.add(b4);
 			
-			if(life <= (maxLife * .8)) {
+			if(life <= (maxLife * .7)) {
 				Main.shootWalls.removeAll(Main.shootWalls);
 				canCreat = true;
 				canChooseY = true;
@@ -280,6 +281,7 @@ public class Finn extends Entity {
 				this.dy = Math.sin(angle - Math.toRadians(28));
 					
 				Bullet bola = new Bullet(this.getX(), this.getY(), 8, 8, Entity.BULLET_FINN_1, dx, dy);
+				bola.damage = 5;
 				bola.spd = 1;
 				Main.finnBullets.add(bola);
 				
@@ -287,6 +289,7 @@ public class Finn extends Entity {
 				this.dy = Math.sin(angle);
 					
 				Bullet bola1 = new Bullet(this.getX(), this.getY(), 8, 8, Entity.BULLET_FINN_1, dx, dy);
+				bola1.damage = 5;
 				bola1.spd = 1;
 				Main.finnBullets.add(bola1);
 				
@@ -295,6 +298,7 @@ public class Finn extends Entity {
 				this.dy = Math.sin(angle + Math.toRadians(28));
 					
 				Bullet bola2 = new Bullet(this.getX(), this.getY(), 8, 8, Entity.BULLET_FINN_1, dx, dy);
+				bola2.damage = 5;
 				bola2.spd = 1;
 				Main.finnBullets.add(bola2);
 
@@ -302,7 +306,7 @@ public class Finn extends Entity {
 				
 				this.anglep = 0;
 				
-				int qtdBullet = 7;
+				int qtdBullet = 6;
 				int agleHelper = 140;
 				
 				switch(locationY) {
@@ -492,13 +496,106 @@ public class Finn extends Entity {
 				Main.finnBullets.add(sword);
 			}
 			
+			if(x > 140 && x < 150 ) {
+
+				Bullet_sword_w sword2 = new Bullet_sword_w(this.getX(), this.getY(), 16, 16, Entity.BULLET_FINN_SWORD_0, 1, 0);
+				Main.finnBullets.add(sword2);
+			}
 			
-//			System.out.println("locationX: " + locationX);
-//			System.out.println("locationY: " + locationY);
+			if (x > 185 && x < 270) {
+				Bullet_sword_h sword3 = new Bullet_sword_h(this.getX(), this.getY(), 16, 16, Entity.BULLET_FINN_SWORD_270, 0, 1);
+				Main.finnBullets.add(sword3);
+				System.out.println("xx");
+			}
+			
+			
+			if(x > 185 && x < 270) {
+				Bullet_sword_h sword4 = new Bullet_sword_h(this.getX(), this.getY(), 16, 16, Entity.BULLET_FINN_SWORD_90, 0, -1);
+				Main.finnBullets.add(sword4);
+			}
+			
+			
+			if(life < (maxLife * .2)) {
+				estado = "fase_final";
+				Main.shootWalls.removeAll(Main.shootWalls);
+				canCreat = true;
+			}
+			
 			break;
 			
+		case "fase_final":
+			
+			
+			spd = 0;
+			
+			if(x > 224)
+			{
+				spd = 1;
+				x -= spd;
+			}
+			if(x < 224) {
+				spd = 1;
+				x += spd;
+			}
+			if(y > 64) {
+				
+				spd = 1;
+				y -= spd;
+			}
+			if(y < 64) {
+				
+				spd = 1;
+				y += spd;
+			}
+		
+			if (canCreat) {
+				
+				for(int i = 0; i < 5; i++) {
+					ShootTile t = new ShootTile(206 + (i*7), 210, Tile.TILE_INV, 90);
+					Main.shootWalls.add(t);
+					}
+					
+				/*-----------90_down-----------*/
+				for(int i = 0; i < 3; i++) {
+					ShootTile tile_90 = new ShootTile(136 + (i*8), 208 + (i*8), Tile.TILE_WALL, 270);
+					Main.shootWalls.add(tile_90);
+					}
+					
+				/*-----------270_down-----------*/
+				for(int i = 0; i < 3; i++) {
+					ShootTile tile_180 = new ShootTile(290 + (i*8), 232 - (i*8), Tile.TILE_WALL, 270);
+					Main.shootWalls.add(tile_180);
+					}
+
+				/*-----------360_up-----------*/
+				for(int i = 0; i < 3; i++) {
+					ShootTile tile_0 = new ShootTile(160 - (i*8), 54 + (i*8), Tile.TILE_WALL, 360);
+					Main.shootWalls.add(tile_0);
+					}
+				
+				/*-----------180_up-----------*/
+				for(int i = 0; i < 3; i++) {
+					ShootTile tile_180 = new ShootTile(288 + (i*8), 54 + (i*8), Tile.TILE_WALL, 180);
+					Main.shootWalls.add(tile_180);
+
+				}
+				
+				for(int i = 0; i < 17; i++) {
+					ShootTileSlow t = new ShootTileSlow(160 + (i*8), 60, Tile.TILE_INV);
+					Main.shootWallsSlow.add(t);
+				}
+				
+				canCreat = false;
+			}
+			
+			
+			
+			break;
 		}
 
+
+		
+		
 	}
 
 	@Override
