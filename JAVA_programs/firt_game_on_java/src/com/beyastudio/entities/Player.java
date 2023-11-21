@@ -138,7 +138,6 @@ public class Player extends Entity{
 		
 		
 		this.collidingEnemy();
-		this.death();
 		
 		Camera.x = Camera.clamp(this.getX() - (Main.width / 2),0 , World.WIDTH * 8 - Main.width );
 		Camera.y = Camera.clamp(this.getY() - (Main.height / 2),0 , World.HEIGHT* 8 - Main.height );
@@ -184,13 +183,13 @@ public class Player extends Entity{
 		
 	}
 	
-	
-	public void death() {
-		if(this.life >= 0) {
-			return;
-		}
-		System.exit(1);
-	}
+	//CLOSE WINDOW ON DEATH
+//	public void death() {
+//		if(this.life >= 0) {
+//			return;
+//		}
+//		System.exit(1);
+//	}
 	
 	public void collidingEnemy() {
 		for(int i = 0; i < Main.entities.size(); i++) {

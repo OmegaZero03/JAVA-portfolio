@@ -17,7 +17,5 @@ public class Bullet_sword_slow extends Bullet {
 
 	}
 	
-	
-	
 }
 

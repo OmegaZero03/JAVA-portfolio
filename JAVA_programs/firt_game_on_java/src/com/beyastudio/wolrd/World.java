@@ -3,10 +3,21 @@ package com.beyastudio.wolrd;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-import com.beyastudio.entities.*;
+import com.beaystudio.sprite.Spritesheet;
+import com.beyastudio.boss_1.Bullet;
+import com.beyastudio.boss_1.Finn;
+import com.beyastudio.boss_2.FireP;
+import com.beyastudio.boss_3.IceKing;
+import com.beyastudio.entities.Enemy;
+import com.beyastudio.entities.Entity;
+import com.beyastudio.entities.Heal;
+import com.beyastudio.entities.Player;
+import com.beyastudio.entities.PlayerBullet;
+import com.beyastudio.entities.Snorlax;
 import com.beyastudio.main.Main;
 
 public class World {
@@ -142,6 +153,33 @@ public class World {
 				  (tiles[x2 + (y2*World.WIDTH)] instanceof WallTile)  ||
 				  (tiles[x3 + (y3*World.WIDTH)] instanceof WallTile)  ||
 				  (tiles[x4 + (y4*World.WIDTH)] instanceof WallTile));
+	}
+	
+	public static void restartGame(String lvl) {
+		
+		Main.spritesheet = new Spritesheet("/spritesheet.png");
+		Main.entities.clear();
+		Main.walls.clear();
+		Main.playerBullets.clear();
+		Main.finnBullets.clear();
+		Main.shootWalls.clear();
+		Main.shootWallsSlow.clear();
+		Main.entities = new ArrayList<Entity>();
+		Main.walls = new ArrayList<WallTile>();
+		Main.playerBullets = new ArrayList<PlayerBullet>();
+		Main.finnBullets = new ArrayList<Bullet>();
+		Main.shootWalls = new ArrayList<ShootTile>();
+		Main.shootWallsSlow = new ArrayList<ShootTileSlow>();
+		Main.player = new Player(0, 0, 8, 8, Main.spritesheet.getSpritesheet(0, 0, 8, 8));
+		Main.entities.add(Main.player);
+		Main.boss_1 = new Finn(220, 140, 16, 16, Entity.FINN_EN);
+		Main.boss_2 = new FireP(80, 368, 16, 16, Entity.FIRE_EN);
+		Main.boss_3 = new IceKing(392, 368, 16, 16, Entity.ICE_EN);
+		Main.isBoss = true;
+		Main.isBossF = true;
+		Main.isBossI = true;
+		Main.world = new World("/"+lvl);
+		return;
 	}
 	
 	

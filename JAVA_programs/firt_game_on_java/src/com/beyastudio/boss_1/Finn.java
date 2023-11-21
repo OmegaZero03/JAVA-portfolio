@@ -399,6 +399,9 @@ public class Finn extends Entity {
 			//x = 220, y = 140
 
 			if(canCreat) {
+				
+				this.setSprite(GRASS_EN);
+				
 				for(int i = 0; i < 5; i++) {
 					ShootTile t = new ShootTile(206 + (i*7), 210, Tile.TILE_INV, 90);
 					Main.shootWalls.add(t);
@@ -537,12 +540,12 @@ public class Finn extends Entity {
 				spd = 1;
 				x += spd;
 			}
-			if(y > 64) {
+			if(y > 80) {
 				
 				spd = 1;
 				y -= spd;
 			}
-			if(y < 64) {
+			if(y < 80) {
 				
 				spd = 1;
 				y += spd;

@@ -40,7 +40,9 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	private boolean isRunning = true;
 	public static final int width = 240;
 	public static final int height = 200;
-	public static final int escala = 4, muxW = width * escala, muxH = height * escala;
+	public static final int escala = 4,
+							muxW = width * escala,
+							muxH = height * escala;
 	private BufferedImage image;
 	public static List<WallTile> walls;
 	public static List<ShootTile> shootWalls;
@@ -128,13 +130,21 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		}
 	}
 	
+	
+	//STARTS HERE!//
 	public static void main(String[] args) {
 		Main main = new Main();
 		main.start();
 	}
-
+	/**************/
+	
 	//Logica do jogo
 	public void tick() {
+		
+		
+		if(player.life <= 0) {
+			World.restartGame("world2.png");
+		}
 		
 		//tick boss IF it EXIST
 		if(isBoss) {
