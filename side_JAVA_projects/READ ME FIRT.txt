@@ -1,0 +1,9 @@
+Primeiro descompile o Imobiliaria.jar
+
+Depois baixe a mais nova versão do JDK se não tiver:
+https://download.oracle.com/java/21/latest/jdk-21_windows-x64_bin.exe
+
+execute (FORA DO WINRAR) e use o programa para cadastar/alugar/comprar imóveis.
+
+O programa tem uma interface gráfica interagivel e funcional, porém com restrições.
+leia atentamente o que se pede em cada trecho.
