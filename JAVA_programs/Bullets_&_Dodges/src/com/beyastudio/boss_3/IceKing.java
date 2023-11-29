@@ -14,7 +14,14 @@ public class IceKing extends Entity{
 	
 	private double spd = 0;
 	
-	private boolean canCreat = true;
+	private double attackSpeed = 8,
+				nextShoot = 0,
+				angle, anglep, anglepp,
+				dx, dy;
+	
+	private boolean canCreat;
+	
+	private int count = 0;
 
 	public IceKing(int x, int y, int width, int height, BufferedImage sprite) {
 		super(x, y, width, height, sprite);
@@ -31,7 +38,6 @@ public class IceKing extends Entity{
 		
 		stateMachine();
 
-		
 	}
 	
 	
@@ -40,29 +46,174 @@ public class IceKing extends Entity{
 		switch(estado){
 			case "parado":
 				spd = 1;
+				
 				if(life!=maxLife) {
 					this.estado = "fase_1"; 
+					this.setAttackSpeed(.7);
+					canCreat = true;
 				}
 				break;
 				
-			case "fase_1":
-				 if(canCreat) {
-					 System.out.println("entrei");
-					 for(int i = 0; i < 3; i++) {
-						 Penguin p = new Penguin(this.getX() - 8 * (3 * (i+1)), this.getY(), 8, 8, Entity.PENGUIN_EN_REV);
-						 Main.entities.add(p);
-					 }
-					 
-					 canCreat = false;
-				 }
+				
+			case "fase_2":
+				
+//				 if(canCreat) {
+//
+//					 canCreat = false;
+//				 }
+				 
+				angle = Math.toRadians(90);
+				
+				if (System.currentTimeMillis() < nextShoot) return;
+					
+				nextShoot = System.currentTimeMillis() + (attackSpeed * 100);
+
+				
+
+				
+				for(int i = 0; i < 4; i++) {
+					
+					dx = Math.cos(angle + (i * angle));
+					dy = Math.sin(angle + (i * angle));
+					if(i == 0) {
+						Bullet_spear bs = new Bullet_spear(this.getX() + 4, this.getY(), 16, 16, Entity.BULLET_ICE_SPEAR_90, dx, dy);
+						Main.BossBullets.add(bs);
+					}else if(i == 1) {
+						Bullet_spear bs = new Bullet_spear(this.getX(), this.getY() + 4, 16, 16, Entity.BULLET_ICE_SPEAR_180, dx, dy);
+						Main.BossBullets.add(bs);
+					}else if(i == 2) {
+						Bullet_spear bs = new Bullet_spear(this.getX() - 4, this.getY(), 16, 16, Entity.BULLET_ICE_SPEAR_270, dx, dy);
+						Main.BossBullets.add(bs);
+					}else {
+						Bullet_spear bs = new Bullet_spear(this.getX(), this.getY() - 4, 16, 16, Entity.BULLET_ICE_SPEAR_0, dx, dy);
+						Main.BossBullets.add(bs);
+					}
+					
+				}//for
+				
+				
+				if(this.getX() > Main.player.getX()) {
+					x -= spd;
+				}
+				else if(this.getX() < Main.player.getX()) {
+					x+=spd;
+				}
+				if(this.getY() > Main.player.getY()) {
+					y-=spd;
+				}
+				else if(this.getY() < Main.player.getY()) {
+					y+=spd;
+				}
+				
 				
 				break;	
+				
+				
+				
+			case "fase_1":
+				
+				
+				if (System.currentTimeMillis() < nextShoot) return;
+					
+				nextShoot = System.currentTimeMillis() + (attackSpeed * 100);
+				
+				
+				if(count < 130) {
+					
+				anglep += 8;
+
+				angle = Math.toRadians(330 +  anglep);
+				
+				dx = Math.cos(angle);
+				dy = Math.sin(angle);
+				
+				Bullet_flake bf = new Bullet_flake(this.getX(), this.getY(), 16, 16, Entity.BULLET_ICE_FLAKE, dx, dy);
+				Main.BossBullets.add(bf);
+				
+				angle = Math.toRadians(90 +  anglep);
+				
+				dx = Math.cos(angle);
+				dy = Math.sin(angle);
+				
+				Bullet_flake bf2 = new Bullet_flake(this.getX(), this.getY(), 16, 16, Entity.BULLET_ICE_FLAKE, dx, dy);
+				Main.BossBullets.add(bf2);
+				
+				angle = Math.toRadians(210 +  anglep);
+				
+				dx = Math.cos(angle);
+				dy = Math.sin(angle);
+				
+				Bullet_flake bf3 = new Bullet_flake(this.getX(), this.getY(), 16, 16, Entity.BULLET_ICE_FLAKE, dx, dy);
+				Main.BossBullets.add(bf3);
+				
+				}
+				
+				if (count > 130){
+					
+					
+					anglepp -= 8;
+
+					angle = Math.toRadians(330 +  anglepp);
+					
+					dx = Math.cos(angle);
+					dy = Math.sin(angle);
+					
+					Bullet_flake bf = new Bullet_flake(this.getX(), this.getY(), 16, 16, Entity.BULLET_ICE_FLAKE, dx, dy);
+					Main.BossBullets.add(bf);
+					
+					angle = Math.toRadians(90 +  anglepp);
+					
+					dx = Math.cos(angle);
+					dy = Math.sin(angle);
+					
+					Bullet_flake bf2 = new Bullet_flake(this.getX(), this.getY(), 16, 16, Entity.BULLET_ICE_FLAKE, dx, dy);
+					Main.BossBullets.add(bf2);
+					
+					angle = Math.toRadians(210 +  anglepp);
+					
+					dx = Math.cos(angle);
+					dy = Math.sin(angle);
+					
+					Bullet_flake bf3 = new Bullet_flake(this.getX(), this.getY(), 16, 16, Entity.BULLET_ICE_FLAKE, dx, dy);
+					Main.BossBullets.add(bf3);
+					
+					if(count > 130 * 2) {
+						count = 0;
+					}
+					
+				}
+				
+				System.out.println(count);
+				count++;
+				
+				
+				if(this.life <= maxLife * 0.7) {
+					estado = "fase_2";
+					canCreat = true;
+					this.setAttackSpeed(8);
+					spd = 4;
+				}
+				
+
+				
+				break;
+				
 		}
 		
 	}
 	
 	
 	
+	
+	
+	public double getAttackSpeed() {
+		return attackSpeed;
+	}
+
+	public void setAttackSpeed(double attackSpeed) {
+		this.attackSpeed = attackSpeed;
+	}
+
 	@Override
 	public void render(Graphics g) {
 		super.render(g);

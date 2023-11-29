@@ -43,6 +43,7 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	public static final int escala = 4,
 							muxW = width * escala,
 							muxH = height * escala;
+	
 	private BufferedImage image;
 	public static List<WallTile> walls;
 	public static List<ShootTile> shootWalls;
@@ -90,11 +91,12 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		
 		//Init boss_1 Object
 		
+		
 		//In the world 2
 		if(World.WIDTH == 60 && World.HEIGHT == 60) {
 			boss_1 = new Finn(220, 140, 16, 16, Entity.FINN_EN);
 			boss_2 = new FireP(80, 368, 16, 16, Entity.FIRE_EN);
-			boss_3 = new IceKing(392, 368, 16, 16, Entity.ICE_EN);
+			boss_3 = new IceKing(364, 344, 16, 16, Entity.ICE_EN);
 			isBoss = true;
 			isBossF = true;
 			isBossI = true;
@@ -105,7 +107,7 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	}
 	
 	public void initFrame() {
-		JFrame frame = new JFrame("Game #1 JAVA");
+		JFrame frame = new JFrame("Bullest & Dodges");
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(this);
@@ -229,16 +231,16 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 			boss_3.render(g);
 		}
 		
-		// renderizando cada entidade
-		for(int i = 0; i < entities.size(); i++) {
-			Entity e = entities.get(i);
-			e.render(g);
-		}
-		
 		for(int i = 0; i < playerBullets.size(); i++) {
 			Entity b = playerBullets.get(i);
 			b.render(g);
 			
+		}
+		
+		// renderizando cada entidade
+		for(int i = 0; i < entities.size(); i++) {
+			Entity e = entities.get(i);
+			e.render(g);
 		}
 		
 		for(int i = 0; i < BossBullets.size(); i++) {

@@ -25,7 +25,6 @@ public class Entity {
 	public static BufferedImage ENEMY_EN  	=Main.spritesheet.getSpritesheet(32, 8, _8x8, _8x8);
 	
 	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-	
 						/*********GRASS BOSS SPRITES**********/
 	public static BufferedImage FINN_EN  	=Main.spritesheet.getSpritesheet(16, 24, _16x_16, _16x_16),
 					BULLET_FINN_1 		 	=Main.spritesheet.getSpritesheet(48, 40, _16x_16, _16x_16),
@@ -44,6 +43,8 @@ public class Entity {
 					BULLET_ICE_FLAKE 		=Main.spritesheet.getSpritesheet(32, 72, _16x_16, _16x_16),
 					BULLET_ICE_SPEAR_270	=Main.spritesheet.getSpritesheet(48, 72, _16x_16, _16x_16),
 					BULLET_ICE_SPEAR_90		=Main.spritesheet.getSpritesheet(48, 88, _16x_16, _16x_16),
+					BULLET_ICE_SPEAR_180	=Main.spritesheet.getSpritesheet(0, 96, _16x_16, _16x_16),
+					BULLET_ICE_SPEAR_0		=Main.spritesheet.getSpritesheet(16, 96, _16x_16, _16x_16),
 					PENGUIN_EN 				=Main.spritesheet.getSpritesheet(32, 88, _8x8, _8x8),
 					PENGUIN_EN_REV 			=Main.spritesheet.getSpritesheet(32, 96, _8x8, _8x8),
 					BULLET_PENGUIN_0		=Main.spritesheet.getSpritesheet(40, 88, _8x8, _8x8),
@@ -55,7 +56,13 @@ public class Entity {
 	
 	public static BufferedImage FIRE_EN   	=Main.spritesheet.getSpritesheet(32, 40, _16x_16, _16x_16);
 	public static BufferedImage PIKACHU_EN 	=Main.spritesheet.getSpritesheet(40, 0, _16x_16, _16x_16);
-	public static BufferedImage BULLET_PL 	=Main.spritesheet.getSpritesheet(72, 0, _8x8, _8x8);	
+	public static BufferedImage BULLET_PL 	=Main.spritesheet.getSpritesheet(72, 0, _8x8, _8x8);
+	
+	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+						/*********GRASS BOSS SPRITES**********/
+	public static BufferedImage GRASS_ORB   =Main.spritesheet.getSpritesheet(80, 0, _8x8, _8x8),
+					BULLET_GRASS_ORB 		=Main.spritesheet.getSpritesheet(80, 8, _8x8, _8x8);
+						/*********/////////////////**********/
 	
 	
 	
@@ -142,6 +149,11 @@ public class Entity {
 		Rectangle e2Mask = new Rectangle(e2.getX() + e2.maskx, e2.getY() + e2.masky, e2.mwidth, e2.mheight);
 		
 		return e1Mask.intersects(e2Mask);
+	}
+
+	public void render() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

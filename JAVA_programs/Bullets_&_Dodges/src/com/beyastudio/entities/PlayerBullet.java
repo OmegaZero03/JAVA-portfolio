@@ -12,9 +12,9 @@ public class PlayerBullet extends Entity {
 	private double dx, dy;
 
 	/****** STATUS **********/
-	private int spd = 2;
-	private int damage = 100;
-	private int range = 6;
+	protected int spd = 2;
+	protected int damage = 3;
+	protected int range = 6;
 	/**********************/
 
 	private int range_mux = 8 * range;
@@ -103,7 +103,6 @@ public class PlayerBullet extends Entity {
 			return;
 
 		if (Entity.isColliding(this, Main.boss_3)) {
-
 			Main.boss_3.life -= damage;
 			System.out.println("vida = " + Main.boss_3.life);
 			Main.playerBullets.remove(this);

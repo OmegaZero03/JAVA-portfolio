@@ -9,7 +9,9 @@ import com.beyastudio.wolrd.Tile;
 
 public class Bullet extends Entity {
 
-	private double dx, dy;
+	protected double dx;
+
+	protected double dy;
 
 	/******** STATUS **********/
 	protected double spd = 1.7;

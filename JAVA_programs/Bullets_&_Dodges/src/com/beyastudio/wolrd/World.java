@@ -174,7 +174,7 @@ public class World {
 		Main.entities.add(Main.player);
 		Main.boss_1 = new Finn(220, 140, 16, 16, Entity.FINN_EN);
 		Main.boss_2 = new FireP(80, 368, 16, 16, Entity.FIRE_EN);
-		Main.boss_3 = new IceKing(392, 368, 16, 16, Entity.ICE_EN);
+		Main.boss_3 = new IceKing(364, 344, 16, 16, Entity.ICE_EN);
 		Main.isBoss = true;
 		Main.isBossF = true;
 		Main.isBossI = true;

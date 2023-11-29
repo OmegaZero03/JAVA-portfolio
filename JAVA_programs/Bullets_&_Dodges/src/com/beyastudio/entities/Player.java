@@ -45,6 +45,10 @@ public class Player extends Entity{
 	public boolean autoShoot = false;
 	
 	
+	public boolean haveGrass = false,
+				   haveIce = false,
+			       haveFire = false;
+	
 	private BufferedImage[] rightPlayer, leftPlayer, upPlayer, downPlayer,
 							rightAtack, leftAtack, upAtack, downAtack;
 	

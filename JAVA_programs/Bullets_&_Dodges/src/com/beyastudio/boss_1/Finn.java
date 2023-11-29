@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import com.beyastudio.entities.Entity;
+import com.beyastudio.entities.Grass_orbital;
 import com.beyastudio.main.Main;
 import com.beyastudio.wolrd.Camera;
 import com.beyastudio.wolrd.ShootTile;
@@ -59,6 +60,8 @@ public class Finn extends Entity {
 	public void tick() {
 
 		if (this.life <= 0) {
+			Grass_orbital o = new Grass_orbital(this.getX(), this.getY(), 8, 8, Entity.GRASS_ORB);
+			Main.entities.add(o);
 			Main.isBoss = false;
 			Main.shootWalls.removeAll(Main.shootWalls);
 			Main.shootWallsSlow.removeAll(Main.shootWallsSlow);
@@ -503,12 +506,10 @@ public class Finn extends Entity {
 				Main.BossBullets.add(sword2);
 			}
 			
-			if (x > 185 && x < 270) {
+			if (x > 185 && x < 265) {
 				Bullet_sword_h sword3 = new Bullet_sword_h(this.getX(), this.getY(), 16, 16, Entity.BULLET_FINN_SWORD_270, 0, 1);
 				Main.BossBullets.add(sword3);
-				System.out.println("xx");
 			}
-			
 			
 			if(x > 185 && x < 270) {
 				Bullet_sword_h sword4 = new Bullet_sword_h(this.getX(), this.getY(), 16, 16, Entity.BULLET_FINN_SWORD_90, 0, -1);
