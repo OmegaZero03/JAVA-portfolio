@@ -38,8 +38,8 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	private static final long serialVersionUID = 1L;
 	private Thread th;
 	private boolean isRunning = true;
-	public static final int width = 240;
-	public static final int height = 200;
+	public static final int width = 160;
+	public static final int height = 160;
 	public static final int escala = 4,
 							muxW = width * escala,
 							muxH = height * escala;
@@ -94,7 +94,7 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		
 		//In the world 2
 		if(World.WIDTH == 60 && World.HEIGHT == 60) {
-			boss_1 = new Finn(220, 140, 16, 16, Entity.FINN_EN);
+			boss_1 = new Finn(228 , 140, 16, 16, Entity.FINN_EN);
 			boss_2 = new FireP(80, 368, 16, 16, Entity.FIRE_EN);
 			boss_3 = new IceKing(364, 344, 16, 16, Entity.ICE_EN);
 			isBoss = true;

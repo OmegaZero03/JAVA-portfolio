@@ -20,9 +20,23 @@ public class Tile {
 	public static BufferedImage TILE_FIRE_FLOOR = Main.spritesheet.getSpritesheet(16, 80, 8, 8);
 	public static BufferedImage TILE_FIRE_WALL = Main.spritesheet.getSpritesheet(24, 80, 8, 8);
 	
-	public static BufferedImage TILE_WOOD_FLOOR = Main.spritesheet.getSpritesheet(24, 88, 8, 8);
+	public static BufferedImage TILE_WOOD_FLOOR = Main.spritesheet.getSpritesheet(24, 88, 8, 8),
+								TILE_WOOD_FLOOR_WHITEF = Main.spritesheet.getSpritesheet(64, 88, 8, 8),
+								TILE_WOOD_FLOOR_YELLOWF = Main.spritesheet.getSpritesheet(64, 96, 8, 8),
+								TILE_WOOD_FLOOR_GRASS = Main.spritesheet.getSpritesheet(72, 96, 8, 8);
 	
 	public static BufferedImage TILE_INV = Main.spritesheet.getSpritesheet(104, 104, 8, 8);
+	
+	public static BufferedImage TILE_BLACK = Main.spritesheet.getSpritesheet(88, 96, 8, 8);
+	
+	public static BufferedImage TILE_GRASS_1 = Main.spritesheet.getSpritesheet(80, 88, 8, 8),
+								TILE_GRASS_2 = Main.spritesheet.getSpritesheet(88, 88, 8, 8),
+								TILE_GRASS_3 = Main.spritesheet.getSpritesheet(96, 88, 8, 8),
+								TILE_GRASS_4 = Main.spritesheet.getSpritesheet(80, 96, 8, 8),
+								TILE_GRASS_5 = Main.spritesheet.getSpritesheet(96, 96, 8, 8),
+								TILE_GRASS_6 = Main.spritesheet.getSpritesheet(80, 104, 8, 8),
+								TILE_GRASS_7 = Main.spritesheet.getSpritesheet(88, 104, 8, 8),
+								TILE_GRASS_8 = Main.spritesheet.getSpritesheet(96, 104, 8, 8);
 	
 	
 	
@@ -30,7 +44,7 @@ public class Tile {
 	protected int x;
 	protected int y;
 	private int maskx, masky, mwidth, mheight;
-	private int width = 8, height = 8;
+	protected int width = 8, height = 8;
 	
 	public Tile(int x, int y, BufferedImage sprite) {
 		this.x = x;

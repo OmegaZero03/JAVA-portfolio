@@ -23,7 +23,7 @@ public class Finn extends Entity {
 
 	private String estado = "parado";
 
-	private boolean canChooseY, canChooseX, canShoot;
+	private boolean canChooseY, canChooseX, canShoot, att = false;
 	
 	private double anglep/*, anglepp*/;
 	
@@ -39,15 +39,26 @@ public class Finn extends Entity {
 				locationX;
 
 	private double dx, dy, nextShoot, angle;
+	
+	private int frames = 0,
+				maxFrames = 5,
+				index = 0,
+				maxIndex = 1;
+	
+	private BufferedImage[] sprites;
 
 	public Finn(int x, int y, int width, int height, BufferedImage sprite) {
-		super(x, y, width, height, sprite);
+		super(x, y, width, height, null);
 
 		//this.range = x + rangeWalk;
 		//this.negaRange = x - rangeWalk;
 		this.life = maxLife;
 
 		this.anglep = Math.toRadians(90);
+		
+		sprites = new BufferedImage[2];
+		sprites[0] = Main.spritesheet.getSpritesheet(0, 160, 16, 16);
+		sprites[1] = Main.spritesheet.getSpritesheet(24, 160, 24, 16);
 		
 		
 		//this.anglepp = Math.toRadians(30);
@@ -58,7 +69,9 @@ public class Finn extends Entity {
 
 	@Override
 	public void tick() {
+		
 
+		
 		if (this.life <= 0) {
 			Grass_orbital o = new Grass_orbital(this.getX(), this.getY(), 8, 8, Entity.GRASS_ORB);
 			Main.entities.add(o);
@@ -68,6 +81,18 @@ public class Finn extends Entity {
 		}
 
 		stateMachine();
+		
+		if(att) {
+			frames++;
+			if(frames == maxFrames) {
+				frames = 0;
+				index++;
+				if(index > maxIndex) {
+					index = 0;
+				}
+			
+			}
+		}
 		
 	}
 
@@ -81,6 +106,7 @@ public class Finn extends Entity {
 			if (life != maxLife) {
 				
 				estado = "atacando_tentacle";
+				att = true;
 			}
 			break;
 
@@ -176,31 +202,34 @@ public class Finn extends Entity {
 			dx = Math.cos(anglep + angleAddOne + .01);
 			dy = Math.sin(anglep + angleAddOne + .01);
 
-			Bullet b = new Bullet(this.getX() - 5, this.getY() - 4, 16, 16, Entity.BULLET_FINN_1, dx, dy);
+			int spawnX = 10;
+			int spawnY = 0;
+			
+			Bullet b = new Bullet(this.getX() - spawnX, this.getY() + spawnY, 16, 16, Entity.BULLET_FINN_FLOWER, dx, dy);
 			Main.BossBullets.add(b);
 			
 			dx = Math.cos(angle);
 			dy = Math.sin(angle);
 
-			Bullet b1 = new Bullet(this.getX() - 5, this.getY() - 4, 16, 16, Entity.BULLET_FINN_1, dx, dy);
+			Bullet b1 = new Bullet(this.getX() - spawnX, this.getY() + spawnY, 16, 16, Entity.BULLET_FINN_1, dx, dy);
 			Main.BossBullets.add(b1);
 
 			dx = Math.cos(angle + anglep);
 			dy = Math.sin(angle + anglep);
 
-			Bullet b2 = new Bullet(this.getX() - 5, this.getY() - 4, 16, 16, Entity.BULLET_FINN_1, dx, dy);
+			Bullet b2 = new Bullet(this.getX() - spawnX, this.getY() + spawnY, 16, 16, Entity.BULLET_FINN_1, dx, dy);
 			Main.BossBullets.add(b2);
 
 			dx = Math.cos(angle + (anglep * 2));
 			dy = Math.sin(angle + (anglep * 2));
 
-			Bullet b3 = new Bullet(this.getX() - 5, this.getY() - 4, 16, 16, Entity.BULLET_FINN_1, dx, dy);
+			Bullet b3 = new Bullet(this.getX() - spawnX, this.getY() + spawnY, 16, 16, Entity.BULLET_FINN_1, dx, dy);
 			Main.BossBullets.add(b3);
 
 			dx = Math.cos(angle + (anglep * 3));
 			dy = Math.sin(angle + (anglep * 3));
 
-			Bullet b4 = new Bullet(this.getX() - 5, this.getY() - 4, 16, 16, Entity.BULLET_FINN_1, dx, dy);
+			Bullet b4 = new Bullet(this.getX() - spawnX, this.getY() + spawnY, 16, 16, Entity.BULLET_FINN_1, dx, dy);
 			Main.BossBullets.add(b4);
 			
 			if(life <= (maxLife * .7)) {
@@ -208,6 +237,7 @@ public class Finn extends Entity {
 				canCreat = true;
 				canChooseY = true;
 				estado = "fase_2";
+				this.maxFrames = 23;
 			}
 			break;
 			
@@ -289,7 +319,7 @@ public class Finn extends Entity {
 				this.dx = Math.cos(angle);
 				this.dy = Math.sin(angle);
 					
-				Bullet bola1 = new Bullet(this.getX(), this.getY(), 8, 8, Entity.BULLET_FINN_1, dx, dy);
+				Bullet bola1 = new Bullet(this.getX(), this.getY(), 8, 8, Entity.BULLET_FINN_FLOWER, dx, dy);
 				bola1.damage = 5;
 				bola1.spd = 1;
 				Main.BossBullets.add(bola1);
@@ -401,7 +431,8 @@ public class Finn extends Entity {
 
 			if(canCreat) {
 				
-				this.setSprite(GRASS_EN);
+				sprites[0] = Main.spritesheet.getSpritesheet(0, 176, 16, 16);
+				sprites[1] = Main.spritesheet.getSpritesheet(24, 176, 24, 16);
 				
 				for(int i = 0; i < 5; i++) {
 					ShootTile t = new ShootTile(206 + (i*7), 210, Tile.TILE_INV, 90);
@@ -521,11 +552,14 @@ public class Finn extends Entity {
 				estado = "fase_final";
 				Main.shootWalls.removeAll(Main.shootWalls);
 				canCreat = true;
+				att = false;
+				index = 1;
 			}
 			
 			break;
 			
 		case "fase_final":
+			
 			
 			
 			spd = 0;
@@ -603,6 +637,8 @@ public class Finn extends Entity {
 	@Override
 	public void render(Graphics g) {
 		super.render(g);
+		if(index == 0) g.drawImage(sprites[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
+		if(index == 1) g.drawImage(sprites[index], this.getX() - Camera.x - 8, this.getY() - Camera.y, null);
 		if (life != maxLife) {
 			g.setColor(Color.red);
 			g.fillRect((int) x - Camera.x + 3, (int) y - 4 - Camera.y, 10, 2);

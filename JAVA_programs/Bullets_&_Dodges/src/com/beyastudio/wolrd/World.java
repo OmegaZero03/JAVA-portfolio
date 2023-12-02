@@ -49,7 +49,7 @@ public class World {
 							//Black Color / Cor Preta
 						case 0xff000000:
 							// GRASS Floor / chao de grama
-							tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_FLOOR);
+							tiles[xx + (yy * WIDTH)] = new BlackTile(xx * 8, yy * 8, Tile.TILE_BLACK);
 							break;
 							
 							//DARK GREY / Cinza escuro
@@ -115,15 +115,68 @@ public class World {
 							Main.entities.add(heal);
 							break;
 							
-						case 0xff00f2ff:
-							//Finn f = new Finn(xx * 8, yy*8, 16, 16, Entity.FINN_EN);
-							//Main.entities.add(f);
-							//System.out.println(" X = " + f.getX() + "Y = " + f.getY());
-							break;
 							
 							//Yellow Color/ cor amarela
 						case 0xfff2ff00:
 							Main.entities.add(new Snorlax(xx*8 - 8, yy*8, 16, 16, Entity.PIKACHU_EN));
+							break;
+							
+						//GrassWalls
+						
+						//Grass wall 1
+						case 0xff50c878:
+							WallTile grass1 = new WallTile(xx * 8, yy * 8, Tile.TILE_GRASS_1);
+							tiles[xx + (yy * WIDTH)] = grass1;
+							Main.walls.add(grass1);
+							break;
+							
+						//Grass wall 2
+						case 0xff5f8575:
+							WallTile grass2 = new WallTile(xx * 8, yy * 8, Tile.TILE_GRASS_2);
+							tiles[xx + (yy * WIDTH)] = grass2;
+							Main.walls.add(grass2);
+							break;
+						
+						//Grass wall 3
+						case 0xff4f7942:
+							WallTile grass3 = new WallTile(xx * 8, yy * 8, Tile.TILE_GRASS_3);
+							tiles[xx + (yy * WIDTH)] = grass3;
+							Main.walls.add(grass3);
+							break;
+							
+						//Grass wall 4
+						case 0xff228b22:
+							WallTile grass4 = new WallTile(xx * 8, (yy * 8), Tile.TILE_GRASS_4);
+							tiles[xx + (yy * WIDTH)] = grass4;
+							Main.walls.add(grass4);
+							break;
+							
+						//Grass wall 5
+						case 0xff7cfc00:
+							WallTile grass5 = new WallTile(xx * 8, yy * 8, Tile.TILE_GRASS_5);
+							tiles[xx + (yy * WIDTH)] = grass5;
+							Main.walls.add(grass5);
+							break;
+							
+						//Grass wall 6
+						case 0xff008000:
+							WallTile grass6 = new WallTile(xx * 8, yy * 8, Tile.TILE_GRASS_6);
+							tiles[xx + (yy * WIDTH)] = grass6;
+							Main.walls.add(grass6);
+							break;
+							
+						//Grass wall 7
+						case 0xff355e3b:
+							WallTile grass7 = new WallTile(xx * 8, yy * 8, Tile.TILE_GRASS_7);
+							tiles[xx + (yy * WIDTH)] = grass7;
+							Main.walls.add(grass7);
+							break;
+						
+						//Grass wall 8
+						case 0xff00a36c:
+							WallTile grass8 = new WallTile(xx * 8, yy * 8, Tile.TILE_GRASS_8);
+							tiles[xx + (yy * WIDTH)] = grass8;
+							Main.walls.add(grass8);
 							break;
 					}
 					
@@ -172,7 +225,7 @@ public class World {
 		Main.shootWallsSlow = new ArrayList<ShootTileSlow>();
 		Main.player = new Player(0, 0, 8, 8, Main.spritesheet.getSpritesheet(0, 0, 8, 8));
 		Main.entities.add(Main.player);
-		Main.boss_1 = new Finn(220, 140, 16, 16, Entity.FINN_EN);
+		Main.boss_1 = new Finn(228, 140, 16, 16, Entity.FINN_EN);
 		Main.boss_2 = new FireP(80, 368, 16, 16, Entity.FIRE_EN);
 		Main.boss_3 = new IceKing(364, 344, 16, 16, Entity.ICE_EN);
 		Main.isBoss = true;

@@ -103,7 +103,8 @@ public class Player extends Entity{
 			moved = true;
 			dir = right_dir;
 			x += spd;
-		}else if (left && World.isFree((int)(x-spd), this.getY())) {
+		}
+		if (left && World.isFree((int)(x-spd), this.getY())) {
 			moved = true;
 			dir = left_dir;
 			x -= spd;
@@ -114,7 +115,8 @@ public class Player extends Entity{
 			dir = down_dir;
 			y -= spd;
 			
-		}else if(down && World.isFree(this.getX(), (int)(y+spd))){
+		}
+		if(down && World.isFree(this.getX(), (int)(y+spd))){
 			moved = true;
 			dir = up_dir;
 			y += spd;

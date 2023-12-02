@@ -33,6 +33,7 @@ public class Entity {
 					BULLET_FINN_SWORD_90  	=Main.spritesheet.getSpritesheet(96, 56, _16x_16, _16x_16),
 					BULLET_FINN_SWORD_270   =Main.spritesheet.getSpritesheet(80, 56, _16x_16, _16x_16),
 					BULLET_FINN_SLASH  	 	=Main.spritesheet.getSpritesheet(32, 56, _16x_16, _16x_16),
+					BULLET_FINN_FLOWER  	=Main.spritesheet.getSpritesheet(64,  8, _16x_16, _16x_16),
 					GRASS_EN   				=Main.spritesheet.getSpritesheet(48, 24, _16x_16, _16x_16);
 						/*********/////////////////**********/
 	

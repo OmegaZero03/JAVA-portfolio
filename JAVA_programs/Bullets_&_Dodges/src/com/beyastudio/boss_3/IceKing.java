@@ -21,7 +21,7 @@ public class IceKing extends Entity{
 	
 	private boolean canCreat;
 	
-	private int count = 0;
+	private int count = 0, aux = 30;
 
 	public IceKing(int x, int y, int width, int height, BufferedImage sprite) {
 		super(x, y, width, height, sprite);
@@ -30,7 +30,6 @@ public class IceKing extends Entity{
 		this.maxLife = 550;
 	}
 	
-	@Override 
 	public void tick() {
 		if (life <= 0) {
 			Main.isBossI = false;
@@ -62,6 +61,7 @@ public class IceKing extends Entity{
 //					 canCreat = false;
 //				 }
 				 
+				//anglep = Main
 				angle = Math.toRadians(90);
 				
 				if (System.currentTimeMillis() < nextShoot) return;
@@ -118,9 +118,9 @@ public class IceKing extends Entity{
 				nextShoot = System.currentTimeMillis() + (attackSpeed * 100);
 				
 				
-				if(count < 130) {
+				if(count < aux) {
 					
-				anglep += 8;
+				anglep += 9;
 
 				angle = Math.toRadians(330 +  anglep);
 				
@@ -148,10 +148,10 @@ public class IceKing extends Entity{
 				
 				}
 				
-				if (count > 130){
+				if (count > aux){
 					
 					
-					anglepp -= 8;
+					anglepp -= 9;
 
 					angle = Math.toRadians(330 +  anglepp);
 					
@@ -177,7 +177,7 @@ public class IceKing extends Entity{
 					Bullet_flake bf3 = new Bullet_flake(this.getX(), this.getY(), 16, 16, Entity.BULLET_ICE_FLAKE, dx, dy);
 					Main.BossBullets.add(bf3);
 					
-					if(count > 130 * 2) {
+					if(count > aux * 2) {
 						count = 0;
 					}
 					
