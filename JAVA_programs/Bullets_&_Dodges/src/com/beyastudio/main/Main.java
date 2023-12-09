@@ -3,7 +3,9 @@ package com.beyastudio.main;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -43,6 +45,10 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	public static final int escala = 4,
 							muxW = width * escala,
 							muxH = height * escala;
+	
+	public static String gameState = "normal";
+	private boolean showMessageGameover  = true, restartGame = false;
+	private int framesgameover = 0;
 	
 	private BufferedImage image;
 	public static List<WallTile> walls;
@@ -93,10 +99,10 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		
 		
 		//In the world 2
-		if(World.WIDTH == 60 && World.HEIGHT == 60) {
+		if(World.WIDTH == 120  && World.HEIGHT == 120) {
 			boss_1 = new Finn(228 , 140, 16, 16, Entity.FINN_EN);
 			boss_2 = new FireP(80, 368, 16, 16, Entity.FIRE_EN);
-			boss_3 = new IceKing(364, 344, 16, 16, Entity.ICE_EN);
+			boss_3 = new IceKing(832, 824, 16, 16, Entity.ICE_EN);
 			isBoss = true;
 			isBossF = true;
 			isBossI = true;
@@ -143,57 +149,92 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	//Logica do jogo
 	public void tick() {
 		
+		switch(gameState) {
 		
-		if(player.life <= 0) {
-			World.restartGame("world2.png");
-		}
 		
-		//tick boss IF it EXIST
-		if(isBoss) {
-			boss_1.tick();
+		case "normal":
+			
+			this.restartGame = false;
+			if(player.life <= 0) {
+				player.life = 0;
+				gameState = "game_over";
 			}
-		else boss_1 = null;
 		
-		if(isBossF) {
-			boss_2.tick();
-		}else {
-			boss_2 = null;
-		}
+			//tick boss IF it EXIST
+			if(isBoss) {
+				boss_1.tick();
+				}
+			else boss_1 = null;
 		
-		if(isBossI) {
-			boss_3.tick();
-		}else {
-			boss_3 = null;
+			if(isBossF) {
+				boss_2.tick();
+			}else {
+				boss_2 = null;
+			}
+		
+			if(isBossI) {
+				boss_3.tick();
+			}else {
+				boss_3 = null;
+			}
+		
+			for(int i = 0; i < shootWalls.size(); i++) {
+				ShootTile e = shootWalls.get(i);
+				e.tick();
+			}
+
+			for(int i = 0; i < shootWallsSlow.size(); i++) {
+				ShootTileSlow e = shootWallsSlow.get(i);
+				e.tick();
+			}
+		
+			//lógica por tras de cada entidade
+			for(int i = 0; i < entities.size(); i++) {
+				Entity e = entities.get(i);
+				e.tick();
+			}
+		
+			for(int i = 0; i < playerBullets.size(); i++) {
+				Entity b = playerBullets.get(i);
+				b.tick();
+			}
+		
+			for(int i = 0; i < BossBullets.size(); i++) {
+				Entity fb = BossBullets.get(i);
+				fb.tick();
+			}
+		
+			break;
+			
+			
+		case "game_over":
+			
+			this.framesgameover++;
+			if(this.framesgameover == 20) {
+				this.framesgameover = 0;
+				if(this.showMessageGameover) {
+					this.showMessageGameover = false;
+				}else {
+					showMessageGameover = true;
+				}
+			}
+			
+			if(restartGame) {
+				this.restartGame = false;
+				gameState = "normal";
+				World.restartGame("world2.png");
+			}
+			
+			break;
+		
+		
 		}
 		
 
-		for(int i = 0; i < shootWalls.size(); i++) {
-			ShootTile e = shootWalls.get(i);
-			e.tick();
-		}
-
-		for(int i = 0; i < shootWallsSlow.size(); i++) {
-			ShootTileSlow e = shootWallsSlow.get(i);
-			e.tick();
-		}
-		
-		//lógica por tras de cada entidade
-		for(int i = 0; i < entities.size(); i++) {
-			Entity e = entities.get(i);
-			e.tick();
-		}
-		
-		for(int i = 0; i < playerBullets.size(); i++) {
-			Entity b = playerBullets.get(i);
-			b.tick();
-		}
-		
-		for(int i = 0; i < BossBullets.size(); i++) {
-			Entity fb = BossBullets.get(i);
-			fb.tick();
-		}
 		
 	}
+		
+		
 	
 	//Renderizar o jogo
 	public void render() {
@@ -251,6 +292,24 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		ui.render(g);
 	
 		/**Quanto mais embaixo mais em cima renderiza**/
+		
+		if(gameState == "game_over") {
+			Graphics g2 = (Graphics2D) g;
+			g2.setColor(new Color(255,170,255, 120));
+			g2.fillRect(0, 0, muxW, muxH);
+			g.clearRect(muxH, escala, width, height);
+			g.setFont(new Font("arial", Font.BOLD, 12));
+			g.setColor(new Color(255,0,255));
+			g.drawString("You failed", 45, 70);
+			g.setFont(new Font("creepster", Font.BOLD, 20));
+			g.setColor(new Color(170,0,0));
+			g.drawString("ME", 45 + 57, 70);
+			g.setFont(new Font("arial", Font.BOLD, 9));
+			g.setColor(new Color(0,0,0));
+			if(showMessageGameover) {
+				g.drawString("> Press Space to try again <", 20, 110);
+			}
+		}
 		
 		g.dispose();
 		g = bs.getDrawGraphics();
@@ -345,6 +404,10 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		/*parando de mover player pra baixo*/
 		else if(e.getKeyCode() == KeyEvent.VK_S ||
 			e.getKeyCode() == KeyEvent.VK_DOWN) player.down = false;
+		
+		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+			this.restartGame = true;
+		}
 		
 		
 	}

@@ -19,15 +19,27 @@ public class IceKing extends Entity{
 				angle, anglep, anglepp,
 				dx, dy;
 	
-	private boolean canCreat;
+	private boolean canCreat, att = false;
+	
+	private int frames = 0,
+			maxFrames = 8,
+			index = 0,
+			maxIndex = 1;
 	
 	private int count = 0, aux = 30;
+	
+	private BufferedImage[] sprites;
 
 	public IceKing(int x, int y, int width, int height, BufferedImage sprite) {
-		super(x, y, width, height, sprite);
+		super(x, y, width, height, null);
 		
 		this.life = 550;
 		this.maxLife = 550;
+		
+		sprites = new BufferedImage[2];
+		sprites[0] = Main.spritesheet.getSpritesheet(0, 192, 16, 16);
+		sprites[1] = Main.spritesheet.getSpritesheet(16, 192, 16, 16);
+			
 	}
 	
 	public void tick() {
@@ -36,6 +48,18 @@ public class IceKing extends Entity{
 		}
 		
 		stateMachine();
+		
+		if(att) {
+			frames++;
+			if(frames == maxFrames) {
+				frames = 0;
+				index++;
+				if(index > maxIndex) {
+					index = 0;
+				}
+			
+			}
+		}
 
 	}
 	
@@ -50,6 +74,7 @@ public class IceKing extends Entity{
 					this.estado = "fase_1"; 
 					this.setAttackSpeed(.7);
 					canCreat = true;
+					att = true;
 				}
 				break;
 				
@@ -112,13 +137,17 @@ public class IceKing extends Entity{
 				
 			case "fase_1":
 				
-				
-				if (System.currentTimeMillis() < nextShoot) return;
-					
-				nextShoot = System.currentTimeMillis() + (attackSpeed * 100);
-				
+//				
+//				if (System.currentTimeMillis() < nextShoot) return;
+//				
+//				nextShoot = System.currentTimeMillis() + (attackSpeed * 100);
+//				
 				
 				if(count < aux) {
+					
+					if (System.currentTimeMillis() < nextShoot) return;
+					
+					nextShoot = System.currentTimeMillis() + (attackSpeed * 100);
 					
 				anglep += 9;
 
@@ -150,6 +179,10 @@ public class IceKing extends Entity{
 				
 				if (count > aux){
 					
+					
+					if (System.currentTimeMillis() < nextShoot) return;
+					
+					nextShoot = System.currentTimeMillis() + (attackSpeed * 100);
 					
 					anglepp -= 9;
 
@@ -187,7 +220,7 @@ public class IceKing extends Entity{
 				count++;
 				
 				
-				if(this.life <= maxLife * 0.7) {
+				if(this.life <= maxLife * 0.8) {
 					estado = "fase_2";
 					canCreat = true;
 					this.setAttackSpeed(8);
@@ -217,6 +250,8 @@ public class IceKing extends Entity{
 	@Override
 	public void render(Graphics g) {
 		super.render(g);
+		if(index == 0) g.drawImage(sprites[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
+		if(index == 1) g.drawImage(sprites[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
 		if (life != maxLife) {
 			g.setColor(Color.red);
 			g.fillRect((int) x - Camera.x + 3, (int) y - 4 - Camera.y, 10, 2);

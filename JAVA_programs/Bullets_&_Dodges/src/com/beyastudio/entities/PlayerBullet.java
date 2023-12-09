@@ -15,6 +15,7 @@ public class PlayerBullet extends Entity {
 	protected int spd = 2;
 	protected int damage = 3;
 	protected int range = 6;
+	protected double heal = .7;
 	/**********************/
 
 	private int range_mux = 8 * range;
@@ -82,6 +83,11 @@ public class PlayerBullet extends Entity {
 		if (Entity.isColliding(this, Main.boss_1)) {
 
 			Main.boss_1.life -= damage;
+			Main.boss_1.isDamaged = true;
+			Main.player.life += heal;
+			if(Main.player.life > 100) {
+				Main.player.life = 100;
+			}
 			System.out.println("vida = " + Main.boss_1.life);
 			Main.playerBullets.remove(this);
 		}
@@ -94,6 +100,10 @@ public class PlayerBullet extends Entity {
 		if (Entity.isColliding(this, Main.boss_2)) {
 
 			Main.boss_2.life -= damage;
+			Main.player.life += heal;
+			if(Main.player.life > 100) {
+				Main.player.life = 100;
+			}
 			System.out.println("vida = " + Main.boss_2.life);
 			Main.playerBullets.remove(this);
 		}
@@ -104,6 +114,10 @@ public class PlayerBullet extends Entity {
 
 		if (Entity.isColliding(this, Main.boss_3)) {
 			Main.boss_3.life -= damage;
+			Main.player.life += heal;
+			if(Main.player.life > 100) {
+				Main.player.life = 100;
+			}
 			System.out.println("vida = " + Main.boss_3.life);
 			Main.playerBullets.remove(this);
 		}
@@ -119,6 +133,10 @@ public class PlayerBullet extends Entity {
 			if (isEnemy || isPikachu || isPenguin) {
 				if (Entity.isColliding(this, atual)) {
 					atual.life -= damage;
+					Main.player.life += heal;
+					if(Main.player.life > 100) {
+						Main.player.life = 100;
+					}
 					System.out.println("vida = " + atual.life);
 					Main.playerBullets.remove(this);
 					return;

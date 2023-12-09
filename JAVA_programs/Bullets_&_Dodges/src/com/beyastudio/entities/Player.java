@@ -23,7 +23,7 @@ public class Player extends Entity{
 				Xindex = 0, 
 				Yindex = 0,
 				DYindex= 0,
-				max_frames = 10, 
+				max_frames = 7, 
 				maxYindex  = 2,
 				DmaxYindex = 3,
 				maxXindex  = 1;
@@ -167,11 +167,11 @@ public class Player extends Entity{
 			
 			if(dir == right_dir){
 				
-				PlayerBullet b = new PlayerBullet(this.getX() + 5, this.getY() - 4, 8, 8, Entity.BULLET_PL, dx, dy);
+				PlayerBullet b = new PlayerBullet(this.getX() + 7, this.getY() - 3, 8, 8, Entity.BULLET_PL, dx, dy);
 				Main.playerBullets.add(b);
 				
 			}else if(dir == left_dir) {
-				PlayerBullet b = new PlayerBullet(this.getX() - 5, this.getY() - 4, 8, 8, Entity.BULLET_PL, dx, dy);
+				PlayerBullet b = new PlayerBullet(this.getX() - 7, this.getY() - 3, 8, 8, Entity.BULLET_PL, dx, dy);
 				Main.playerBullets.add(b);
 			}
 			

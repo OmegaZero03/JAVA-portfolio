@@ -27,7 +27,8 @@ public class Finn extends Entity {
 	
 	private double anglep/*, anglepp*/;
 	
-	//private int timer = 0;
+	public boolean isDamaged = false, capa = true;
+	public int damageFrames = 5, currentFrames = 0;
 
 	public int angleRotationAdd = 0;
 	
@@ -93,6 +94,17 @@ public class Finn extends Entity {
 			
 			}
 		}
+		
+		if(isDamaged) {
+			this.currentFrames++;
+			if(this.currentFrames == this.damageFrames) {
+				this.currentFrames = 0;
+				isDamaged = false;
+				
+			}
+			
+		}
+		
 		
 	}
 
@@ -431,8 +443,7 @@ public class Finn extends Entity {
 
 			if(canCreat) {
 				
-				sprites[0] = Main.spritesheet.getSpritesheet(0, 176, 16, 16);
-				sprites[1] = Main.spritesheet.getSpritesheet(24, 176, 24, 16);
+				capa = false;
 				
 				for(int i = 0; i < 5; i++) {
 					ShootTile t = new ShootTile(206 + (i*7), 210, Tile.TILE_INV, 90);
@@ -637,8 +648,34 @@ public class Finn extends Entity {
 	@Override
 	public void render(Graphics g) {
 		super.render(g);
-		if(index == 0) g.drawImage(sprites[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
-		if(index == 1) g.drawImage(sprites[index], this.getX() - Camera.x - 8, this.getY() - Camera.y, null);
+		
+		if(!isDamaged) {
+			if(capa) {
+				sprites[0] = Main.spritesheet.getSpritesheet(0, 160, 16, 16);
+				sprites[1] = Main.spritesheet.getSpritesheet(24, 160, 24, 16);
+			}
+			else {
+				sprites[0] = Main.spritesheet.getSpritesheet(0, 176, 16, 16);
+				sprites[1] = Main.spritesheet.getSpritesheet(24, 176, 24, 16);
+			}
+			
+			if(index == 0) g.drawImage(sprites[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
+			if(index == 1) g.drawImage(sprites[index], this.getX() - Camera.x - 8, this.getY() - Camera.y, null);
+		}else {
+			if(capa) {
+				sprites[0] = Entity.FINN_DAMAGED_CAP;
+				sprites[1] = Entity.FINN_DAMAGED_CAP_ATT;
+			}
+			else{
+				sprites[0] = Entity.FINN_DAMAGED_NOT_CAP;
+				sprites[1] = Entity.FINN_DAMAGED_NOT_CAP_ATT;
+			}
+			
+			if(index == 0) g.drawImage(sprites[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
+			if(index == 1) g.drawImage(sprites[index], this.getX() - Camera.x - 8, this.getY() - Camera.y, null);
+		}
+		
+		
 		if (life != maxLife) {
 			g.setColor(Color.red);
 			g.fillRect((int) x - Camera.x + 3, (int) y - 4 - Camera.y, 10, 2);

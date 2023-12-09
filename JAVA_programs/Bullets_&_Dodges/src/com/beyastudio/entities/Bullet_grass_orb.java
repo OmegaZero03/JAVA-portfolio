@@ -16,8 +16,9 @@ public class Bullet_grass_orb extends PlayerBullet{
 		
 		this.damage = 2;
 		this.spd = 2;
-		
 		this.range = 9;
+		
+		this.heal = 0;
 	}
 
 	@Override

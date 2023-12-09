@@ -23,6 +23,7 @@ public class Entity {
 	
 	public static BufferedImage HEAL_EN  	=Main.spritesheet.getSpritesheet(24, 8, _8x8, _8x8);
 	public static BufferedImage ENEMY_EN  	=Main.spritesheet.getSpritesheet(32, 8, _8x8, _8x8);
+	public static BufferedImage NEXT_LVL 	=Main.spritesheet.getSpritesheet(40, 16, _8x8, _8x8);
 	
 	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 						/*********GRASS BOSS SPRITES**********/
@@ -37,6 +38,16 @@ public class Entity {
 					GRASS_EN   				=Main.spritesheet.getSpritesheet(48, 24, _16x_16, _16x_16);
 						/*********/////////////////**********/
 	
+	
+						/*********DAMAGAGED GRASS BOSS SPRITES**********/	
+	public static BufferedImage FINN_DAMAGED_CAP = Main.spritesheet.getSpritesheet(72, 160, 16, _16x_16),
+								FINN_DAMAGED_CAP_ATT = Main.spritesheet.getSpritesheet(96, 160, 24, _16x_16),
+								FINN_DAMAGED_NOT_CAP = Main.spritesheet.getSpritesheet(72, 176, 16, _16x_16),
+								FINN_DAMAGED_NOT_CAP_ATT = Main.spritesheet.getSpritesheet(96, 176, 24, _16x_16);
+
+								
+	
+						/*********/////////////////**********/
 	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 	
 						/*********ICE BOSS SPRITES**********/

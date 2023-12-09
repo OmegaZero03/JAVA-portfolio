@@ -18,14 +18,15 @@ public class Tile {
 	public static BufferedImage TILE_ICE_WALL = Main.spritesheet.getSpritesheet(24, 72, 8, 8);
 	
 	public static BufferedImage TILE_FIRE_FLOOR = Main.spritesheet.getSpritesheet(16, 80, 8, 8);
-	public static BufferedImage TILE_FIRE_WALL = Main.spritesheet.getSpritesheet(24, 80, 8, 8);
+	//
 	
 	public static BufferedImage TILE_WOOD_FLOOR = Main.spritesheet.getSpritesheet(24, 88, 8, 8),
-								TILE_WOOD_FLOOR_WHITEF = Main.spritesheet.getSpritesheet(64, 88, 8, 8),
+								TILE_WOOD_FLOOR_WHITEF = Main.spritesheet.getSpritesheet(72, 88, 8, 8),
 								TILE_WOOD_FLOOR_YELLOWF = Main.spritesheet.getSpritesheet(64, 96, 8, 8),
-								TILE_WOOD_FLOOR_GRASS = Main.spritesheet.getSpritesheet(72, 96, 8, 8);
+								TILE_WOOD_FLOOR_GRASS = Main.spritesheet.getSpritesheet(72, 96, 8, 8),
+								TILE_WOOD_FLOOR_GRASS_2 = Main.spritesheet.getSpritesheet(72, 104, 8, 8);
 	
-	public static BufferedImage TILE_INV = Main.spritesheet.getSpritesheet(104, 104, 8, 8);
+	public static BufferedImage TILE_INV = Main.spritesheet.getSpritesheet(136, 216, 8, 8);
 	
 	public static BufferedImage TILE_BLACK = Main.spritesheet.getSpritesheet(88, 96, 8, 8);
 	
@@ -36,7 +37,24 @@ public class Tile {
 								TILE_GRASS_5 = Main.spritesheet.getSpritesheet(96, 96, 8, 8),
 								TILE_GRASS_6 = Main.spritesheet.getSpritesheet(80, 104, 8, 8),
 								TILE_GRASS_7 = Main.spritesheet.getSpritesheet(88, 104, 8, 8),
-								TILE_GRASS_8 = Main.spritesheet.getSpritesheet(96, 104, 8, 8);
+								TILE_GRASS_8 = Main.spritesheet.getSpritesheet(96, 104, 8, 8),
+								TILE_GRASS_BORDER_1 = Main.spritesheet.getSpritesheet(64, 112, 8, 8),
+								TILE_GRASS_BORDER_2 = Main.spritesheet.getSpritesheet(72, 112, 8, 8),
+								TILE_GRASS_BORDER_3 = Main.spritesheet.getSpritesheet(64, 120, 8, 8),
+								TILE_GRASS_BORDER_4 = Main.spritesheet.getSpritesheet(72, 120, 8, 8);
+	
+	public static BufferedImage TILE_ICE_1 = Main.spritesheet.getSpritesheet(104, 88, 8, 8),
+								TILE_ICE_2 = Main.spritesheet.getSpritesheet(112, 88, 8, 8),
+								TILE_ICE_3 = Main.spritesheet.getSpritesheet(120, 88, 8, 8),
+								TILE_ICE_4 = Main.spritesheet.getSpritesheet(104, 96, 8, 8),
+								TILE_ICE_5 = Main.spritesheet.getSpritesheet(120, 96, 8, 8),
+								TILE_ICE_6 = Main.spritesheet.getSpritesheet(104, 104, 8, 8),
+								TILE_ICE_7 = Main.spritesheet.getSpritesheet(112, 104, 8, 8),
+								TILE_ICE_8 = Main.spritesheet.getSpritesheet(120, 104, 8, 8),
+								TILE_ICE_BORDER_1 = Main.spritesheet.getSpritesheet(128, 88, 8, 8),
+								TILE_ICE_BORDER_2 = Main.spritesheet.getSpritesheet(136, 88, 8, 8),
+								TILE_ICE_BORDER_3 = Main.spritesheet.getSpritesheet(128, 96, 8, 8),
+								TILE_ICE_BORDER_4 = Main.spritesheet.getSpritesheet(136, 96, 8, 8);
 	
 	
 	
