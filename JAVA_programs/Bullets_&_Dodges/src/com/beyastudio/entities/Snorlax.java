@@ -15,6 +15,9 @@ public class Snorlax extends Entity{
 		this.life = 30;
 		Grass_orbital o = new Grass_orbital(this.getX() - 8, this.getY(), 8, 8, Entity.GRASS_ORB);
 		Main.entities.add(o);
+		
+		Ice_orbital o2 = new Ice_orbital(this.getX() + 24, this.getY(), 8, 8, Entity.ICE_ORB);
+		Main.entities.add(o2);
 	}
 
 	@Override

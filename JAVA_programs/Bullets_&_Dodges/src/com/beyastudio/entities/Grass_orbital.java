@@ -1,22 +1,41 @@
 package com.beyastudio.entities;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+
 import com.beyastudio.main.Main;
 import com.beyastudio.wolrd.Camera;
 
 public class Grass_orbital extends Entity{
 	
+	private int frames = 0,
+			maxFrames = 10,
+			index = 0,
+			maxIndex = 5;
+	
 	private double atackSpeed = 1.1;
 	private int spdAdd = 2;
 	
+	private int bullet_range = 7;
 	
 	private int spd;
 	private double mx, my, angle;
 	private double nextShoot = 0,
 				   dx, dy;
 	
+	private BufferedImage [] sprites;
+	
 	public Grass_orbital(int x, int y, int width, int height, BufferedImage sprite) {
 		super(x, y, width, height, sprite);
+		
+		
+		sprites = new BufferedImage[6];
+		
+		for(int i = 0; i < 6; i++) {
+			sprites[i] = Main.spritesheet.getSpritesheet(144 + (i * 8), 0, 8, 8);
+		}
+
 	}
 
 	@Override
@@ -50,17 +69,49 @@ public class Grass_orbital extends Entity{
 			dy = Math.sin(angle);
 			
 			if(Main.player.shoot || Main.player.autoShoot) {
-				Bullet_grass_orb g = new Bullet_grass_orb(this.getX(), this.getY(), 8, 8, Entity.BULLET_GRASS_ORB, dx, dy);
+				Bullet_grass_orb g = new Bullet_grass_orb(this.getX(), this.getY(), 8, 8, Entity.BULLET_GRASS_ORB, dx, dy,bullet_range);
 				Main.playerBullets.add(g);
 			}
 		}else {
+			
+			frames++;
+			if(frames == maxFrames) {
+				frames = 0;
+				index++;
+				if(index > maxIndex) {
+					index = 0;
+				}
+			
+			}
+			
 			if(Entity.isColliding(this, Main.player)) {
 				Main.player.haveGrass = true;
 			}
-			
 		}
-		
 	}
 	
 	
+	
+	
+	@Override 
+	public void render(Graphics g) {
+		
+		
+		if(Main.player.haveGrass) {
+			g.drawImage(sprite, this.getX() - Camera.x, this.getY() - Camera.y, null);
+			
+			if(geralDebug) {
+				g.setColor(Color.RED);
+				g.fillRect((this.getX() + maskx) - Camera.x, (this.getY() + masky) - Camera.y, mwidth, mheight);
+			}
+		}
+		
+		else {
+			
+			g.setColor(new Color(0xff450068));
+			g.fillRect(this.getX() - Camera.x, this.getY() - Camera.y, 8, 8);
+			g.drawImage(sprites[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
+		}
+		
+	}
 }

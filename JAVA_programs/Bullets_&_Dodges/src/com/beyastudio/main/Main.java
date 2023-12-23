@@ -2,10 +2,14 @@ package com.beyastudio.main;
 
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -13,10 +17,12 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 import com.beaystudio.sprite.Spritesheet;
@@ -29,6 +35,9 @@ import com.beyastudio.entities.Enemy;
 import com.beyastudio.entities.Entity;
 import com.beyastudio.entities.Player;
 import com.beyastudio.entities.PlayerBullet;
+import com.beyastudio.entities.Puppy;
+import com.beyastudio.entities.Tombstone;
+import com.beyastudio.wolrd.IceShootTile;
 import com.beyastudio.wolrd.ShootTile;
 import com.beyastudio.wolrd.ShootTileSlow;
 import com.beyastudio.wolrd.WallTile;
@@ -46,7 +55,7 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 							muxW = width * escala,
 							muxH = height * escala;
 	
-	public static String gameState = "normal";
+	public static String gameState = "menu";
 	private boolean showMessageGameover  = true, restartGame = false;
 	private int framesgameover = 0;
 	
@@ -54,10 +63,11 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	public static List<WallTile> walls;
 	public static List<ShootTile> shootWalls;
 	public static List<ShootTileSlow> shootWallsSlow;
+	public static List<IceShootTile> iceShootWalls;
 	public static List<Entity> entities;
 	public static List<PlayerBullet> playerBullets;
 	public static List<Bullet> BossBullets;
-	public static Spritesheet spritesheet;
+	public static Spritesheet spritesheet, hurt_spritesheet;
 	
 	public static boolean isBoss = false, isBossF = false, isBossI = false;
 	
@@ -66,9 +76,16 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	public static IceKing boss_3;
 	public static World world;
 	public static Player player;
+	public static Puppy puppy;
 	public static Enemy enemy;
 	public static UI ui;
 	public static Random ran;
+	public static Tombstone cursed_tomb;
+	
+	public static Menu menu;
+	
+	public static int gameoverTextAlpha = 1,
+					  gameoverTextAlphaBG = 10;
 	
 	public Main() {
 		
@@ -80,32 +97,38 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		
 		// Init Objects
 		ran = new Random();
-		ui = new UI();
 		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		entities = new ArrayList<Entity>();
 		walls = new ArrayList<WallTile>();
 		playerBullets = new ArrayList<PlayerBullet>();
 		BossBullets = new ArrayList<Bullet>();
 		shootWalls = new ArrayList<ShootTile>();
+		iceShootWalls = new ArrayList<IceShootTile>();
 		shootWallsSlow = new ArrayList<ShootTileSlow>();
 		spritesheet = new Spritesheet("/spritesheet.png");
+		hurt_spritesheet = new Spritesheet("/hurt_spritesheet.png");
 		player = new Player(0, 0, 8, 8, spritesheet.getSpritesheet(0, 0, 8, 8));
+		ui = new UI();
 		entities.add(player);
+		puppy = new Puppy(70  *8, 57 * 8, 16, 16, Entity.PUPPY_TALK_0);
+		entities.add(puppy);
 		world = new World("/world2.png");
 		this.setFocusable(true);
 		this.requestFocus();
 		
 		//Init boss_1 Object
 		
+		menu = new Menu();
 		
 		//In the world 2
 		if(World.WIDTH == 120  && World.HEIGHT == 120) {
 			boss_1 = new Finn(228 , 140, 16, 16, Entity.FINN_EN);
-			boss_2 = new FireP(80, 368, 16, 16, Entity.FIRE_EN);
-			boss_3 = new IceKing(832, 824, 16, 16, Entity.ICE_EN);
+			boss_2 = new FireP(144, 680, 16, 16, Entity.FIRE_EN);
+			boss_3 = new IceKing(826, 752, 16, 16, Entity.ICE_EN);
 			isBoss = true;
 			isBossF = true;
 			isBossI = true;
+			
 		}
 		
 		
@@ -118,9 +141,28 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(this);
 		frame.pack();
+		
+		
+		
+		Image icon = null;
+		try {
+			icon = ImageIO.read(getClass().getResource("/icon.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+		Image image_cursor = toolkit.getImage(getClass().getResource("/cursor.png"));
+		Cursor cursor = toolkit.createCustomCursor(image_cursor, new Point(0, 0), "img");
+		
+		frame.setCursor(cursor);
+		frame.setIconImage(icon);
+		
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);
 	}
+	
 	
 	public synchronized void start() {
 		th = new Thread(this);
@@ -149,14 +191,16 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	//Logica do jogo
 	public void tick() {
 		
-		switch(gameState) {
 		
+		switch(gameState) {
 		
 		case "normal":
 			
 			this.restartGame = false;
 			if(player.life <= 0) {
 				player.life = 0;
+				cursed_tomb = new Tombstone(player.getX() - 4, player.getY() - 8, 16, 16, Entity.CURSED_TOMB_STONE);
+				Main.entities.remove(player);
 				gameState = "game_over";
 			}
 		
@@ -180,6 +224,13 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		
 			for(int i = 0; i < shootWalls.size(); i++) {
 				ShootTile e = shootWalls.get(i);
+				e.tick();
+			}
+			
+			
+			
+			for(int i = 0; i < iceShootWalls.size(); i++) {
+				IceShootTile e = iceShootWalls.get(i);
 				e.tick();
 			}
 
@@ -219,14 +270,33 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 				}
 			}
 			
+			cursed_tomb.tick();
+			
+			if(gameoverTextAlpha != 255) {
+				gameoverTextAlpha++;
+			}
+			
+			if(gameoverTextAlphaBG != 100) {
+				gameoverTextAlphaBG++;
+			}
+			
 			if(restartGame) {
 				this.restartGame = false;
 				gameState = "normal";
 				World.restartGame("world2.png");
+				gameoverTextAlpha = 0;
+				gameoverTextAlphaBG = 0;
+				
 			}
 			
 			break;
 		
+		case "menu":
+			
+			menu.tick();
+			break;
+			
+			
 		
 		}
 		
@@ -253,24 +323,7 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		
 		world.render(g);
 		//render boss IF it EXIST
-		if(isBoss) {
-			boss_1.render(g);
-			for(int i = 0; i < shootWalls.size(); i++) {
-				ShootTile e = shootWalls.get(i);
-				e.render(g);
-				}
-			for(int i = 0; i < shootWallsSlow.size(); i++) {
-				ShootTileSlow e = shootWallsSlow.get(i);
-				e.render(g);
-			}
-		}
 		
-		if(isBossF) {
-			boss_2.render(g);
-		}
-		if(isBossI) {
-			boss_3.render(g);
-		}
 		
 		for(int i = 0; i < playerBullets.size(); i++) {
 			Entity b = playerBullets.get(i);
@@ -289,26 +342,54 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 			fb.render(g);
 		}
 		
+		if(isBossF) {
+			boss_2.render(g);
+		}
+		
+		if(isBoss) {
+			boss_1.render(g);
+			for(int i = 0; i < shootWalls.size(); i++) {
+				ShootTile e = shootWalls.get(i);
+				e.render(g);
+				}
+			for(int i = 0; i < shootWallsSlow.size(); i++) {
+				ShootTileSlow e = shootWallsSlow.get(i);
+				e.render(g);
+			}
+		}
+
+		if(isBossI) {
+			boss_3.render(g);
+			
+			for(int i = 0; i < iceShootWalls.size(); i++) {
+				IceShootTile e = iceShootWalls.get(i);
+				e.render(g);
+			}
+		}
+		
 		ui.render(g);
 	
 		/**Quanto mais embaixo mais em cima renderiza**/
 		
 		if(gameState == "game_over") {
-			Graphics g2 = (Graphics2D) g;
-			g2.setColor(new Color(255,170,255, 120));
+			Graphics g2 = (Graphics2D) g;			
+			g2.setColor(new Color(255,213,65, gameoverTextAlphaBG));
 			g2.fillRect(0, 0, muxW, muxH);
 			g.clearRect(muxH, escala, width, height);
 			g.setFont(new Font("arial", Font.BOLD, 12));
-			g.setColor(new Color(255,0,255));
+			g.setColor(new Color(255,0,255, gameoverTextAlpha));
 			g.drawString("You failed", 45, 70);
 			g.setFont(new Font("creepster", Font.BOLD, 20));
-			g.setColor(new Color(170,0,0));
+			g.setColor(new Color(170,0, 0, gameoverTextAlpha));
 			g.drawString("ME", 45 + 57, 70);
 			g.setFont(new Font("arial", Font.BOLD, 9));
-			g.setColor(new Color(0,0,0));
+			g.setColor(new Color(0,0,0, gameoverTextAlpha));
 			if(showMessageGameover) {
 				g.drawString("> Press Space to try again <", 20, 110);
 			}
+			cursed_tomb.render(g);
+		}else if(gameState == "menu") {
+			menu.render(g);
 		}
 		
 		g.dispose();
@@ -367,22 +448,50 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		
 		 /*move player pra cima*/
 		if(e.getKeyCode() == KeyEvent.VK_W ||
-			e.getKeyCode() == KeyEvent.VK_UP) player.up = true;
+			e.getKeyCode() == KeyEvent.VK_UP) {
+			player.up = true;
+			
+			if(gameState == "menu") {
+				menu.up = !menu.up;
+			}
+		}
 		
 		/*move player pra baixo*/
 		if(e.getKeyCode() == KeyEvent.VK_S ||
-			e.getKeyCode() == KeyEvent.VK_DOWN) player.down = true;
+			e.getKeyCode() == KeyEvent.VK_DOWN) {
+			player.down = true;
+			if(gameState == "menu") {
+				menu.down = !menu.down;
+			}
+			
+		}
 		
 		if(e.getKeyCode() == KeyEvent.VK_E) {
 			player.autoShoot = !player.autoShoot;
 		}
 		
 		if(e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-			Entity.geralDebug = !Entity.geralDebug;
+			if(gameState == "normal") {
+				Entity.geralDebug = !Entity.geralDebug;
+			}
 		}
 		
 		if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-			player.debug = !player.debug;
+			if(gameState == "normal") {
+				player.debug = !player.debug;
+			}
+		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+			this.restartGame = true;
+		}
+		
+		
+		if(e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_SPACE) {
+			
+			if(gameState == "menu") {
+				menu.enter = !menu.enter;
+			}
 		}
 		
 	}
@@ -405,10 +514,6 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		else if(e.getKeyCode() == KeyEvent.VK_S ||
 			e.getKeyCode() == KeyEvent.VK_DOWN) player.down = false;
 		
-		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-			this.restartGame = true;
-		}
-		
 		
 	}
 
@@ -420,8 +525,8 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	@Override
 	public void mousePressed(MouseEvent e) {
 		player.shoot = true;
-		player.mx = e.getX() / 4;
-		player.my = e.getY() / 4;
+		player.mx = e.getX() / 4 + 5;
+		player.my = e.getY() / 4 + 10;
 		player.autoShoot = false;
 	}
 
@@ -450,16 +555,16 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	public void mouseDragged(MouseEvent e) {
 		
 		player.shoot = true;
-		player.mx = e.getX() / 4;
-		player.my = e.getY() / 4;
+		player.mx = e.getX() / 4 + 5;
+		player.my = e.getY() / 4 + 10;
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		if(player != null) {
 			if(player.autoShoot) {
-				player.mx = e.getX() / 4;
-				player.my = e.getY() / 4;
+				player.mx = e.getX() / 4 + 5;
+				player.my = e.getY() / 4 + 10;
 			}
 		}
 		

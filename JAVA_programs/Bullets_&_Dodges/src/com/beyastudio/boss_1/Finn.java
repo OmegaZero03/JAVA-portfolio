@@ -25,12 +25,15 @@ public class Finn extends Entity {
 
 	private boolean canChooseY, canChooseX, canShoot, att = false;
 	
-	private double anglep/*, anglepp*/;
+	private double anglep;
 	
 	public boolean isDamaged = false, capa = true;
 	public int damageFrames = 5, currentFrames = 0;
 
 	public int angleRotationAdd = 0;
+	
+	private int spawnX = 10;
+	private int spawnY = 0;
 	
 	private int /*range,
 				negaRange,*/
@@ -214,9 +217,6 @@ public class Finn extends Entity {
 			dx = Math.cos(anglep + angleAddOne + .01);
 			dy = Math.sin(anglep + angleAddOne + .01);
 
-			int spawnX = 10;
-			int spawnY = 0;
-			
 			Bullet b = new Bullet(this.getX() - spawnX, this.getY() + spawnY, 16, 16, Entity.BULLET_FINN_FLOWER, dx, dy);
 			Main.BossBullets.add(b);
 			
@@ -678,9 +678,9 @@ public class Finn extends Entity {
 		
 		if (life != maxLife) {
 			g.setColor(Color.red);
-			g.fillRect((int) x - Camera.x + 3, (int) y - 4 - Camera.y, 10, 2);
+			g.fillRect((int) x - Camera.x - 3, (int) y - 4 - Camera.y, 20, 2);
 			g.setColor(Color.ORANGE);
-			g.fillRect((int) x - Camera.x + 3, (int) y - 4 - Camera.y, (int) ((life / maxLife) * 10), 2);
+			g.fillRect((int) x - Camera.x - 3, (int) y - 4 - Camera.y, (int) ((life / maxLife) * 20), 2);
 		}
 
 	}

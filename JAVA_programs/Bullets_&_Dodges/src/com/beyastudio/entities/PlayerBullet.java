@@ -13,20 +13,23 @@ public class PlayerBullet extends Entity {
 
 	/****** STATUS **********/
 	protected int spd = 2;
-	protected int damage = 3;
-	protected int range = 6;
+	protected int damage = 100;
+	protected int range;
 	protected double heal = .7;
 	/**********************/
 
-	private int range_mux = 8 * range;
+	private int range_mux;
 	private double lifeTime_right, lifeTime_left, lifeTime_up, lifeTime_down;
 
-	public PlayerBullet(int x, int y, int width, int height, BufferedImage sprite, double dx, double dy) {
+	public PlayerBullet(int x, int y, int width, int height, BufferedImage sprite, double dx, double dy, int range) {
 		super(x, y, width, height, sprite);
 		this.maskx = 2;
 		this.masky = 2;
 		this.mwidth = 4;
 		this.mheight = 4;
+		
+		this.range = range;
+		this.range_mux = 8 * this.range;
 
 		this.dx = dx;
 		this.dy = dy;
@@ -53,9 +56,6 @@ public class PlayerBullet extends Entity {
 
 	}
 
-	public void setRange(int range) {
-		this.range = range;
-	}
 
 	public void selfDestroy() {
 		if ((this.getX() >= (Main.width + Camera.x) - 8) || (this.getX() <= 0)
@@ -100,6 +100,7 @@ public class PlayerBullet extends Entity {
 		if (Entity.isColliding(this, Main.boss_2)) {
 
 			Main.boss_2.life -= damage;
+			Main.boss_2.isDamaged = true;
 			Main.player.life += heal;
 			if(Main.player.life > 100) {
 				Main.player.life = 100;
@@ -114,6 +115,7 @@ public class PlayerBullet extends Entity {
 
 		if (Entity.isColliding(this, Main.boss_3)) {
 			Main.boss_3.life -= damage;
+			Main.boss_3.isDamaged = true;
 			Main.player.life += heal;
 			if(Main.player.life > 100) {
 				Main.player.life = 100;
@@ -133,6 +135,7 @@ public class PlayerBullet extends Entity {
 			if (isEnemy || isPikachu || isPenguin) {
 				if (Entity.isColliding(this, atual)) {
 					atual.life -= damage;
+					atual.isDamaged = true;
 					Main.player.life += heal;
 					if(Main.player.life > 100) {
 						Main.player.life = 100;
@@ -149,6 +152,14 @@ public class PlayerBullet extends Entity {
 		this.damage = damage;
 	}
 
+	public int getRange() {
+		return range;
+	}
 	
+	public void setRange(int range) {
+		this.range = range;
+	}
+	
+
 	
 }

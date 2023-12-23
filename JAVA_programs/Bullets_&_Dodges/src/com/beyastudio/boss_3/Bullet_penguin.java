@@ -14,6 +14,8 @@ public class Bullet_penguin extends Bullet{
 		this.mwidth = 6;
 		this.mheight = 7;
 		this.spd = .7;
+		
+		this.damage = 15;
 	}
 
 }

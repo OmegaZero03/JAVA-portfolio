@@ -20,7 +20,14 @@ public class Entity {
 						/*********/////////////////**********/
 
 	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+	public static BufferedImage PUPPY_TALK_0 = Main.spritesheet.getSpritesheet(0, 208, _16x_16, _16x_16),
+								PUPPY_TALK_1 = Main.spritesheet.getSpritesheet(0, 224, _16x_16, _16x_16),
+								PUPPY_TALK_2 = Main.spritesheet.getSpritesheet(16, 224, _16x_16, _16x_16),
+								PUPPY_TALK_3 = Main.spritesheet.getSpritesheet(32, 224, _16x_16, _16x_16);
+									
 	
+	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+	public static BufferedImage CURSED_TOMB_STONE = Main.spritesheet.getSpritesheet(48, 208, _16x_16, _16x_16);
 	public static BufferedImage HEAL_EN  	=Main.spritesheet.getSpritesheet(24, 8, _8x8, _8x8);
 	public static BufferedImage ENEMY_EN  	=Main.spritesheet.getSpritesheet(32, 8, _8x8, _8x8);
 	public static BufferedImage NEXT_LVL 	=Main.spritesheet.getSpritesheet(40, 16, _8x8, _8x8);
@@ -57,23 +64,57 @@ public class Entity {
 					BULLET_ICE_SPEAR_90		=Main.spritesheet.getSpritesheet(48, 88, _16x_16, _16x_16),
 					BULLET_ICE_SPEAR_180	=Main.spritesheet.getSpritesheet(0, 96, _16x_16, _16x_16),
 					BULLET_ICE_SPEAR_0		=Main.spritesheet.getSpritesheet(16, 96, _16x_16, _16x_16),
+					BULLET_ICE_CINTO 		=Main.spritesheet.getSpritesheet(48, 104, _16x_16, _16x_16),
+					BULLET_ICE_CUBE 		=Main.spritesheet.getSpritesheet(48, 120, _16x_16, _16x_16),
 					PENGUIN_EN 				=Main.spritesheet.getSpritesheet(32, 88, _8x8, _8x8),
 					PENGUIN_EN_REV 			=Main.spritesheet.getSpritesheet(32, 96, _8x8, _8x8),
 					BULLET_PENGUIN_0		=Main.spritesheet.getSpritesheet(40, 88, _8x8, _8x8),
 					BULLET_PENGUIN_180		=Main.spritesheet.getSpritesheet(40, 96, _8x8, _8x8);
 						/*********/////////////////**********/
 	
+	
+	
+							/*********DAMAGAGED GRASS BOSS SPRITES**********/	
+	public static BufferedImage ICE_DAMAGED_ATT_1 = Main.hurt_spritesheet.getSpritesheet(0, 0, _16x_16, _16x_16),
+								ICE_DAMAGED_ATT_2 = Main.hurt_spritesheet.getSpritesheet(16, 0, _16x_16, _16x_16),
+								ICE_DAMAGED_WALK_1 = Main.hurt_spritesheet.getSpritesheet(32, 0, _16x_16, _16x_16),
+								ICE_DAMAGED_WALK_2 = Main.hurt_spritesheet.getSpritesheet(48, 0, _16x_16, _16x_16);
+	
+	public static BufferedImage PENGUIN_HURT = Main.hurt_spritesheet.getSpritesheet(64, 0, _8x8, _8x8);
+
+			
+
+								/*********/////////////////**********/
+	
+	
+	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+	
+								/*********FIRE BOSS SPRITES**********/
+	
+	public static BufferedImage FIRE_DAMAGED_1 = Main.hurt_spritesheet.getSpritesheet(0, 16, _16x_16, _16x_16),
+								FIRE_DAMAGED_2 = Main.hurt_spritesheet.getSpritesheet(16, 16, _16x_16, _16x_16),
+								BULLET_FIRE_STAR = Main.spritesheet.getSpritesheet(80, 72, _16x_16, _16x_16),
+								BULLET_RED_ROCK = Main.spritesheet.getSpritesheet(136, 56, _8x8, _8x8),
+								BULLET_BLUE_ROCK = Main.spritesheet.getSpritesheet(136, 64, _8x8, _8x8);
+	
 	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 	
 	
-	public static BufferedImage FIRE_EN   	=Main.spritesheet.getSpritesheet(32, 40, _16x_16, _16x_16);
+	public static BufferedImage FIRE_EN   	=Main.spritesheet.getSpritesheet(88, 208, _16x_16, _16x_16);
 	public static BufferedImage PIKACHU_EN 	=Main.spritesheet.getSpritesheet(40, 0, _16x_16, _16x_16);
 	public static BufferedImage BULLET_PL 	=Main.spritesheet.getSpritesheet(72, 0, _8x8, _8x8);
 	
 	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-						/*********GRASS BOSS SPRITES**********/
+						/*********ORBITAIS SPRITE**********/
+	
+								// grass	
 	public static BufferedImage GRASS_ORB   =Main.spritesheet.getSpritesheet(80, 0, _8x8, _8x8),
 					BULLET_GRASS_ORB 		=Main.spritesheet.getSpritesheet(80, 8, _8x8, _8x8);
+	
+								//ice
+	
+	public static BufferedImage ICE_ORB   =Main.spritesheet.getSpritesheet(96, 0, _8x8, _8x8),
+			BULLET_ICE_ORB 		=Main.spritesheet.getSpritesheet(96, 8, _8x8, _8x8);
 						/*********/////////////////**********/
 	
 	
@@ -81,8 +122,9 @@ public class Entity {
 	protected int width, height;
 	protected double x, y;
 	protected int maskx, masky, mwidth, mheight;
-	private BufferedImage sprite;
+	protected BufferedImage sprite;
 	public double life, maxLife;
+	public boolean isDamaged = false;
 	
 	public static boolean geralDebug = false;
 	
@@ -154,6 +196,12 @@ public class Entity {
 		}
 	}
 	 
+	//Calcula a menor distancia entre 2 pontos :)
+	public double calculateDistance(int x1, int y1, int x2, int y2) {
+		return Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+	}
+	
+	
 	
 	public static boolean isColliding(Entity e1, Entity e2) {
 		

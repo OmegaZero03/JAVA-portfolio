@@ -18,6 +18,7 @@ import com.beyastudio.entities.Heal;
 import com.beyastudio.entities.NextLvl;
 import com.beyastudio.entities.Player;
 import com.beyastudio.entities.PlayerBullet;
+import com.beyastudio.entities.Puppy;
 import com.beyastudio.entities.Snorlax;
 import com.beyastudio.main.Main;
 
@@ -42,7 +43,7 @@ public class World {
 				for(int yy = 0; yy < map.getHeight(); yy++) {
 					 
 					int pixelAtual = pixels[xx + (yy * map.getWidth())];
-					tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_FLOOR);
+					tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_STONE_2);
 					
 					
 					switch(pixelAtual) {
@@ -51,12 +52,6 @@ public class World {
 						case 0xff000000:
 							// GRASS Floor / chao de grama
 							tiles[xx + (yy * WIDTH)] = new BlackTile(xx * 8, yy * 8, Tile.TILE_BLACK);
-							break;
-							
-							//DARK GREY / Cinza escuro
-						case 0xff545455:
-							// FIRE Floor / chao de chão
-							tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_FIRE_FLOOR);
 							break;
 							
 							//BROWN COLOR / MARROM
@@ -93,30 +88,6 @@ public class World {
 							tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_WOOD_FLOOR_GRASS_2);
 							break;
 							
-						
-							//GREY COLOR / cor cinza
-						case 0xffb3b9d1:
-							//Ice FLOOR / Chão de gelo
-							tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_ICE_FLOOR);
-							break;
-							
-							
-							//White Color / Cor Branca
-						case 0xffffffff:
-							// leaf Wall / Parede de folhas
-							WallTile wall = new WallTile(xx * 8, yy * 8, Tile.TILE_WALL);
-							tiles[xx + (yy * WIDTH)] = wall;
-							Main.walls.add(wall);
-							
-							break;
-							
-							//BLUE COLOR / COR AZUL
-						case 0xff24bede:
-							//ICE WALL / parede de gelo
-							WallTile iceWall = new WallTile(xx * 8, yy * 8, Tile.TILE_ICE_WALL);
-							tiles[xx + (yy * WIDTH)] = iceWall;
-							Main.walls.add(iceWall);
-							break;
 							
 							//Blue Color / Cor Azul
 						case 0xff225af6:
@@ -324,6 +295,393 @@ public class World {
 							tiles[xx + (yy * WIDTH)] = iceB4;
 							Main.walls.add(iceB4);
 							break;
+							
+							
+						//Sand floor 1
+						case 0xfffff200:
+							tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_SAND_1);
+							break;
+							
+						//Sand floor 2
+						case 0xfff8de7e:
+							tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_SAND_2);
+							break;
+							
+						//Sand floor 3	
+						case 0xfffffdd0:
+							tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_SAND_3);
+							break;
+							
+						//Sand floor 4
+						case 0xfffcf4a3:
+							tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_SAND_4);
+							break;
+							
+						//Sand floor 5
+						case 0xfffada5e:
+							tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_SAND_5);
+							break;
+							
+						//Sand floor 6
+						case 0xffffd300:
+							tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_SAND_6);
+							break;
+							
+						//Sand floor 7
+						case 0xffffe5b4:
+							tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_SAND_7);
+							break;
+							
+						//Sand floor 8
+						case 0xffe4cd05:
+							tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_SAND_8);
+							break;
+							
+						//Sand floor 9
+						case 0xffd5b85a:
+							tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_SAND_9);
+							break;
+							
+				///////////////////////////////////////CARPET///////////////////////////////////////////
+										
+						//Carpet floor 1
+						case 0xff00ffff:
+							tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_CARPET_1);
+							break;
+							
+							
+						//Carpet floor 2
+						case 0xff00ced1:
+							tiles[xx + (yy * WIDTH)] = new 
+							FloorTile(xx * 8, yy * 8, Tile.TILE_CARPET_2);
+							break;
+							
+						//Carpet floor 3
+						case 0xff40e0d0:
+							tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_CARPET_3);
+							break;
+							
+							
+						//Carpet floor 4
+						case 0xff5f9ea0:
+							tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_CARPET_4);
+							break;
+							
+						//Carpet floor 5
+						case 0xff2f4f4f:
+							tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_CARPET_5);
+							break;
+							
+							
+						//Carpet floor 6
+						case 0xff7fffd4:
+							tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_CARPET_6);
+							break;
+							
+						//Carpet floor 7
+						case 0xff20b2aa:
+							tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_CARPET_7);
+							break;
+							
+						//Carpet floor 8
+						case 0xff66cdaa:
+							tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_CARPET_8);
+							break;
+							
+						//Carpet floor 9
+						case 0xff008b8b:
+							tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_CARPET_9);
+							break;
+							
+							///
+							
+							
+						//Carpet border floor 1
+						case 0xffffe4e1:
+							tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_CARPET_BORDER_1);
+							break;
+							
+						//Carpet border floor 2
+						case 0xfffff0f5:
+							tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_CARPET_BORDER_2);
+							break;
+							
+						//Carpet border floor 3
+						case 0xffe6e6fa:
+							tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_CARPET_BORDER_3);
+							break;
+							
+						//Carpet border floor 4
+						case 0xffd8bfd8:
+							tiles[xx + (yy * WIDTH)]
+									= new FloorTile(xx * 8, yy * 8, Tile.TILE_CARPET_BORDER_4);
+							break;
+							
+							
+							
+							
+			///////////////////////////////////////FIRE WALL///////////////////////////////////////////
+							
+							
+							
+						//Fire wall 1
+						case 0xff800000:
+							WallTile fire1 = new WallTile(xx * 8, yy * 8, Tile.TILE_FIRE_1);
+							tiles[xx + (yy * WIDTH)] = fire1;
+							Main.walls.add(fire1);
+							break;
+									
+						//Fire wall 2
+						case 0xffdc143c:
+							WallTile fire2 = new WallTile(xx * 8, yy * 8, Tile.TILE_FIRE_2);
+							tiles[xx + (yy * WIDTH)] = fire2;
+							Main.walls.add(fire2);
+							break;
+								
+						//Fire wall 3
+						case 0xffa52a2a:
+							WallTile fire3 = new WallTile(xx * 8, yy * 8, Tile.TILE_FIRE_3);
+							tiles[xx + (yy * WIDTH)] = fire3;
+							Main.walls.add(fire3);
+							break;
+									
+						//Fire wall 4
+						case 0xfffa8072:
+							WallTile fire4 = new WallTile(xx * 8, (yy * 8), Tile.TILE_FIRE_4);
+							tiles[xx + (yy * WIDTH)] = fire4;
+							Main.walls.add(fire4);
+							break;
+									
+						//Fire wall 5
+						case 0xffff0000:
+							WallTile fire5 = new WallTile(xx * 8, yy * 8, Tile.TILE_FIRE_5);
+							tiles[xx + (yy * WIDTH)] = fire5;
+							Main.walls.add(fire5);
+							break;
+									
+						//Fire wall 6
+						case 0xffffa07a:
+							WallTile fire6 = new WallTile(xx * 8, yy * 8, Tile.TILE_FIRE_6);
+							tiles[xx + (yy * WIDTH)] = fire6;
+							Main.walls.add(fire6);
+							break;
+									
+						//Fire wall 7
+						case 0xffff4500:
+							WallTile fire7 = new WallTile(xx * 8, yy * 8, Tile.TILE_FIRE_7);
+							tiles[xx + (yy * WIDTH)] = fire7;
+							Main.walls.add(fire7);
+							break;
+								
+						//Fire wall 8
+						case 0xffff7f50:
+							WallTile fire8 = new WallTile(xx * 8, yy * 8, Tile.TILE_FIRE_8);
+							tiles[xx + (yy * WIDTH)] = fire8;
+							Main.walls.add(fire8);
+							break;
+									
+							
+							/////
+							
+							
+						//Fire wall border 1
+						case 0xff630330 :
+							WallTile fireB1 = new WallTile(xx * 8, yy * 8, Tile.TILE_FIRE_BORDER_1);
+							tiles[xx + (yy * WIDTH)] = fireB1;
+							Main.walls.add(fireB1);
+							break;
+										
+						//Fire wall border 3
+						case 0xffe0115f :
+							WallTile fireB2 = new WallTile(xx * 8, yy * 8, Tile.TILE_FIRE_BORDER_2);
+							tiles[xx + (yy * WIDTH)] = fireB2;
+							Main.walls.add(fireB2);
+							break;
+									
+						//Fire wall border 3
+						case 0xff722f37 :
+							WallTile fireB3 = new WallTile(xx * 8, yy * 8, Tile.TILE_FIRE_BORDER_3);
+							tiles[xx + (yy * WIDTH)] = fireB3;
+							Main.walls.add(fireB3);
+							break;
+									
+						//Fire wall border 4
+						case 0xffe3735e:
+							WallTile fireb4 = new WallTile(xx * 8, yy * 8, Tile.TILE_FIRE_BORDER_4);
+							tiles[xx + (yy * WIDTH)] = fireb4;
+							Main.walls.add(fireb4);
+							break;
+							
+							
+							
+							
+							
+							
+							
+			///////////////////////////////////////CARPET///////////////////////////////////////////
+							
+							
+					//Lava floor 1
+					case 0xff696969:
+					tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_LAVA_1);
+					break;
+						
+						
+					//Lava floor 2
+					case 0xff90a0a0:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_LAVA_2);
+						break;
+						
+					//Lava floor 3
+					case 0xff708090:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_LAVA_3);
+						break;
+						
+						
+					//Lava floor 4
+					case 0xff5d8aa8:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_LAVA_4);
+						break;
+						
+					//Lava floor 5
+					case 0xff877994:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_LAVA_5);
+						break;
+						
+						
+					//Lava floor 6
+					case 0xff78866b:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_LAVA_6);
+						break;
+						
+					//Lava floor 7
+					case 0xff858585:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_LAVA_7);
+						break;
+									
+						
+						
+					///////////////////////////////////////LOBBY///////////////////////////////////////////
+						
+					
+						
+					//Gold wall 1
+					case 0xffbb0000:
+						WallTile gold1 = new WallTile(xx * 8, yy * 8, Tile.TILE_GOLD_1);
+						tiles[xx + (yy * WIDTH)] = gold1;
+						Main.walls.add(gold1);
+						break;
+									
+					//Gold wall 2	
+					case 0xff00aced:
+						WallTile gold2 = new WallTile(xx * 8, yy * 8, Tile.TILE_GOLD_2);
+						tiles[xx + (yy * WIDTH)] = gold2;
+						Main.walls.add(gold2);
+						break;
+								
+					//Gold wall 3
+					case 0xffdd4b39:
+						WallTile gold3 = new WallTile(xx * 8, yy * 8, Tile.TILE_GOLD_3);
+						tiles[xx + (yy * WIDTH)] = gold3;
+						Main.walls.add(gold3);
+						break;
+									
+					//Gold wall 4
+					case 0xffff0084:
+						WallTile gold4 = new WallTile(xx * 8, (yy * 8), Tile.TILE_GOLD_4);
+						tiles[xx + (yy * WIDTH)] = gold4;
+						Main.walls.add(gold4);
+						break;
+									
+					//Gold wall 5
+					case 0xff64d448:
+						WallTile gold5 = new WallTile(xx * 8, yy * 8, Tile.TILE_GOLD_5);
+						tiles[xx + (yy * WIDTH)] = gold5;
+						Main.walls.add(gold5);
+						break;
+									
+					//Gold wall 6
+					case 0xff3b5998:
+						WallTile gold6 = new WallTile(xx * 8, yy * 8, Tile.TILE_GOLD_6);
+						tiles[xx + (yy * WIDTH)] = gold6;
+						Main.walls.add(gold6);
+						break;
+									
+					//Gold wall 7
+					case 0xffcb2027:
+						WallTile gold7 = new WallTile(xx * 8, yy * 8, Tile.TILE_GOLD_7);
+						tiles[xx + (yy * WIDTH)] = gold7;
+						Main.walls.add(gold7);
+						break;
+								
+					//Gold wall 8
+					case 0xffea4c89:
+						WallTile gold8 = new WallTile(xx * 8, yy * 8, Tile.TILE_GOLD_8);
+						tiles[xx + (yy * WIDTH)] = gold8;
+						Main.walls.add(gold8);
+						break;
+									
+							
+							/////
+							
+							
+					//Gold wall border 1
+					case 0xfffffa37:
+						WallTile goldB1 = new WallTile(xx * 8, yy * 8, Tile.TILE_GOLD_BORDER_1);
+						tiles[xx + (yy * WIDTH)] = goldB1;
+						Main.walls.add(goldB1);
+						break;
+										
+					//Gold wall border 2
+					case 0xffffc125:
+						WallTile goldB2 = new WallTile(xx * 8, yy * 8, Tile.TILE_GOLD_BORDER_2);
+						tiles[xx + (yy * WIDTH)] = goldB2;
+						Main.walls.add(goldB2);
+						break;
+									
+					//Gold wall border 3
+					case 0xffffd700 :
+						WallTile goldB3 = new WallTile(xx * 8, yy * 8, Tile.TILE_GOLD_BORDER_3);
+						tiles[xx + (yy * WIDTH)] = goldB3;
+						Main.walls.add(goldB3);
+						break;
+									
+					//Gold wall border 4
+					case 0xffffdb58:
+						WallTile goldB4 = new WallTile(xx * 8, yy * 8, Tile.TILE_GOLD_BORDER_4);
+						tiles[xx + (yy * WIDTH)] = goldB4;
+						Main.walls.add(goldB4);
+						break;
+						
+						////////////////////////////////Stone//////////////////////////////////////////////
+						
+					//Stone floor 1
+					case 0xfff5deb3:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_STONE_1);
+						break;
+						
+					//Stone floor 2
+					case 0xffdeb887:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_STONE_2);
+						break;
+							
+					//Stone floor 3
+					case 0xff8b4513:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_STONE_3);
+						break;
+							
+					//Stone floor 4
+					case 0xfff5f5dc:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_STONE_4);
+						break;
+							
+					//Stone floor 5
+					case 0xff6b3d38:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_STONE_5);
+						break;
+						
+						
+				
 					}
 					
 					
@@ -365,20 +723,26 @@ public class World {
 		Main.BossBullets.clear();
 		Main.shootWalls.clear();
 		Main.shootWallsSlow.clear();
+		Main.iceShootWalls.clear();
 		Main.entities = new ArrayList<Entity>();
 		Main.walls = new ArrayList<WallTile>();
 		Main.playerBullets = new ArrayList<PlayerBullet>();
 		Main.BossBullets = new ArrayList<Bullet>();
 		Main.shootWalls = new ArrayList<ShootTile>();
+		Main.iceShootWalls = new ArrayList<IceShootTile>();
 		Main.shootWallsSlow = new ArrayList<ShootTileSlow>();
 		Main.player = new Player(0, 0, 8, 8, Main.spritesheet.getSpritesheet(0, 0, 8, 8));
 		Main.entities.add(Main.player);
 		Main.boss_1 = new Finn(228, 140, 16, 16, Entity.FINN_EN);
-		Main.boss_2 = new FireP(80, 368, 16, 16, Entity.FIRE_EN);
-		Main.boss_3 = new IceKing(832, 824, 16, 16, Entity.ICE_EN);
+		Main.boss_2 = new FireP(144, 680, 16, 16, Entity.FIRE_EN);
+		Main.boss_3 = new IceKing(826, 752, 16, 16, Entity.ICE_EN);
 		Main.isBoss = true;
 		Main.isBossF = true;
 		Main.isBossI = true;
+		
+		Main.puppy = new Puppy(70  *8, 57 * 8, 16, 16, Entity.PUPPY_TALK_0);
+		Main.entities.add(Main.puppy);
+		
 		Main.world = new World("/"+lvl);
 		return;
 	}
@@ -391,12 +755,14 @@ public class World {
 		Main.playerBullets.clear();
 		Main.BossBullets.clear();
 		Main.shootWalls.clear();
+		Main.iceShootWalls.clear();
 		Main.shootWallsSlow.clear();
 		Main.entities = new ArrayList<Entity>();
 		Main.walls = new ArrayList<WallTile>();
 		Main.playerBullets = new ArrayList<PlayerBullet>();
 		Main.BossBullets = new ArrayList<Bullet>();
 		Main.shootWalls = new ArrayList<ShootTile>();
+		Main.iceShootWalls = new ArrayList<IceShootTile>();
 		Main.shootWallsSlow = new ArrayList<ShootTileSlow>();
 		Main.player = new Player(0, 0, 8, 8, Main.spritesheet.getSpritesheet(0, 0, 8, 8));
 		Main.entities.add(Main.player);

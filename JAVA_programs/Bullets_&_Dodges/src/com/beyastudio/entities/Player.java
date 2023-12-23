@@ -16,6 +16,8 @@ public class Player extends Entity{
 	public double life, maxLife = 100;
 
 	
+	int range_bullet = 6;
+	
 	private int atackSpeed = 2;
 
 	
@@ -155,8 +157,7 @@ public class Player extends Entity{
 		}
 		
 		nextShoot = System.currentTimeMillis() + (atackSpeed * 100);
-		
-		
+
 		
 		double angle = Math.atan2(my - (this.getY() - Camera.y + 5) , mx - (this.getX() - Camera.x + 5));
 		
@@ -167,24 +168,25 @@ public class Player extends Entity{
 			
 			if(dir == right_dir){
 				
-				PlayerBullet b = new PlayerBullet(this.getX() + 7, this.getY() - 3, 8, 8, Entity.BULLET_PL, dx, dy);
+				PlayerBullet b = new PlayerBullet(this.getX() + 7, this.getY() - 3, 8, 8, Entity.BULLET_PL, dx, dy, this.range_bullet);
 				Main.playerBullets.add(b);
 				
 			}else if(dir == left_dir) {
-				PlayerBullet b = new PlayerBullet(this.getX() - 7, this.getY() - 3, 8, 8, Entity.BULLET_PL, dx, dy);
+				PlayerBullet b = new PlayerBullet(this.getX() - 7, this.getY() - 3, 8, 8, Entity.BULLET_PL, dx, dy, this.range_bullet);
 				Main.playerBullets.add(b);
 			}
 			
 			if(dir == down_dir) {
-				PlayerBullet b = new PlayerBullet(this.getX() - 2, this.getY() - 4, 8, 8, Entity.BULLET_PL, dx, dy);
+				PlayerBullet b = new PlayerBullet(this.getX(), this.getY() - 4, 8, 8, Entity.BULLET_PL, dx, dy,this.range_bullet);
 				Main.playerBullets.add(b);
 			}else if(dir == up_dir) {
-				PlayerBullet b = new PlayerBullet(this.getX() + 2, this.getY() + 4, 8, 8, Entity.BULLET_PL, dx, dy);
+				PlayerBullet b = new PlayerBullet(this.getX() + 2, this.getY() + 4, 8, 8, Entity.BULLET_PL, dx, dy,this.range_bullet);
 				Main.playerBullets.add(b);
 			}
 			
 		}
 		
+
 	
 		
 	}
@@ -216,9 +218,7 @@ public class Player extends Entity{
 	}
 	
 	@Override
-	public void render(Graphics g) {
-
-
+	public void render(Graphics g) {	
 		
 		if(shoot || autoShoot) {
 			
@@ -230,7 +230,7 @@ public class Player extends Entity{
 			if(dir == up_dir) {
 				g.drawImage(upAtack[Xindex], this.getX() - Camera.x, this.getY() - Camera.y, null);
 			}else if(dir == down_dir) {
-				g.drawImage(downAtack[Xindex], this.getX() - Camera.x,this.getY() - Camera.y, null);
+				g.drawImage(downAtack[Xindex], this.getX() - Camera.x ,this.getY() - Camera.y, null);
 			}
 			
 		}else{
@@ -247,6 +247,8 @@ public class Player extends Entity{
 				g.drawImage(downPlayer[DYindex], this.getX() - Camera.x,this.getY() - Camera.y, null);
 			}
 		}
+		
+
 		
 		if(debug) {
 			life = 100;
