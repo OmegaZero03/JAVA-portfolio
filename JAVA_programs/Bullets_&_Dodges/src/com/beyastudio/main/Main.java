@@ -38,6 +38,7 @@ import com.beyastudio.entities.PlayerBullet;
 import com.beyastudio.entities.Puppy;
 import com.beyastudio.entities.Tombstone;
 import com.beyastudio.wolrd.IceShootTile;
+import com.beyastudio.wolrd.Portal;
 import com.beyastudio.wolrd.ShootTile;
 import com.beyastudio.wolrd.ShootTileSlow;
 import com.beyastudio.wolrd.WallTile;
@@ -61,6 +62,7 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	
 	private BufferedImage image;
 	public static List<WallTile> walls;
+	public static List<WallTile> portals;
 	public static List<ShootTile> shootWalls;
 	public static List<ShootTileSlow> shootWallsSlow;
 	public static List<IceShootTile> iceShootWalls;
@@ -81,6 +83,7 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	public static UI ui;
 	public static Random ran;
 	public static Tombstone cursed_tomb;
+	public static Portal portal_grass_1,portal_grass_2 , portal_ice_1,portal_ice_2, portal_fire_1, portal_fire_2, portal_gold_1, portal_gold_2;
 	
 	public static Menu menu;
 	
@@ -100,6 +103,7 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		entities = new ArrayList<Entity>();
 		walls = new ArrayList<WallTile>();
+		portals = new ArrayList<WallTile>();
 		playerBullets = new ArrayList<PlayerBullet>();
 		BossBullets = new ArrayList<Bullet>();
 		shootWalls = new ArrayList<ShootTile>();
@@ -120,6 +124,31 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		
 		menu = new Menu();
 		
+		portal_grass_1 = new Portal(352, 480, Entity.PORTAL_GRASS);
+		portals.add(portal_grass_1);
+		
+		portal_grass_2 = new Portal(248, 480, Entity.PORTAL_GRASS);
+		portals.add(portal_grass_2);
+		
+		portal_ice_1 = new Portal(552, 568, Entity.PORTAL_ICE);
+		portals.add(portal_ice_1);
+		
+		portal_ice_2 = new Portal(552, 600, Entity.PORTAL_ICE_2);
+		portals.add(portal_ice_2);
+		
+		portal_fire_1 = new Portal(536, 768, Entity.PORTAL_FIRE);
+		portals.add(portal_fire_1);
+		
+		portal_fire_2 = new Portal(424, 768, Entity.PORTAL_FIRE);
+		portals.add(portal_fire_2);
+
+		portal_gold_1 = new Portal(680, 480, Entity.PORTAL_GOLD);
+		portals.add(portal_gold_1);
+		
+		portal_gold_2 = new Portal(824 - 8, 480, Entity.PORTAL_GOLD);
+		portals.add(portal_gold_2);
+		//portal_gold = new Portal(0, 0, Entity.PORTAL_GOLD);
+		
 		//In the world 2
 		if(World.WIDTH == 120  && World.HEIGHT == 120) {
 			boss_1 = new Finn(228 , 140, 16, 16, Entity.FINN_EN);
@@ -128,7 +157,6 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 			isBoss = true;
 			isBossF = true;
 			isBossI = true;
-			
 		}
 		
 		
@@ -325,6 +353,7 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		//render boss IF it EXIST
 		
 		
+		
 		for(int i = 0; i < playerBullets.size(); i++) {
 			Entity b = playerBullets.get(i);
 			b.render(g);
@@ -344,6 +373,10 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		
 		if(isBossF) {
 			boss_2.render(g);
+			for(int i = 0; i < shootWalls.size(); i++) {
+				ShootTile e = shootWalls.get(i);
+				e.render(g);
+				}
 		}
 		
 		if(isBoss) {
@@ -365,6 +398,11 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 				IceShootTile e = iceShootWalls.get(i);
 				e.render(g);
 			}
+		}
+		
+		for(int i = 0; i < portals.size(); i++) {
+			WallTile e = portals.get(i);
+			e.render(g);
 		}
 		
 		ui.render(g);

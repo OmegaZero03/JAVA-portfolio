@@ -112,7 +112,7 @@ public class World {
 							
 							//Yellow Color/ cor amarela
 						case 0xfff2ff00:
-							Main.entities.add(new Snorlax(xx*8 - 8, yy*8, 16, 16, Entity.PIKACHU_EN));
+							Main.entities.add(new Snorlax(xx*8 - 4, yy*8, 16, 16, Entity.CAPIVARA_ZEN));
 							break;
 							
 							

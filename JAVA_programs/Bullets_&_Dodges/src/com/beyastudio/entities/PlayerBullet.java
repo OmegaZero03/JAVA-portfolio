@@ -13,7 +13,7 @@ public class PlayerBullet extends Entity {
 
 	/****** STATUS **********/
 	protected int spd = 2;
-	protected int damage = 100;
+	protected int damage = 3;
 	protected int range;
 	protected double heal = .7;
 	/**********************/

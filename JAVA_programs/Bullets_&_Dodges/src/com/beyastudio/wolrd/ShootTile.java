@@ -11,9 +11,9 @@ import com.beyastudio.main.Main;
 
 public class ShootTile extends WallTile{	
 	
-	private double angle, dx, dy;
-	private double attackSpeed = 2;
-	private double nextShoot = 0;
+	protected double angle, dx, dy;
+	protected double attackSpeed = 2;
+	protected double nextShoot = 0;
 	
 	
 	public ShootTile(int x, int y, BufferedImage sprite, int angle) {

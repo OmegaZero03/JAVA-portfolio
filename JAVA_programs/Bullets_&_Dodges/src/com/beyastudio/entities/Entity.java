@@ -91,11 +91,25 @@ public class Entity {
 	
 								/*********FIRE BOSS SPRITES**********/
 	
-	public static BufferedImage FIRE_DAMAGED_1 = Main.hurt_spritesheet.getSpritesheet(0, 16, _16x_16, _16x_16),
+	public static BufferedImage FLIP_FIRE = Main.spritesheet.getSpritesheet(120, 208, _16x_16, _16x_16),
+								FIRE_DAMAGED_1 = Main.hurt_spritesheet.getSpritesheet(0, 16, _16x_16, _16x_16),
 								FIRE_DAMAGED_2 = Main.hurt_spritesheet.getSpritesheet(16, 16, _16x_16, _16x_16),
 								BULLET_FIRE_STAR = Main.spritesheet.getSpritesheet(80, 72, _16x_16, _16x_16),
-								BULLET_RED_ROCK = Main.spritesheet.getSpritesheet(136, 56, _8x8, _8x8),
-								BULLET_BLUE_ROCK = Main.spritesheet.getSpritesheet(136, 64, _8x8, _8x8);
+								BULLET_RED_ROCK = Main.spritesheet.getSpritesheet(136, 64, _8x8, _8x8),
+								BULLET_BLUE_ROCK = Main.spritesheet.getSpritesheet(136, 56, _8x8, _8x8),
+								RED_FIRE_PILAR =  Main.spritesheet.getSpritesheet(88, 224, _8x8, _16x_16),
+								BLUE_FIRE_PILAR =  Main.spritesheet.getSpritesheet(96, 224, _8x8, _16x_16),
+								BULLET_FIRE_BLAST = Main.spritesheet.getSpritesheet(64, 72, _16x_16, _16x_16),
+								BULLET_BLUE_FIRE = Main.spritesheet.getSpritesheet(120, 56, _16x_16, _16x_16);
+								
+	
+	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+	
+	public static BufferedImage PORTAL_GRASS = Main.spritesheet.getSpritesheet(64, 248, _16x_16, 24),
+								PORTAL_FIRE = Main.spritesheet.getSpritesheet(80, 248, _16x_16, 24),
+								PORTAL_ICE = Main.spritesheet.getSpritesheet(96, 240, 24, _16x_16),
+								PORTAL_ICE_2 = Main.spritesheet.getSpritesheet(96, 256, 24, _16x_16),
+								PORTAL_GOLD = Main.spritesheet.getSpritesheet(120, 248, _16x_16, 24);
 	
 	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 	
@@ -116,6 +130,17 @@ public class Entity {
 	public static BufferedImage ICE_ORB   =Main.spritesheet.getSpritesheet(96, 0, _8x8, _8x8),
 			BULLET_ICE_ORB 		=Main.spritesheet.getSpritesheet(96, 8, _8x8, _8x8);
 						/*********/////////////////**********/
+	
+	
+						/*********CAPIVARA**********/	
+
+	public static BufferedImage CAPIVARA_ZEN = Main.spritesheet.getSpritesheet(144, 72, _16x_16, _16x_16),
+								CAPIVARA_TALK = Main.spritesheet.getSpritesheet(160, 72, _16x_16, _16x_16),
+								CAPIVARA_ZEN_DAMAGED = Main.hurt_spritesheet.getSpritesheet(32, 16, _16x_16, _16x_16),
+								CAPIVARA_TALK_DAMAGED = Main.hurt_spritesheet.getSpritesheet(48, 16, _16x_16, _16x_16);
+
+					/*********/////////////////**********/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 	
 	
 	

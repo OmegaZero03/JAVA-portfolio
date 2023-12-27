@@ -153,7 +153,7 @@ public class Tile {
 	
 	
 	
-	private BufferedImage sprite;
+	protected BufferedImage sprite;
 	protected int x;
 	protected int y;
 	private int maskx, masky, mwidth, mheight;
@@ -187,7 +187,7 @@ public class Tile {
 	}
 	
 	
-	public void render(Graphics g) {;
+	public void render(Graphics g) {
 		g.drawImage(sprite, x - Camera.x, y - Camera.y, null);
 	}
 }

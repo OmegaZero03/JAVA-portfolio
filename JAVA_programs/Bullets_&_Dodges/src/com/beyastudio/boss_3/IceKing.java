@@ -549,10 +549,6 @@ public class IceKing extends Entity{
 		}
 		
 		
-		
-		
-		
-		
 		if (life != maxLife) {
 			g.setColor(Color.red);
 			g.fillRect((int) x - Camera.x - 3, (int) y - 4 - Camera.y, 20, 2);

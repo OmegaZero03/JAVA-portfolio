@@ -16,9 +16,9 @@ public class Bullet_blue_rock extends Bullet{
 		this.mwidth = 6;
 		this.mheight = 6;
 		
-		this.spd = .03;
+		this.spd = .4;
 		
-		this.damage = 20;
+		this.damage = 15;
 	}
 
 }
