@@ -21,7 +21,7 @@ public class Bullet_blue_fire extends Bullet_fire_blast{
 		
 		this.spd = 2;
 		
-		this.damage = 35;
+		this.damage = 25;
 	}
 	
 	@Override

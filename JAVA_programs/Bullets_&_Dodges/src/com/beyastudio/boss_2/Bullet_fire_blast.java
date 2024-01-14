@@ -24,7 +24,7 @@ public class Bullet_fire_blast extends Bullet{
 		
 		this.spd = 2.7;
 		
-		this.damage = 30;
+		this.damage = 20;
 		
 		this.angle = angle;
 	}

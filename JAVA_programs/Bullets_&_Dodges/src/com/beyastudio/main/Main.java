@@ -68,6 +68,7 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	public static List<IceShootTile> iceShootWalls;
 	public static List<Entity> entities;
 	public static List<PlayerBullet> playerBullets;
+	public static List<Entity> tombs;
 	public static List<Bullet> BossBullets;
 	public static Spritesheet spritesheet, hurt_spritesheet;
 	
@@ -107,6 +108,7 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		playerBullets = new ArrayList<PlayerBullet>();
 		BossBullets = new ArrayList<Bullet>();
 		shootWalls = new ArrayList<ShootTile>();
+		tombs = new ArrayList<Entity>();
 		iceShootWalls = new ArrayList<IceShootTile>();
 		shootWallsSlow = new ArrayList<ShootTileSlow>();
 		spritesheet = new Spritesheet("/spritesheet.png");
@@ -255,7 +257,10 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 				e.tick();
 			}
 			
-			
+			for(int i = 0; i < tombs.size(); i++) {
+				Entity b = tombs.get(i);
+				b.tick();
+			}
 			
 			for(int i = 0; i < iceShootWalls.size(); i++) {
 				IceShootTile e = iceShootWalls.get(i);
@@ -328,8 +333,6 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		
 		}
 		
-
-		
 	}
 		
 		
@@ -352,6 +355,10 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		world.render(g);
 		//render boss IF it EXIST
 		
+		for(int i = 0; i < tombs.size(); i++) {
+			Entity b = tombs.get(i);
+			b.render(g);
+		}
 		
 		
 		for(int i = 0; i < playerBullets.size(); i++) {

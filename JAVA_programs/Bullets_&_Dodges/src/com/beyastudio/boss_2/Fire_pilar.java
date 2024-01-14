@@ -64,7 +64,18 @@ public class Fire_pilar extends ShootTile{
 						Bullet_red_rock br = new Bullet_red_rock(this.getX() + 4, this.getY(), 8, 8, Entity.BULLET_RED_ROCK, dx, dy);
 						Main.BossBullets.add(br);
 					}
+				}else if(angle == Math.toRadians(270)) {
+					for(int i = 0; i < 5; i++) {
+						double j = Math.toRadians(angle + (i * 15));
+						
+						dx = Math.cos(j);
+						dy = Math.sin(j);
+						
+						Bullet_red_rock br = new Bullet_red_rock(this.getX() + 4, this.getY(), 8, 8, Entity.BULLET_RED_ROCK, dx, dy);
+						Main.BossBullets.add(br);
+					}
 				}
+				
 				
 		}else if (red_blue == "blue") {
 			if(angle == Math.toRadians(270)) {

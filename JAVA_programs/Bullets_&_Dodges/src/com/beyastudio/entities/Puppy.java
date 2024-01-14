@@ -127,13 +127,13 @@ public class Puppy extends Entity{
 
 			switch(i) {
 			
-			
-			/*   IDEIAL SIZE    */
+			/*Invisible caracter -> (ㅤ)*/
+			/*   IDEAL SIZE    */
 			//"123456789112345"
 			//  15 characters.
 			
 			case 0:
-				txt = "    SUP duuude!";
+				txt = "ㅤㅤSUP duuude!";
 				break;
 			case 1:
 				txt = "ya are new here, right?";
@@ -166,35 +166,29 @@ public class Puppy extends Entity{
 				txt = "on that place...";
 				break;
 			case 11:
-				txt = " Oh........";
+				txt = "ㅤㅤㅤ Oh........";
 				break;
 			case 12: 
-				txt = " got it...";
+				txt = " ㅤㅤgot it....";
 				break;
-				
 			case 13:
 				txt = "the girl am i right?";
 				break;
 			case 14:
 				txt = "she's on the left...";
 				break;
-				
 			case 15:
 				txt = "but I wouldn't bother her ";
 				break;
-				
 			case 16:
 				txt = "this early on...";
 				break;
-				
 			case 17:
 				txt = "not with out and ORB";
 				break;
-				
 			case 18:
 				txt = "following the MONSTER";
 				break;
-				
 			case 19:
 				txt = "leads to a split.";
 				break;
@@ -205,7 +199,7 @@ public class Puppy extends Entity{
 				txt = "and face the MONSTER";
 				break;
 			case 22:
-				txt = "  Get left...";
+				txt = "ㅤㅤGet left...";
 				break;
 			case 23:
 				txt = "and face the.........";
@@ -223,10 +217,10 @@ public class Puppy extends Entity{
 				txt = "Gonna stop my monolo...";
 				break;
 			case 28:
-				txt = "    Wait.....";
+				txt = "ㅤㅤㅤWait.....";
 				break;
 			case 29:
-				txt = "  that sword......";
+				txt = "ㅤthat sword......";
 				break;
 			case 30:
 				txt = "where did you found it?";
@@ -250,7 +244,7 @@ public class Puppy extends Entity{
 				txt = "yourself can be";
 				break;
 			case 37:
-				txt = " UNSTOPPABLE";
+				txt = "ㅤㅤUNSTOPPABLE";
 				break;
 			case 38:
 				txt = "or can you???...";
@@ -265,9 +259,8 @@ public class Puppy extends Entity{
 				txt = "ya don't speak that much";
 				break;
 			case 42:
-				txt = "  ....don't ya?";
+				txt = " ㅤ....don't ya?";
 				break;
-				
 			case 43:
 				txt = "xaxaxaxaxaxaxa....";
 				break;

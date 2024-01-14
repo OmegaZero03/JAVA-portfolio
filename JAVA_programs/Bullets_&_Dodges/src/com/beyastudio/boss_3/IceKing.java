@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import com.beyastudio.entities.Boss_tombstone;
 import com.beyastudio.entities.Entity;
 import com.beyastudio.entities.Ice_orbital;
 import com.beyastudio.main.Main;
@@ -60,11 +61,17 @@ public class IceKing extends Entity{
 	
 	public void tick() {
 		if (life <= 0) {
-			Main.isBossI = false;
-			Ice_orbital o = new Ice_orbital(this.getX(), this.getY(), 8, 8, Entity.ICE_ORB);
-			Main.entities.add(o);
+			
+			Boss_tombstone tb = new Boss_tombstone(this.getX() - 4, this.getY() - 8, 16, 16, Entity.TOMB_NEUTRAL, "ice");
+			Main.tombs.add(tb);
+			
+			if(Main.player.haveIce == false) {
+				Ice_orbital o = new Ice_orbital(this.getX(), this.getY(), 8, 8, Entity.ICE_ORB);
+				Main.entities.add(o);
+			}
 
 			Main.iceShootWalls.removeAll(Main.iceShootWalls);
+			Main.isBossI = false;
 		}
 		
 		stateMachine();

@@ -13,7 +13,7 @@ public class PlayerBullet extends Entity {
 
 	/****** STATUS **********/
 	protected int spd = 2;
-	protected int damage = 3;
+	protected int damage = 300;
 	protected int range;
 	protected double heal = .7;
 	/**********************/
@@ -132,7 +132,7 @@ public class PlayerBullet extends Entity {
 			boolean isPenguin = atual instanceof Penguin;
 			boolean isPikachu = atual instanceof Snorlax;
 
-			if (isEnemy || isPikachu || isPenguin) {
+			if (isEnemy || isPenguin) {
 				if (Entity.isColliding(this, atual)) {
 					atual.life -= damage;
 					atual.isDamaged = true;
@@ -145,7 +145,20 @@ public class PlayerBullet extends Entity {
 					return;
 				}
 			}
-		}
+			if(isPikachu) {
+				if (Entity.isColliding(this, atual)) {
+					atual.life -= damage;
+					atual.isDamaged = true;
+					Main.player.life += heal + 3;
+					if(Main.player.life > 100) {
+						Main.player.life = 100;
+					}
+					System.out.println("vida = " + atual.life);
+					Main.playerBullets.remove(this);
+					return;
+				}
+				}
+			}
 	}
 
 	public void setDamage(int damage) {

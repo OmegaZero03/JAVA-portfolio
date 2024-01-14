@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import com.beyastudio.entities.Boss_tombstone;
 import com.beyastudio.entities.Entity;
 import com.beyastudio.entities.Grass_orbital;
 import com.beyastudio.main.Main;
@@ -77,8 +78,17 @@ public class Finn extends Entity {
 
 		
 		if (this.life <= 0) {
-			Grass_orbital o = new Grass_orbital(this.getX(), this.getY(), 8, 8, Entity.GRASS_ORB);
-			Main.entities.add(o);
+			
+			Boss_tombstone tb = new Boss_tombstone(this.getX() - 4, this.getY() - 8, 16, 16, Entity.TOMB_NEUTRAL, "grass");
+			Main.tombs.add(tb);
+			
+			if(Main.player.haveGrass == false) {
+				Grass_orbital o = new Grass_orbital(this.getX(), this.getY(), 8, 8, Entity.GRASS_ORB);
+				Main.tombs.add(o);
+			}
+			
+
+			
 			Main.isBoss = false;
 			Main.shootWalls.removeAll(Main.shootWalls);
 			Main.shootWallsSlow.removeAll(Main.shootWallsSlow);

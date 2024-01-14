@@ -7,49 +7,45 @@ import java.awt.image.BufferedImage;
 import com.beyastudio.main.Main;
 import com.beyastudio.wolrd.Camera;
 
-public class Ice_orbital extends Entity{
-
+public class Fire_orbital extends Entity{
 	
 	private int frames = 0,
 			maxFrames = 10,
 			index = 0,
 			maxIndex = 5;
 	
+	private double atackSpeed = 1.8;
+	private int spdAdd = 4;
 	
-	private double atackSpeed = 2.2;
-	
-	private int spdAdd = 1;
-	
-	private int range_bullet = 8;
-	
+	private int bullet_range = 7;
 	
 	private int spd;
 	private double mx, my, angle;
 	private double nextShoot = 0,
 				   dx, dy;
-
+	
 	private BufferedImage [] sprites;
 	
-	
-	public Ice_orbital(int x, int y, int width, int height, BufferedImage sprite) {
+	public Fire_orbital(int x, int y, int width, int height, BufferedImage sprite) {
 		super(x, y, width, height, sprite);
+		
 		
 		sprites = new BufferedImage[6];
 		
 		for(int i = 0; i < 6; i++) {
-			sprites[i] = Main.spritesheet.getSpritesheet(144 + (i * 8), 16, 8, 8);
+			sprites[i] = Main.spritesheet.getSpritesheet(144 + (i * 8), 8, 8, 8);
 		}
+
 	}
 
-	
 	@Override
 	public void tick() {
 		
-		if(Main.player.haveIce) {
-			spd -= spdAdd;
+		if(Main.player.haveFire) {
+			spd += spdAdd;
 			
 			angle = Math.toRadians(90 + spd);
-			double radius = 22;
+			double radius = 10;
 
 			dy = Math.sin(angle);
 			dx = Math.cos(angle);
@@ -73,7 +69,7 @@ public class Ice_orbital extends Entity{
 			dy = Math.sin(angle);
 			
 			if(Main.player.shoot || Main.player.autoShoot) {
-				Bullet_ice_orb g = new Bullet_ice_orb(this.getX(), this.getY(), 8, 8, Entity.BULLET_ICE_ORB, dx, dy, this.range_bullet);
+				Bullet_fire_orb g = new Bullet_fire_orb(this.getX(), this.getY(), 8, 8, Entity.BULLET_FIRE_ORB, dx, dy,bullet_range);
 				Main.playerBullets.add(g);
 			}
 		}else {
@@ -88,21 +84,20 @@ public class Ice_orbital extends Entity{
 			
 			}
 			
-			
-			
-			if(Entity.isColliding(this, Main.player)) {
-				Main.player.haveIce = true;
+			if(Entity.isColliding(Main.player,this)) {
+				Main.player.haveFire = true;
 			}
-			
 		}
-		
 	}
+	
+	
 	
 	
 	@Override 
 	public void render(Graphics g) {
 		
-		if(Main.player.haveIce) {
+		
+		if(Main.player.haveFire) {
 			g.drawImage(sprite, this.getX() - Camera.x, this.getY() - Camera.y, null);
 			
 			if(geralDebug) {
@@ -113,13 +108,10 @@ public class Ice_orbital extends Entity{
 		
 		else {
 			
-			
 			g.setColor(new Color(0xff450068));
 			g.fillRect(this.getX() - Camera.x, this.getY() - Camera.y, 8, 8);
-			
 			g.drawImage(sprites[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
 		}
 		
 	}
-
 }

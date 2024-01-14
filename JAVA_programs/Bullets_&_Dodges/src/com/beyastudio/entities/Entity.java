@@ -92,6 +92,7 @@ public class Entity {
 								/*********FIRE BOSS SPRITES**********/
 	
 	public static BufferedImage FLIP_FIRE = Main.spritesheet.getSpritesheet(120, 208, _16x_16, _16x_16),
+								ANTI_FLIP_BLUE = Main.spritesheet.getSpritesheet(104, 224, _16x_16, _16x_16),
 								FIRE_DAMAGED_1 = Main.hurt_spritesheet.getSpritesheet(0, 16, _16x_16, _16x_16),
 								FIRE_DAMAGED_2 = Main.hurt_spritesheet.getSpritesheet(16, 16, _16x_16, _16x_16),
 								BULLET_FIRE_STAR = Main.spritesheet.getSpritesheet(80, 72, _16x_16, _16x_16),
@@ -122,13 +123,18 @@ public class Entity {
 						/*********ORBITAIS SPRITE**********/
 	
 								// grass	
-	public static BufferedImage GRASS_ORB   =Main.spritesheet.getSpritesheet(80, 0, _8x8, _8x8),
-					BULLET_GRASS_ORB 		=Main.spritesheet.getSpritesheet(80, 8, _8x8, _8x8);
-	
+	public static BufferedImage GRASS_ORB  		 =Main.spritesheet.getSpritesheet(80, 0, _8x8, _8x8),
+								BULLET_GRASS_ORB =Main.spritesheet.getSpritesheet(80, 8, _8x8, _8x8);
 								//ice
 	
 	public static BufferedImage ICE_ORB   =Main.spritesheet.getSpritesheet(96, 0, _8x8, _8x8),
 			BULLET_ICE_ORB 		=Main.spritesheet.getSpritesheet(96, 8, _8x8, _8x8);
+	
+	
+								//fire
+	public static BufferedImage FIRE_ORB   =Main.spritesheet.getSpritesheet(88, 0, _8x8, _8x8),
+								BULLET_FIRE_ORB  =Main.spritesheet.getSpritesheet(88, 8, _8x8, _8x8);
+	
 						/*********/////////////////**********/
 	
 	
@@ -139,6 +145,12 @@ public class Entity {
 								CAPIVARA_ZEN_DAMAGED = Main.hurt_spritesheet.getSpritesheet(32, 16, _16x_16, _16x_16),
 								CAPIVARA_TALK_DAMAGED = Main.hurt_spritesheet.getSpritesheet(48, 16, _16x_16, _16x_16);
 
+					/*********/////////////////**********/
+	
+	
+	
+						/*********BOSSES TOMBS**********/
+	public static BufferedImage TOMB_NEUTRAL = Main.spritesheet.getSpritesheet(80, 272, _16x_16, _16x_16);
 					/*********/////////////////**********/
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 	
