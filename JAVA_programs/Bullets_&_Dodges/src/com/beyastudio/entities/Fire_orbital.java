@@ -85,6 +85,7 @@ public class Fire_orbital extends Entity{
 			}
 			
 			if(Entity.isColliding(Main.player,this)) {
+				Main.ui.orbF = true;
 				Main.player.haveFire = true;
 			}
 		}

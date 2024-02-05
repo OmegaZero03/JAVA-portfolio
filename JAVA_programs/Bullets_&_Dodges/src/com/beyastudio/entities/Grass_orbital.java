@@ -85,6 +85,7 @@ public class Grass_orbital extends Entity{
 			}
 			
 			if(Entity.isColliding(this, Main.player)) {
+				Main.ui.orbG = true;
 				Main.player.haveGrass = true;
 			}
 		}

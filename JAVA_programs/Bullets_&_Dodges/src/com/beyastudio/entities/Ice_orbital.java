@@ -91,6 +91,7 @@ public class Ice_orbital extends Entity{
 			
 			
 			if(Entity.isColliding(this, Main.player)) {
+				Main.ui.orbI = true;
 				Main.player.haveIce = true;
 			}
 			

@@ -28,7 +28,12 @@ public class Entity {
 	
 	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 	public static BufferedImage CURSED_TOMB_STONE = Main.spritesheet.getSpritesheet(48, 208, _16x_16, _16x_16);
-	public static BufferedImage HEAL_EN  	=Main.spritesheet.getSpritesheet(24, 8, _8x8, _8x8);
+	public static BufferedImage HEAL_EN  	=Main.spritesheet.getSpritesheet(24, 8, _8x8, _8x8),
+								DMG_UP = Main.spritesheet.getSpritesheet(200, 0, _8x8, _8x8),
+								HEAL_UP = Main.spritesheet.getSpritesheet(192, 0, _8x8, _8x8),
+								SPD_UP = Main.spritesheet.getSpritesheet(216, 0, _8x8, _8x8),
+								ATTSPD_UP = Main.spritesheet.getSpritesheet(208, 0, _8x8, _8x8);
+	
 	public static BufferedImage ENEMY_EN  	=Main.spritesheet.getSpritesheet(32, 8, _8x8, _8x8);
 	public static BufferedImage NEXT_LVL 	=Main.spritesheet.getSpritesheet(40, 16, _8x8, _8x8);
 	
@@ -118,6 +123,7 @@ public class Entity {
 	public static BufferedImage FIRE_EN   	=Main.spritesheet.getSpritesheet(88, 208, _16x_16, _16x_16);
 	public static BufferedImage PIKACHU_EN 	=Main.spritesheet.getSpritesheet(40, 0, _16x_16, _16x_16);
 	public static BufferedImage BULLET_PL 	=Main.spritesheet.getSpritesheet(72, 0, _8x8, _8x8);
+	public static BufferedImage BULLET_FLOWER_PL =Main.spritesheet.getSpritesheet(64, 0, _8x8, _8x8);
 	
 	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 						/*********ORBITAIS SPRITE**********/
@@ -136,7 +142,7 @@ public class Entity {
 								BULLET_FIRE_ORB  =Main.spritesheet.getSpritesheet(88, 8, _8x8, _8x8);
 	
 						/*********/////////////////**********/
-	
+	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 	
 						/*********CAPIVARA**********/	
 
@@ -147,11 +153,83 @@ public class Entity {
 
 					/*********/////////////////**********/
 	
-	
+	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 	
 						/*********BOSSES TOMBS**********/
-	public static BufferedImage TOMB_NEUTRAL = Main.spritesheet.getSpritesheet(80, 272, _16x_16, _16x_16);
-					/*********/////////////////**********/
+	public static BufferedImage TOMB_NEUTRAL = Main.spritesheet.getSpritesheet(80, 272, _16x_16, _16x_16),
+								//GRASS
+								TOMB_GRASS_0 =Main.spritesheet.getSpritesheet(0, 288, _16x_16, _16x_16),
+								TOMB_GRASS_1 =Main.spritesheet.getSpritesheet(16, 288, _16x_16, _16x_16),
+								TOMB_GRASS_2 =Main.spritesheet.getSpritesheet(32, 288, _16x_16, _16x_16),
+								TOMB_GRASS_3 =Main.spritesheet.getSpritesheet(48, 288, _16x_16, _16x_16),
+								CURSED_TOMB_GRASS_0 = Main.spritesheet.getSpritesheet(0, 304, _16x_16, _16x_16),
+								CURSED_TOMB_GRASS_1 = Main.spritesheet.getSpritesheet(16, 304, _16x_16, _16x_16),
+								CURSED_TOMB_GRASS_2 = Main.spritesheet.getSpritesheet(32, 304, _16x_16, _16x_16),
+								CURSED_TOMB_GRASS_3 = Main.spritesheet.getSpritesheet(48, 304, _16x_16, _16x_16),
+								//ICE
+								TOMB_ICE_0 =Main.spritesheet.getSpritesheet(64, 288, _16x_16, _16x_16),
+								TOMB_ICE_1 =Main.spritesheet.getSpritesheet(80, 288, _16x_16, _16x_16),
+								TOMB_ICE_2 =Main.spritesheet.getSpritesheet(96, 288, _16x_16, _16x_16),
+								TOMB_ICE_3 =Main.spritesheet.getSpritesheet(112, 288, _16x_16, _16x_16),
+								CURSED_TOMB_ICE_0 = Main.spritesheet.getSpritesheet(64, 304, _16x_16, _16x_16),
+								CURSED_TOMB_ICE_1 = Main.spritesheet.getSpritesheet(80, 304, _16x_16, _16x_16),
+								CURSED_TOMB_ICE_2 = Main.spritesheet.getSpritesheet(96, 304, _16x_16, _16x_16),
+								CURSED_TOMB_ICE_3 = Main.spritesheet.getSpritesheet(112, 304, _16x_16, _16x_16),
+								//FIRE
+								TOMB_FIRE_0 =Main.spritesheet.getSpritesheet(128, 288, _16x_16, _16x_16),
+								TOMB_FIRE_1 =Main.spritesheet.getSpritesheet(144, 288, _16x_16, _16x_16),
+								TOMB_FIRE_2 =Main.spritesheet.getSpritesheet(160, 288, _16x_16, _16x_16),
+								TOMB_FIRE_3 =Main.spritesheet.getSpritesheet(176, 288, _16x_16, _16x_16),
+								CURSED_TOMB_FIRE_0 = Main.spritesheet.getSpritesheet(128, 304, _16x_16, _16x_16),
+								CURSED_TOMB_FIRE_1 = Main.spritesheet.getSpritesheet(144, 304, _16x_16, _16x_16),
+								CURSED_TOMB_FIRE_2 = Main.spritesheet.getSpritesheet(160, 304, _16x_16, _16x_16),
+								CURSED_TOMB_FIRE_3 = Main.spritesheet.getSpritesheet(176, 304, _16x_16, _16x_16);
+							/*********/////////////////**********/
+	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+								/*********SOULS**********/
+	public static BufferedImage GRASS_SOUL = Main.spritesheet.getSpritesheet(96, 72, _16x_16, _16x_16),
+								HURT_GRASS_SOUL = Main.hurt_spritesheet.getSpritesheet(0, 32, _16x_16, _16x_16),
+								HURT_ICE_SOUL = Main.hurt_spritesheet.getSpritesheet(32, 32, _16x_16, _16x_16),
+								HURT_FIRE_SOUL = Main.hurt_spritesheet.getSpritesheet(16, 32, _16x_16, _16x_16),
+								ICE_SOUL = Main.spritesheet.getSpritesheet(128, 72, _16x_16, _16x_16),
+								FIRE_SOUL = Main.spritesheet.getSpritesheet(112, 72, _16x_16, _16x_16);
+							/*********/////////////////**********/
+	
+	
+	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+	
+							/*********ARTIFACTS**********/
+	public static BufferedImage CROWN_DIR = Main.spritesheet.getSpritesheet(112, 0, _8x8, _8x8),
+								CROWN_ESQ = Main.spritesheet.getSpritesheet(120, 0, _8x8, _8x8),
+								CROWN_BAI = Main.spritesheet.getSpritesheet(128, 0, _8x8, _8x8),
+								CROWN_CIM = Main.spritesheet.getSpritesheet(136, 0, _8x8, _8x8),
+								FLOWER = Main.spritesheet.getSpritesheet(104, 0, _8x8, _8x8),
+								BEE = Main.spritesheet.getSpritesheet(144, 48, _8x8, _8x8),
+								CRAB = Main.spritesheet.getSpritesheet(152, 48, _8x8, _8x8);
+						/*********/////////////////**********/
+
+	
+	
+		/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+	
+							/*********ARTIFACTS**********/
+	public static BufferedImage NORMAL_BUSH = Main.spritesheet.getSpritesheet(232, 120, _8x8, _8x8),
+							RAIBOW_BUSH = Main.spritesheet.getSpritesheet(232, 112, _8x8, _8x8),
+							SAKURA_TREE_TOP = Main.spritesheet.getSpritesheet(240, 112, _16x_16, _8x8),
+							NORMAL_TREE_TOP = Main.spritesheet.getSpritesheet(256, 112, _16x_16, _8x8),
+							SAKURA_TREE_DOWN = Main.spritesheet.getSpritesheet(240, 120, _16x_16, _8x8),
+							NORMAL_TREE_DOWN = Main.spritesheet.getSpritesheet(256, 120, _16x_16, _8x8),
+							GOLD_PILE = Main.spritesheet.getSpritesheet(232, 128, _8x8, _8x8),
+							SILVER_PILE = Main.spritesheet.getSpritesheet(232, 136, _8x8, _8x8),
+							CHEST = Main.spritesheet.getSpritesheet(240, 128, _16x_16, _16x_16),							
+							SMALL_RED_VULCAN = Main.spritesheet.getSpritesheet(232, 144, _8x8, _8x8),
+							SMALL_BLUE_VULCAN = Main.spritesheet.getSpritesheet(232, 152, _8x8, _8x8),
+							BIG_RED_VULCAN = Main.spritesheet.getSpritesheet(240, 144, _16x_16, _16x_16),
+							BIG_BLUE_VULCAN = Main.spritesheet.getSpritesheet(256, 144, _16x_16, _16x_16);
+						/*********/////////////////**********/
+
+
+
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 	
 	
@@ -162,7 +240,7 @@ public class Entity {
 	protected BufferedImage sprite;
 	public double life, maxLife;
 	public boolean isDamaged = false;
-	
+
 	public static boolean geralDebug = false;
 	
 	public Entity(int x, int y, int width, int height, BufferedImage sprite){
@@ -251,6 +329,36 @@ public class Entity {
 	public void render() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	
+
+	public int getMaskx() {
+		return maskx;
+	}
+
+	public void setMaskx(int maskx) {
+		this.maskx = maskx;
+	}
+
+	public int getMwidth() {
+		return mwidth;
+	}
+
+	public void setMwidth(int mwidth) {
+		this.mwidth = mwidth;
+	}
+
+	public int getMheight() {
+		return mheight;
+	}
+
+	public void setMheight(int mheight) {
+		this.mheight = mheight;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
 	}
 	
 }

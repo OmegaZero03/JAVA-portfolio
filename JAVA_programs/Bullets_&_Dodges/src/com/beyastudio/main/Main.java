@@ -33,10 +33,12 @@ import com.beyastudio.boss_2.FireP;
 import com.beyastudio.boss_3.IceKing;
 import com.beyastudio.entities.Enemy;
 import com.beyastudio.entities.Entity;
+import com.beyastudio.entities.Orb_destroy;
 import com.beyastudio.entities.Player;
 import com.beyastudio.entities.PlayerBullet;
 import com.beyastudio.entities.Puppy;
 import com.beyastudio.entities.Tombstone;
+import com.beyastudio.wolrd.Camera;
 import com.beyastudio.wolrd.IceShootTile;
 import com.beyastudio.wolrd.Portal;
 import com.beyastudio.wolrd.ShootTile;
@@ -56,6 +58,9 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 							muxW = width * escala,
 							muxH = height * escala;
 	
+	public static boolean orbgrass = true, orbice = true, orbfire = true;
+	public static boolean crown = true, flower = true, beeCreab = true;
+	
 	public static String gameState = "menu";
 	private boolean showMessageGameover  = true, restartGame = false;
 	private int framesgameover = 0;
@@ -70,7 +75,8 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	public static List<PlayerBullet> playerBullets;
 	public static List<Entity> tombs;
 	public static List<Bullet> BossBullets;
-	public static Spritesheet spritesheet, hurt_spritesheet;
+	public static List<Orb_destroy> bee;
+	public static Spritesheet spritesheet, hurt_spritesheet, control, art, logo;
 	
 	public static boolean isBoss = false, isBossF = false, isBossI = false;
 	
@@ -87,6 +93,8 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	public static Portal portal_grass_1,portal_grass_2 , portal_ice_1,portal_ice_2, portal_fire_1, portal_fire_2, portal_gold_1, portal_gold_2;
 	
 	public static Menu menu;
+	
+	public int count_control = 0;
 	
 	public static int gameoverTextAlpha = 1,
 					  gameoverTextAlphaBG = 10;
@@ -109,10 +117,14 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		BossBullets = new ArrayList<Bullet>();
 		shootWalls = new ArrayList<ShootTile>();
 		tombs = new ArrayList<Entity>();
+		bee = new ArrayList<Orb_destroy>();
 		iceShootWalls = new ArrayList<IceShootTile>();
 		shootWallsSlow = new ArrayList<ShootTileSlow>();
 		spritesheet = new Spritesheet("/spritesheet.png");
+		control = new Spritesheet("/control_screen.png");
+		art = new Spritesheet("/menu.png");
 		hurt_spritesheet = new Spritesheet("/hurt_spritesheet.png");
+		logo = new Spritesheet("/logo.png");
 		player = new Player(0, 0, 8, 8, spritesheet.getSpritesheet(0, 0, 8, 8));
 		ui = new UI();
 		entities.add(player);
@@ -159,9 +171,13 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 			isBoss = true;
 			isBossF = true;
 			isBossI = true;
+			
+			//Tombs = player na frente
+			//Portal = player atrás
+			
+			
+			
 		}
-		
-		
 		
 	}
 	
@@ -235,6 +251,7 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 			}
 		
 			//tick boss IF it EXIST
+			
 			if(isBoss) {
 				boss_1.tick();
 				}
@@ -257,6 +274,8 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 				e.tick();
 			}
 			
+
+			
 			for(int i = 0; i < tombs.size(); i++) {
 				Entity b = tombs.get(i);
 				b.tick();
@@ -275,6 +294,11 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 			//lógica por tras de cada entidade
 			for(int i = 0; i < entities.size(); i++) {
 				Entity e = entities.get(i);
+				e.tick();
+			}
+			
+			for(int i = 0; i < bee.size(); i++) {
+				Entity e = bee.get(i);
 				e.tick();
 			}
 		
@@ -330,7 +354,14 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 			break;
 			
 			
-		
+			
+		case "control":
+			this.count_control++;
+			if(count_control >= 130) {
+				gameState = "normal";
+			}
+			break;
+
 		}
 		
 	}
@@ -360,6 +391,10 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 			b.render(g);
 		}
 		
+		for(int i = 0; i < bee.size(); i++) {
+			Entity e = bee.get(i);
+			e.render(g);
+		}
 		
 		for(int i = 0; i < playerBullets.size(); i++) {
 			Entity b = playerBullets.get(i);
@@ -372,6 +407,8 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 			Entity e = entities.get(i);
 			e.render(g);
 		}
+		
+
 		
 		for(int i = 0; i < BossBullets.size(); i++) {
 			Entity fb = BossBullets.get(i);
@@ -433,13 +470,23 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 				g.drawString("> Press Space to try again <", 20, 110);
 			}
 			cursed_tomb.render(g);
-		}else if(gameState == "menu") {
-			menu.render(g);
 		}
 		
 		g.dispose();
 		g = bs.getDrawGraphics();
+		
 		g.drawImage(image, 0, 0, muxW, muxH, null);
+		
+		if(gameState == "control") {
+			g.drawImage(control.getSpritesheet(0, 0, 673, 673), 0, 0, null);
+		}else if(gameState == "menu") {
+			g.drawImage(art.getSpritesheet(0, 0, 650, 650), 0, 0, null);
+			menu.render(g);
+			g.setFont(new Font("arial", Font.BOLD, 10));
+			g.setColor(Color.white);
+			g.drawString("Beya's Studio", 20 + 20, 530);
+			g.drawImage(logo.getSpritesheet(0, 0, 100, 100), 20, 530, null);
+		}
 		bs.show();
 	}
 	 
@@ -536,6 +583,9 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 			
 			if(gameState == "menu") {
 				menu.enter = !menu.enter;
+			}
+			if(gameState == "control") {
+				this.count_control = 130;
 			}
 		}
 		

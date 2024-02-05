@@ -724,11 +724,21 @@ public class World {
 		Main.shootWalls.clear();
 		Main.shootWallsSlow.clear();
 		Main.iceShootWalls.clear();
+		Main.tombs.clear();
+		
+		Main.orbgrass = true;
+		Main.orbice = true;
+		Main.orbfire = true;
+		Main.crown = true;
+		Main.flower = true;
+		Main.beeCreab = true;
+		
 		Main.entities = new ArrayList<Entity>();
 		Main.walls = new ArrayList<WallTile>();
 		Main.playerBullets = new ArrayList<PlayerBullet>();
 		Main.BossBullets = new ArrayList<Bullet>();
 		Main.shootWalls = new ArrayList<ShootTile>();
+		Main.tombs = new ArrayList<Entity>();
 		Main.iceShootWalls = new ArrayList<IceShootTile>();
 		Main.shootWallsSlow = new ArrayList<ShootTileSlow>();
 		Main.player = new Player(0, 0, 8, 8, Main.spritesheet.getSpritesheet(0, 0, 8, 8));

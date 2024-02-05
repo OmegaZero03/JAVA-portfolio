@@ -59,13 +59,15 @@ public class FireP extends Entity{
 		
 		if (life <= 0) {
 
-			Boss_tombstone tb = new Boss_tombstone(this.getX() - 4, this.getY() - 8, 16, 16, Entity.TOMB_NEUTRAL, "fire");
+			Boss_tombstone tb = new Boss_tombstone(this.getX() - 4, this.getY() - 20, 16, 16, Entity.TOMB_NEUTRAL, "fire");
 			Main.tombs.add(tb);
 			
 			Main.shootWalls.removeAll(Main.shootWalls);
-			if(Main.player.haveFire == false) {
+			
+			if(Main.orbfire) {
 				Fire_orbital o = new Fire_orbital(this.getX(), this.getY(), 8, 8, Entity.FIRE_ORB);
 				Main.entities.add(o);
+				Main.orbfire = false;
 			}
 			Main.isBossF = false;
 		}
@@ -124,6 +126,28 @@ public class FireP extends Entity{
 			count ++;
 			
 			if(canCreat) {
+				
+				Fire_pilar p = new Fire_pilar(16, 776,Entity.RED_FIRE_PILAR, 270, "red");
+				Main.shootWalls.add(p);
+				
+				Fire_pilar p1 = new Fire_pilar(48, 776,Entity.RED_FIRE_PILAR, 180, "blue");
+				Main.shootWalls.add(p1);
+				
+				
+				Fire_pilar p2 = new Fire_pilar(16, 872,Entity.RED_FIRE_PILAR, 180, "red");
+				Main.shootWalls.add(p2);
+				
+				Fire_pilar p3 = new Fire_pilar(48, 872 ,Entity.RED_FIRE_PILAR, 180, "blue");
+				Main.shootWalls.add(p3);
+				
+				
+				Fire_pilar p4 = new Fire_pilar(16, 912,Entity.RED_FIRE_PILAR, 180, "red");
+				Main.shootWalls.add(p4);
+				
+				Fire_pilar p5 = new Fire_pilar(48 + 8, 920 - 8,Entity.RED_FIRE_PILAR, 180, "blue");
+				Main.shootWalls.add(p5);
+				
+				
 				
 				canCreat = false;
 			}
@@ -370,7 +394,28 @@ public class FireP extends Entity{
 		case "fase_3":
 			
 			if(canCreat) {
-				canCreat = false;
+				
+				Fire_pilar h = new Fire_pilar(16, 776,Entity.RED_FIRE_PILAR, 270, "red");
+				Main.shootWalls.add(h);
+				
+				Fire_pilar h1 = new Fire_pilar(48, 776,Entity.RED_FIRE_PILAR, 180, "blue");
+				Main.shootWalls.add(h1);
+				
+				
+				Fire_pilar h2 = new Fire_pilar(16, 872,Entity.RED_FIRE_PILAR, 180, "red");
+				Main.shootWalls.add(h2);
+				
+				Fire_pilar h3 = new Fire_pilar(48, 872 ,Entity.RED_FIRE_PILAR, 180, "blue");
+				Main.shootWalls.add(h3);
+				
+				
+				Fire_pilar h4 = new Fire_pilar(16, 912,Entity.RED_FIRE_PILAR, 180, "red");
+				Main.shootWalls.add(h4);
+				
+				Fire_pilar h5 = new Fire_pilar(48 + 8, 920 - 8,Entity.RED_FIRE_PILAR, 180, "blue");
+				Main.shootWalls.add(h5);
+				
+				
 				
 				Fire_pilar p = new Fire_pilar(272, 728 + 32,Entity.RED_FIRE_PILAR, 180, "blue");
 				Main.shootWalls.add(p);
@@ -378,6 +423,7 @@ public class FireP extends Entity{
 				Fire_pilar p1 = new Fire_pilar(30, 640 - 32,Entity.RED_FIRE_PILAR, 270, "blue");
 				Main.shootWalls.add(p1);
 				
+				canCreat = false;
 			}
 			
 			if (System.currentTimeMillis() < nextShoot) {
@@ -448,6 +494,28 @@ public class FireP extends Entity{
 			
 			
 			if(canCreat) {
+				
+				
+				Fire_pilar h = new Fire_pilar(16, 776,Entity.RED_FIRE_PILAR, 270, "red");
+				Main.shootWalls.add(h);
+				
+				Fire_pilar h1 = new Fire_pilar(48, 776,Entity.RED_FIRE_PILAR, 180, "blue");
+				Main.shootWalls.add(h1);
+				
+				
+				Fire_pilar h2 = new Fire_pilar(16, 872,Entity.RED_FIRE_PILAR, 180, "red");
+				Main.shootWalls.add(h2);
+				
+				Fire_pilar h3 = new Fire_pilar(48, 872 ,Entity.RED_FIRE_PILAR, 180, "blue");
+				Main.shootWalls.add(h3);
+				
+				
+				Fire_pilar h4 = new Fire_pilar(16, 912,Entity.RED_FIRE_PILAR, 180, "red");
+				Main.shootWalls.add(h4);
+				
+				Fire_pilar h5 = new Fire_pilar(48 + 8, 920 - 8,Entity.RED_FIRE_PILAR, 180, "blue");
+				Main.shootWalls.add(h5);
+				
 				
 
 				

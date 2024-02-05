@@ -62,12 +62,13 @@ public class IceKing extends Entity{
 	public void tick() {
 		if (life <= 0) {
 			
-			Boss_tombstone tb = new Boss_tombstone(this.getX() - 4, this.getY() - 8, 16, 16, Entity.TOMB_NEUTRAL, "ice");
+			Boss_tombstone tb = new Boss_tombstone(this.getX() - 4, this.getY() - 20, 16, 16, Entity.TOMB_NEUTRAL, "ice");
 			Main.tombs.add(tb);
 			
-			if(Main.player.haveIce == false) {
+			if(Main.orbice) {
 				Ice_orbital o = new Ice_orbital(this.getX(), this.getY(), 8, 8, Entity.ICE_ORB);
 				Main.entities.add(o);
+				Main.orbice = false;
 			}
 
 			Main.iceShootWalls.removeAll(Main.iceShootWalls);
@@ -162,7 +163,6 @@ public class IceKing extends Entity{
 				int count_aux = 35;
 				
 				count++;
-				System.out.println(count);
 				
 				if (count < count_aux * 2) return;
 				int playerY = Main.player.getY() - 5;
@@ -278,8 +278,6 @@ public class IceKing extends Entity{
 				//X = 825
 				//Y = 816
 				
-				System.out.println(" x = " +x);
-				System.out.println("y = " + y);
 				
 				
 //				if(canCreat) {
@@ -551,7 +549,6 @@ public class IceKing extends Entity{
 				if(index == 1) g.drawImage(spritesWalk[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
 			}
 			
-		
 		
 		}
 		

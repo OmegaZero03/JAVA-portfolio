@@ -13,9 +13,9 @@ public class PlayerBullet extends Entity {
 
 	/****** STATUS **********/
 	protected int spd = 2;
-	protected int damage = 300;
+	public int damage = 3;
 	protected int range;
-	protected double heal = .7;
+	public double heal = .7;
 	/**********************/
 
 	private int range_mux;
@@ -85,8 +85,8 @@ public class PlayerBullet extends Entity {
 			Main.boss_1.life -= damage;
 			Main.boss_1.isDamaged = true;
 			Main.player.life += heal;
-			if(Main.player.life > 100) {
-				Main.player.life = 100;
+			if(Main.player.life > Main.player.maxLife) {
+				Main.player.life = Main.player.maxLife;
 			}
 			System.out.println("vida = " + Main.boss_1.life);
 			Main.playerBullets.remove(this);
@@ -102,8 +102,8 @@ public class PlayerBullet extends Entity {
 			Main.boss_2.life -= damage;
 			Main.boss_2.isDamaged = true;
 			Main.player.life += heal;
-			if(Main.player.life > 100) {
-				Main.player.life = 100;
+			if(Main.player.life > Main.player.maxLife) {
+				Main.player.life = Main.player.maxLife;
 			}
 			System.out.println("vida = " + Main.boss_2.life);
 			Main.playerBullets.remove(this);
@@ -117,8 +117,8 @@ public class PlayerBullet extends Entity {
 			Main.boss_3.life -= damage;
 			Main.boss_3.isDamaged = true;
 			Main.player.life += heal;
-			if(Main.player.life > 100) {
-				Main.player.life = 100;
+			if(Main.player.life > Main.player.maxLife) {
+				Main.player.life = Main.player.maxLife;
 			}
 			System.out.println("vida = " + Main.boss_3.life);
 			Main.playerBullets.remove(this);
@@ -131,27 +131,28 @@ public class PlayerBullet extends Entity {
 			boolean isEnemy = atual instanceof Enemy;
 			boolean isPenguin = atual instanceof Penguin;
 			boolean isPikachu = atual instanceof Snorlax;
+			boolean isSoul = atual instanceof Soul;
 
 			if (isEnemy || isPenguin) {
 				if (Entity.isColliding(this, atual)) {
 					atual.life -= damage;
 					atual.isDamaged = true;
 					Main.player.life += heal;
-					if(Main.player.life > 100) {
-						Main.player.life = 100;
+					if(Main.player.life > Main.player.maxLife) {
+						Main.player.life = Main.player.maxLife;
 					}
 					System.out.println("vida = " + atual.life);
 					Main.playerBullets.remove(this);
 					return;
 				}
 			}
-			if(isPikachu) {
+			if(isPikachu || isSoul) {
 				if (Entity.isColliding(this, atual)) {
 					atual.life -= damage;
 					atual.isDamaged = true;
 					Main.player.life += heal + 3;
-					if(Main.player.life > 100) {
-						Main.player.life = 100;
+					if(Main.player.life > Main.player.maxLife) {
+						Main.player.life = Main.player.maxLife;
 					}
 					System.out.println("vida = " + atual.life);
 					Main.playerBullets.remove(this);

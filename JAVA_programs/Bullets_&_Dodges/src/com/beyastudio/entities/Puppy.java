@@ -25,7 +25,7 @@ public class Puppy extends Entity{
 			maxIndex = 3;
 
 	//Quantidade de frases
-	public int n_frases = 43;
+	public int n_frases = 45;
 	/********************/
 		
 	public int n = (n_frases) + 1;
@@ -133,136 +133,142 @@ public class Puppy extends Entity{
 			//  15 characters.
 			
 			case 0:
-				txt = "ㅤㅤSUP duuude!";
+				txt = "Hi, stay close to me.";
 				break;
 			case 1:
-				txt = "ya are new here, right?";
+				txt = "Nice to meet ya!";
 				break;
 			case 2:
-				txt = "there are 4 paths";
+				txt = "That place only has";
 				break;
 			case 3:
-				txt = "taking down ya will see";
+				txt = "ㅤStrong enemys";
 				break;
 			case 4:
-				txt = "A COLD MONSTER";
+				txt = "So never stay still";
 				break;
 			case 5:
-				txt = "all the MONSTROSITIES";
+				txt = "ㅤKeep on moving";
 				break;
 			case 6:
-				txt = "he makes........";
+				txt = "Take left, from here";
 				break;
 			case 7:
-				txt = "ya can't even IMAGINE";
+				txt = "Lays the strongest one";
 				break;
 			case 8:
-				txt = "just follow the treasures";
+				txt = "The Grass monster";
 				break;
 			case 9:
-				txt = "He left everything...";
+				txt = "ㅤGetting down";
 				break;
 			case 10:
-				txt = "on that place...";
+				txt = "Leads to a split.";
 				break;
 			case 11:
-				txt = "ㅤㅤㅤ Oh........";
+				txt = "Left from there, lays";
 				break;
 			case 12: 
-				txt = " ㅤㅤgot it....";
+				txt = "The Fire monster";
 				break;
 			case 13:
-				txt = "the girl am i right?";
+				txt = "Taking down again";
 				break;
 			case 14:
-				txt = "she's on the left...";
+				txt = "Ya will face the easiest";
 				break;
 			case 15:
-				txt = "but I wouldn't bother her ";
+				txt = "The Ice monster";
 				break;
 			case 16:
-				txt = "this early on...";
+				txt = "Here are some tips";
 				break;
 			case 17:
-				txt = "not with out and ORB";
+				txt = "Every boss has 4 fases";
 				break;
 			case 18:
-				txt = "following the MONSTER";
+				txt = "I would start from the Ice";
 				break;
 			case 19:
-				txt = "leads to a split.";
+				txt = "ㅤㅤif i was ya";
 				break;
 			case 20:
-				txt = "get down again...";
+				txt = "Just don't stop moving";
 				break;
 			case 21:
-				txt = "and face the MONSTER";
+				txt = "stay out of his carpet";
 				break;
 			case 22:
-				txt = "ㅤㅤGet left...";
+				txt = "And ya should defeat him";
 				break;
 			case 23:
-				txt = "and face the.........";
+				txt = "ㅤSuper easy";
 				break;
 			case 24:
-				txt = "what was that thing again?";
+				txt = "Fire one is kinda hard";
 				break;
 			case 25:
-				txt = "IDK, but whatever....";
+				txt = "But there is a lot of";
 				break;
 			case 26:
-				txt = "There are three of them!";
+				txt = "ㅤㅤSave spots";
 				break;
 			case 27:
-				txt = "Gonna stop my monolo...";
+				txt = "Where ya don't even";
 				break;
 			case 28:
-				txt = "ㅤㅤㅤWait.....";
+				txt = "ㅤNeed to move";
 				break;
 			case 29:
-				txt = "ㅤthat sword......";
+				txt = "Found this spots";
 				break;
 			case 30:
-				txt = "where did you found it?";
+				txt = "And claim the fire orb";
 				break;
 			case 31:
-				txt = "i guess is apropriate...";
+				txt = "The Grass one is tough!";
 				break;
 			case 32:
-				txt = "with that magesty sword";
+				txt = "I recommed leave for last";
 				break;
 			case 33:
-				txt = "you can be able to";
+				txt = "Each boss drops 1 ORB";
 				break;
 			case 34:
-				txt = "Slam then all";
+				txt = "The ORB is guaranteed";
 				break;
 			case 35:
-				txt = "and take their artifacts!";
+				txt = "But they can also drop";
 				break;
 			case 36:
-				txt = "yourself can be";
+				txt = "ㅤTheir SOULS";
 				break;
 			case 37:
-				txt = "ㅤㅤUNSTOPPABLE";
+				txt = "ㅤIf your lucky";
 				break;
 			case 38:
-				txt = "or can you???...";
+				txt = "or if you defeat then with";
 				break;
 			case 39:
-				txt = "xaxaxaxaxaxaxa....";
+				txt = "big chunks of your life";
 				break;
 			case 40:
-				txt = ".......................";
+				txt = "Souls drops Power ups";
 				break;
 			case 41:
-				txt = "ya don't speak that much";
+				txt = "And strong ARTIFACTS";
 				break;
 			case 42:
-				txt = " ㅤ....don't ya?";
+				txt = "Try getting all of them";
 				break;
 			case 43:
-				txt = "xaxaxaxaxaxaxa....";
+				txt = "One more thing";
+				break;
+			case 44:
+				txt = "Don't let him controls ya!";
+				break;
+			case 45:
+				txt = "xaxaxaxaxa...";
 				break;
 			}
 			

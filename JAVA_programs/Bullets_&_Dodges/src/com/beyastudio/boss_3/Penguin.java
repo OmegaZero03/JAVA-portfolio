@@ -24,7 +24,7 @@ public class Penguin extends Entity{
 	public int damageFrames = 5, currentFrames = 0;
 	
 	public Penguin(int x, int y, int width, int height, BufferedImage sprite) {
-		super(x, y, width, height, sprite);
+		super(x, y, width, height, null);
 		
 		this.life = 21;
 		this.maxLife = 21;
@@ -111,7 +111,12 @@ public class Penguin extends Entity{
 	public void render(Graphics g) {
 			if(!isDamaged) {
 				
-				this.setSprite(Entity.PENGUIN_EN);
+				if(dx > 0) {
+					this.setSprite(Entity.PENGUIN_EN);
+				}
+				else if(dx < 0) {
+					this.setSprite(Entity.PENGUIN_EN_REV);
+				}
 				g.drawImage(sprite, this.getX() - Camera.x, this.getY() - Camera.y, null);
 				
 			}else {

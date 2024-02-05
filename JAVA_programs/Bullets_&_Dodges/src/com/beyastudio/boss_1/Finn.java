@@ -42,6 +42,8 @@ public class Finn extends Entity {
 				angleAddOne = 1,
 				locationY,
 				locationX;
+	
+	public boolean orb;
 
 	private double dx, dy, nextShoot, angle;
 	
@@ -79,12 +81,13 @@ public class Finn extends Entity {
 		
 		if (this.life <= 0) {
 			
-			Boss_tombstone tb = new Boss_tombstone(this.getX() - 4, this.getY() - 8, 16, 16, Entity.TOMB_NEUTRAL, "grass");
+			Boss_tombstone tb = new Boss_tombstone(this.getX() - 4, this.getY() - 20, 16, 16, Entity.TOMB_NEUTRAL, "grass");
 			Main.tombs.add(tb);
 			
-			if(Main.player.haveGrass == false) {
+			if(Main.orbgrass) {
 				Grass_orbital o = new Grass_orbital(this.getX(), this.getY(), 8, 8, Entity.GRASS_ORB);
-				Main.tombs.add(o);
+				Main.entities.add(o);
+				Main.orbgrass = false;
 			}
 			
 
