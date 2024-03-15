@@ -30,7 +30,12 @@ public class ObsCreator implements Entity {
 
 
         if(time > timeToCreat){
-            platerChooser();
+            //platerChooser();
+
+            creatSquareCookies();
+            timeToCreat = MathUtils.random(2f, 6f);
+            time = 0;
+
         }
     }
 
@@ -85,8 +90,8 @@ public class ObsCreator implements Entity {
                 y,
                 0.2f,
                 0.2f,
-                1f,
-                1f,
+                .8f,
+                .8f,
                 7,
                 Sprite.COOKIE_TEXTURE,
                 128,
@@ -113,9 +118,29 @@ public class ObsCreator implements Entity {
         time = 0;
     }
 
-    public void squarePattern(){
+    public void creatSquareCookies(){
 
-        creatCookie();
+        float xx = 20f;
+        float off = .5f;
+        float yy = 3.3f;
+
+        creatCookie(xx, yy);
+        creatCookie(xx + off, yy);
+        creatCookie(xx - off, yy);
+
+        yy = yy + off;
+
+        creatCookie(xx, yy);
+        creatCookie(xx + off, yy);
+        creatCookie(xx - off, yy);
+
+        yy = yy + off;
+
+        creatCookie(xx, yy);
+        creatCookie(xx + off, yy);
+        creatCookie(xx - off, yy);
+
+
     }
 
 }
