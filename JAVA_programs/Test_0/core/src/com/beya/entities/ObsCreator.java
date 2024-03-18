@@ -3,39 +3,42 @@ package com.beya.entities;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.utils.Array;
+import com.beya.helper.ObsChooser;
 import com.beya.main.Test;
 
 public class ObsCreator implements Entity {
 
+    private ObsChooser chooser;
+
     public static float handPlateY = 3.4f;
 
-    public float time = 0f;
+    public float time;
 
     private float timeToCreat;
     private  float plateChooser;
-
     private String entiteName = "obstaculo";
 
     public ObsCreator(){
+
+        chooser = new ObsChooser();
         //Test.entities.add(this);
 
-        timeToCreat = MathUtils.random(2f, 6f);
+        setTimer(2f, 6f); //Setando e resetando o timer
 
-        plateChooser = MathUtils.random();
+
     }
 
     @Override
     public void tick() {
-        time += ((Gdx.graphics.getDeltaTime() * 100)/60f);
+        float timeCalculator = ((Gdx.graphics.getDeltaTime() * 100)/60f);
+        time += timeCalculator;
 
 
         if(time > timeToCreat){
             //platerChooser();
-
-            creatSquareCookies();
-            timeToCreat = MathUtils.random(2f, 6f);
-            time = 0;
-
+            chooser.creatRandonEntitie();
+            setTimer(2f, 6f); //Reseta e seta próximo timer
         }
     }
 
@@ -45,10 +48,17 @@ public class ObsCreator implements Entity {
     @Override
     public void destroy() {}
 
-    public void creatRedPlate(){new Obstaculo();}
+    public static void creatRedPlate(){new Obstaculo();}
 
-    public void creatGreenPlate(){
-        new Obstaculo(
+    public void setTimer(float min, float max){
+        timeToCreat = MathUtils.random(min, max);
+        time = 0;
+    }
+
+    public static void creatGreenPlate(){
+
+        //Criando Objeto do obstaculo
+        Obstaculo greenPlate = new Obstaculo(
                 20f,
                 3.3f,
                 0.4f,
@@ -64,28 +74,9 @@ public class ObsCreator implements Entity {
                 "green_plate"
         );
     }
-    public void creatCookie(){
-        new Obstaculo(
-                20f,
-                5.3f,
-                0.2f,
-                0.2f,
-                1f,
-                1f,
-                7,
-                Sprite.COOKIE_TEXTURE,
-                128,
-                128,
-                1,
-                0,
-                0f,
-                "cookie",
-                true
-        );
-    }
 
-    public void creatCookie(float x, float y){
-        new Obstaculo(
+    public static void creatCookie(float x, float y){
+        Obstaculo cookie = new Obstaculo(
                 x,
                 y,
                 0.2f,
@@ -104,43 +95,18 @@ public class ObsCreator implements Entity {
         );
     }
 
-    public void platerChooser(){
-
-
-        if(plateChooser < 0.5f){
-            creatRedPlate();
-            plateChooser = MathUtils.random(); // Rerandomiza
-        }else{
-            creatGreenPlate();
-            plateChooser = MathUtils.random(); // Rerandomiza
-        }
-        timeToCreat = MathUtils.random(2f, 6f);
-        time = 0;
-    }
-
-    public void creatSquareCookies(){
+    public static void creatSquareCookies(){
 
         float xx = 20f;
         float off = .5f;
         float yy = 3.3f;
 
-        creatCookie(xx, yy);
-        creatCookie(xx + off, yy);
-        creatCookie(xx - off, yy);
 
-        yy = yy + off;
-
-        creatCookie(xx, yy);
-        creatCookie(xx + off, yy);
-        creatCookie(xx - off, yy);
-
-        yy = yy + off;
-
-        creatCookie(xx, yy);
-        creatCookie(xx + off, yy);
-        creatCookie(xx - off, yy);
-
-
+        for(int i=0; i<3; i++){
+            creatCookie(xx, yy);
+            creatCookie(xx + off, yy);
+            creatCookie(xx - off, yy);
+            yy = yy + off;
+        }
     }
-
 }

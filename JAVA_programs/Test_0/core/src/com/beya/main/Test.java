@@ -155,7 +155,7 @@ public class Test extends Game {
 		}
 
 
-		debugRender.render(world, camera.combined);
+		//debugRender.render(world, camera.combined);
 	}
 	
 	@Override

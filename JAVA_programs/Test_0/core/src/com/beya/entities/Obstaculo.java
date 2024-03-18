@@ -133,9 +133,9 @@ public class Obstaculo implements Entity {
     }
 
 
-
     @Override
     public void tick() {
+
 
 
         //Acelera pra ewsquerda
