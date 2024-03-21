@@ -16,7 +16,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.beya.entities.Entity;
 import com.beya.entities.Ground;
-import com.beya.entities.ObsCreator;
+import com.beya.helper.ObsCreator;
 import com.beya.entities.Obstaculo;
 import com.beya.entities.Runner;
 import com.beya.entities.Sprite;
@@ -155,7 +155,7 @@ public class Test extends Game {
 		}
 
 
-		//debugRender.render(world, camera.combined);
+		debugRender.render(world, camera.combined);
 	}
 	
 	@Override

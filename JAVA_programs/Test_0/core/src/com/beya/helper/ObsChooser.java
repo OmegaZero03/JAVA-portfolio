@@ -2,7 +2,6 @@ package com.beya.helper;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
-import com.beya.entities.ObsCreator;
 
 public class ObsChooser {
 
@@ -18,8 +17,25 @@ public class ObsChooser {
         entidades = new Array<String>();
 
         entidades.add("cookieSquare");
+
+        //Variantes de placas
+
+        //Verdes
         entidades.add("plateG");
+        entidades.add("PlateGArcCoins");
+
+        //Vermelhas
         entidades.add("plateR");
+        entidades.add("PlateRArcCoins");
+
+        //Azuis
+        entidades.add("plateB");
+        entidades.add("PlateBArcCoins");
+
+        //Variantes de cones
+        entidades.add("cone");
+        entidades.add("coneCoin");
+        entidades.add("2cones2coins");
     }
 
     public String choosed() {
@@ -44,9 +60,38 @@ public class ObsChooser {
                 ObsCreator.creatGreenPlate();
                 break;
 
+            case "PlateGArcCoins":
+                ObsCreator.creatGPlateArcCoins();
+                break;
+
+            case "PlateRArcCoins":
+                ObsCreator.creatRPlateArcCoins();
+                break;
+
+            case "PlateBArcCoins":
+                ObsCreator.creatBPlateArcCoins();
+                break;
+
             case "plateR":
                 ObsCreator.creatRedPlate();
                 break;
+
+            case "plateB":
+                ObsCreator.creatBluePlate();
+                break;
+
+            case "cone":
+                ObsCreator.creatCone(20f);
+                break;
+
+            case "coneCoin":
+                ObsCreator.creatConeCoin();
+                break;
+
+            case "2cones2coins":
+                ObsCreator.creat2ones2coins();
+                break;
+
         }
     }
 }
