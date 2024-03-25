@@ -25,7 +25,8 @@ public class ObsCreator implements Entity {
     public ObsCreator(){
 
         chooser = new ObsChooser();
-        //Test.entities.add(this);
+        chooser.creatRandonEntitie();
+        Test.entities.add(this);
 
         setTimer(2f, 6f); //Setando e resetando o timer
 
@@ -39,9 +40,10 @@ public class ObsCreator implements Entity {
 
 
         if(time > timeToCreat){
-            //creatPoles();
+            //creatBIGSQUARE(); //BIG TEST
 
             chooser.creatRandonEntitie();
+
             setTimer(2f, 6f); //Reseta e seta próximo timer
         }
     }
@@ -52,13 +54,23 @@ public class ObsCreator implements Entity {
     @Override
     public void destroy() {}
 
-    public static void creatRedPlate(){new Obstaculo();}
-
     public void setTimer(float min, float max){
         timeToCreat = MathUtils.random(min, max);
         time = 0;
     }
 
+    //**************Criação de Obstáculos**************\\
+
+
+        //VARIANTES DE PLACAS
+            //Verlmehas
+    public static void creatRedPlate(){new Obstaculo();}
+    public static void creatRPlateArcCoins(){
+        creatArcCoins(20f, 4.9f);
+        creatRedPlate();
+    }
+
+            //Verdes
     public static void creatGreenPlate(){
 
         //Criando Objeto do obstaculo
@@ -78,22 +90,67 @@ public class ObsCreator implements Entity {
                 "green_plate"
         );
     }
-
-
     public static void creatGPlateArcCoins(){
         creatArcCoins(20f, 4.6f);
         creatGreenPlate();
     }
 
-    public static void creatRPlateArcCoins(){
-        creatArcCoins(20f, 4.9f);
-        creatRedPlate();
+            //Verdes Duplas
+    public static void creatDoubleGreen(){
+
+        float hitBoxW = 0.7f;
+        float hitBoxH = .1f;
+        float dif = 2f;
+        float yy = 3.3f;
+
+        new Obstaculo(
+                20f,
+                yy,
+                hitBoxW,
+                hitBoxH,
+                1.5f,
+                3.3f,
+                1,
+                128,
+                256,
+                0,
+                1,
+                -.13f,
+                "double_green_plate"
+        );
+
+        new Obstaculo(
+                20f,
+                yy + dif,
+                hitBoxW,
+                hitBoxH,
+                1f,
+                2f,
+                1,
+                128,
+                128,
+                7,
+                7,
+                .1f,
+                "double_green_plate"
+        );
+    }
+    public static void creatDoubleGreenSquareCoins(){
+        creatDoubleGreen();
+
+        float xx = 19.8f;
+        float yy = 3.9f;
+        float xDiff = .6f;
+        float yDiff = .3f;
+
+        for(int i=0; i<4; i++){
+            creatCookie(xx, yy);
+            xx += xDiff;
+            yy += yDiff;
+        }
     }
 
-    public static void creatBPlateArcCoins(){
-        creatArcCoins(20f, 4.6f);
-        creatBluePlate();
-    }
+            //Azuis
 
     public static void creatBluePlate(){
 
@@ -114,6 +171,12 @@ public class ObsCreator implements Entity {
                 "blue_plate"
         );
     }
+    public static void creatBPlateArcCoins(){
+        creatArcCoins(20f, 4.6f);
+        creatBluePlate();
+    }
+
+        //VARIANTES DE CONES
     public static void creatCone(float x){
 
         //Criando Objeto do obstaculo
@@ -134,24 +197,13 @@ public class ObsCreator implements Entity {
         );
     }
 
-    public static void creat2ones2coins(){
-        float xx = 20f;
-        float distance = 2f;
-
-        for(int i=0; i<2; i++){
-            creatCookie(xx, 3.5f);
-            creatCone(xx);
-            xx+=distance;
-        }
-    }
-
     public static void creatConeCoin(){
         creatCookie(20f, 3.5f);
         creatCone(20f);
 
     }
 
-
+        //VARIANTES DE COOKIES
     public static void creatCookie(float x, float y){
         new Obstaculo(
                 x,
@@ -171,7 +223,6 @@ public class ObsCreator implements Entity {
                 true
         );
     }
-
     public static void creatArcCoins(float xx, float yy){
         creatCookie(xx - .7f, yy - .3f);
         creatCookie(xx - .4f, yy + .3f);
@@ -179,8 +230,6 @@ public class ObsCreator implements Entity {
         creatCookie(xx + .7f, yy -.3f);
         creatCookie(xx, yy + .8f);
     }
-
-
     public static void creatSquareCookies(){
 
         float xx = 20f;
@@ -195,7 +244,61 @@ public class ObsCreator implements Entity {
             yy = yy + off;
         }
     }
+    public static void creat4cookies(){
 
+        float xx = 20f;
+        float yy = 4f;
+
+        for(int i=0; i<2; i++){
+            creatCookie(xx, yy);
+            creatCookie(xx + .5f, yy);
+            yy -= .5f;
+        }
+
+    }
+
+        //RAROS
+
+            //Orelhão
+    public static void creatOrelhao(){
+
+        //Criando Objeto do obstaculo
+        new Obstaculo(
+                20f,
+                3.2f,
+                0.2f,
+                0.6f,
+                1f,
+                2f,
+                1,
+                128,
+                256,
+                2,
+                1,
+                0f,
+                "orelhao"
+        );
+    }
+
+        //SEM USO
+
+    public static void creatBIGSQUARE(){
+        new Obstaculo(
+                20f,
+                3.3f,
+                6f,
+                1f,
+                1f,
+                1f,
+                1,
+                128,
+                128,
+                5,
+                5,
+                0f,
+                "pole"
+        );
+    }
     public static void creatPoles(){
         //Criando Objeto do obstaculo
         new Obstaculo(

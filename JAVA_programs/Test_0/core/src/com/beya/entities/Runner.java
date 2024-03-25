@@ -34,8 +34,8 @@ public class Runner implements Entity {
     private Animation<TextureRegion> walkAnimation;
     private TextureRegion currenteFrameWalk;
     private float stateTime;
-    private Body body;
-    private Vector2 position;
+    public Body body;
+    public Vector2 position;
 
     //Inicia tamanho em "scale"
     public Runner(){
@@ -59,18 +59,19 @@ public class Runner implements Entity {
     @Override
     public void tick() {
         stateTime += Gdx.graphics.getDeltaTime(); //soma em 1 independente da potencia do pc
-
-        //System.out.println(position.y);
+        //System.out.println(body.getLinearVelocity().y);
 
         if(Gdx.input.justTouched() && (jump > 0)){ // Se tocou na tela E tem pulos sobrando
+            jump--;
             //Pule
-            if (position.y > 6) {
-                body.applyLinearImpulse(0.0f, jumpPower - .2f, position.x, position.y, true);
+
+            if(body.getLinearVelocity().y > 2) return;
+            if (position.y > 3.4) {
+                body.applyLinearImpulse(0.0f, jumpPower - .15f, position.x, position.y, true);
             }
             else {
                 body.applyLinearImpulse(0.0f, jumpPower, position.x, position.y, true);
             }
-
             Test.jumpSound.play();
         }
 
@@ -150,7 +151,11 @@ public class Runner implements Entity {
 
         //Se não usa mais, descarta!
         hitBox.dispose();
+
     }
+
+
+
 
     public void hit() {
         Test.cookies++;

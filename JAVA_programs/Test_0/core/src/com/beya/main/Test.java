@@ -45,7 +45,6 @@ public class Test extends Game {
 	public static int points;
 
 	//Placeholder
-	private Obstaculo obs;
 	private int loopBackground;
 	private int speed;
 	public static World world;
@@ -85,9 +84,8 @@ public class Test extends Game {
 
 		hud = new Hud();
 		ground = new Ground();
-		wire = new Ground(6.3f);
+//		/wire = new Ground(6.3f);
 		player = new Runner();
-		obs = new Obstaculo();
 		creator = new ObsCreator();
 
 

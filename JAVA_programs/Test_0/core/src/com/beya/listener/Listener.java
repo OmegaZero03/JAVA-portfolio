@@ -1,5 +1,6 @@
 package com.beya.listener;
 
+import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
@@ -21,10 +22,10 @@ public class Listener implements ContactListener {
         if(fa.getUserData() == null || fb.getUserData() == null) return;
 
         //Função que cuida de coletar os cookies
-        collectCookie(fa, fb);
+        touchingObstacule(fa, fb);
 
         // Da mais um pulo ao player
-        jumpControler(fa, fb, true);
+        jumpControler(fa, fb);
 
     }
 
@@ -36,8 +37,6 @@ public class Listener implements ContactListener {
         if(fa == null || fb == null) return;
         if(fa.getUserData() == null || fb.getUserData() == null) return;
 
-        //Tira um pulo do player
-        jumpControler(fa, fb, false);
     }
 
     @Override
@@ -59,7 +58,7 @@ public class Listener implements ContactListener {
         return false;
     }
 
-    private void collectCookie(Fixture fa, Fixture fb){
+    private void touchingObstacule(Fixture fa, Fixture fb){
 
         if(isTouchingObstacule(fa, fb)){
             Obstaculo obs;
@@ -73,16 +72,21 @@ public class Listener implements ContactListener {
                 r = (Runner) fa.getUserData();
             }
 
-
             if(obs.id.equals("cookie")){
                 Test.cookieCollect.play();
                 obs.hit();
                 Test.cookies++;
+            }else{
+                if (Test.player.body.getLinearVelocity().y < -2.7 && Test.player.position.y > 3.5){
+
+                    Test.player.jump = 1;
+
+                }
             }
         }
     }
 
-    public void jumpControler(Fixture fa, Fixture fb, boolean moreOrLess){
+    public void jumpControler(Fixture fa, Fixture fb){
 
         if(isTouchingGround(fa, fb)) {
             Ground ground;
@@ -96,9 +100,7 @@ public class Listener implements ContactListener {
                 r = (Runner) fa.getUserData();
             }
 
-            //Tira um do pulo
-            if (moreOrLess) Test.player.jump++;
-            else Test.player.jump--;
+            Test.player.jump++;
         }
     }
 

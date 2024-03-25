@@ -9,33 +9,44 @@ public class ObsChooser {
 
     public ObsChooser() {
         choices();//cria lista de escolhas
-
-
-
     }
     public void choices() {
         entidades = new Array<String>();
 
+
+        //Cookies
         entidades.add("cookieSquare");
+        entidades.add("4cookies");
 
-        //Variantes de placas
+        //**************Variantes de Obstáculos**************\\
 
-        //Verdes
+            //PLACAS
+
+                //Verdes
         entidades.add("plateG");
         entidades.add("PlateGArcCoins");
 
-        //Vermelhas
+                //Verdes Duplas
+        entidades.add("plateDoubleG");
+        entidades.add("plateDoubleGCoins");
+
+                //Vermelhas
         entidades.add("plateR");
         entidades.add("PlateRArcCoins");
 
-        //Azuis
+                //Azuis
         entidades.add("plateB");
         entidades.add("PlateBArcCoins");
 
-        //Variantes de cones
+            //CONES
+                //Variantes de cones
         entidades.add("cone");
         entidades.add("coneCoin");
         entidades.add("2cones2coins");
+
+            //RAROS
+                //Orelhão
+        entidades.add("orelhao");
     }
 
     public String choosed() {
@@ -52,44 +63,71 @@ public class ObsChooser {
 
         switch (entidade){
 
+            //**************Variantes de Obstáculos**************\\
+
+            //Variantes de cookies
             case "cookieSquare":
                 ObsCreator.creatSquareCookies();
                 break;
+            case "4cookies":
+                ObsCreator.creat4cookies();
+                break;
 
+                //PLACAS
+
+                    //Vermelhas
             case "plateG":
                 ObsCreator.creatGreenPlate();
                 break;
-
             case "PlateGArcCoins":
                 ObsCreator.creatGPlateArcCoins();
                 break;
 
+                    //Verdes
             case "PlateRArcCoins":
                 ObsCreator.creatRPlateArcCoins();
                 break;
-
-            case "PlateBArcCoins":
-                ObsCreator.creatBPlateArcCoins();
-                break;
-
             case "plateR":
                 ObsCreator.creatRedPlate();
                 break;
 
+                    //Verdes Duplas
+            case "plateDoubleG":
+                ObsCreator.creatDoubleGreen();
+                break;
+            case "plateDoubleGCoins":
+                ObsCreator.creatDoubleGreenSquareCoins();
+                break;
+
+                    //Azuis
             case "plateB":
                 ObsCreator.creatBluePlate();
                 break;
+            case "PlateBArcCoins":
+                ObsCreator.creatBPlateArcCoins();
+                break;
 
+                //CONES
+
+                    //Variantes de cones
             case "cone":
                 ObsCreator.creatCone(20f);
                 break;
-
             case "coneCoin":
                 ObsCreator.creatConeCoin();
                 break;
-
             case "2cones2coins":
-                ObsCreator.creat2ones2coins();
+                ObsCreator.creatConeCoin();
+                int count = 0;
+                while(count < 10){
+                    count++;
+                }
+                ObsCreator.creatConeCoin();
+                break;
+
+                //RAROS
+            case "orelhao":
+                ObsCreator.creatOrelhao();
                 break;
 
         }
