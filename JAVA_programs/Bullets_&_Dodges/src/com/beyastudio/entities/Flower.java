@@ -1,10 +1,10 @@
 package com.beyastudio.entities;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import com.beyastudio.main.Main;
+import com.beyastudio.main.Sound;
 import com.beyastudio.wolrd.Camera;
 
 public class Flower extends Entity{
@@ -56,6 +56,7 @@ public class Flower extends Entity{
 			}
 			
 			if(Entity.isColliding(this, Main.player)) {
+				Sound.powerUp.play();
 				Main.ui.flower = true;
 				Main.player.haveFlower = true;
 			}

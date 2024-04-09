@@ -715,44 +715,7 @@ public class World {
 	}
 	
 	public static void restartGame(String lvl) {
-		
-		Main.spritesheet = new Spritesheet("/spritesheet.png");
-		Main.entities.clear();
-		Main.walls.clear();
-		Main.playerBullets.clear();
-		Main.BossBullets.clear();
-		Main.shootWalls.clear();
-		Main.shootWallsSlow.clear();
-		Main.iceShootWalls.clear();
-		Main.tombs.clear();
-		
-		Main.orbgrass = true;
-		Main.orbice = true;
-		Main.orbfire = true;
-		Main.crown = true;
-		Main.flower = true;
-		Main.beeCreab = true;
-		
-		Main.entities = new ArrayList<Entity>();
-		Main.walls = new ArrayList<WallTile>();
-		Main.playerBullets = new ArrayList<PlayerBullet>();
-		Main.BossBullets = new ArrayList<Bullet>();
-		Main.shootWalls = new ArrayList<ShootTile>();
-		Main.tombs = new ArrayList<Entity>();
-		Main.iceShootWalls = new ArrayList<IceShootTile>();
-		Main.shootWallsSlow = new ArrayList<ShootTileSlow>();
-		Main.player = new Player(0, 0, 8, 8, Main.spritesheet.getSpritesheet(0, 0, 8, 8));
-		Main.entities.add(Main.player);
-		Main.boss_1 = new Finn(228, 140, 16, 16, Entity.FINN_EN);
-		Main.boss_2 = new FireP(144, 680, 16, 16, Entity.FIRE_EN);
-		Main.boss_3 = new IceKing(826, 752, 16, 16, Entity.ICE_EN);
-		Main.isBoss = true;
-		Main.isBossF = true;
-		Main.isBossI = true;
-		
-		Main.puppy = new Puppy(70  *8, 57 * 8, 16, 16, Entity.PUPPY_TALK_0);
-		Main.entities.add(Main.puppy);
-		
+		trueRestart();
 		Main.world = new World("/"+lvl);
 		return;
 	}
@@ -797,6 +760,48 @@ public class World {
 				tile.render(g);
 			}
 		}
+	}
+	
+	private static void trueRestart() {
+		
+		Main.spritesheet = new Spritesheet("/spritesheet.png");
+		Main.entities.clear();
+		Main.walls.clear();
+		Main.playerBullets.clear();
+		Main.BossBullets.clear();
+		Main.shootWalls.clear();
+		Main.shootWallsSlow.clear();
+		Main.iceShootWalls.clear();
+		Main.tombs.clear();
+		
+		Main.orbgrass = true;
+		Main.orbice = true;
+		Main.orbfire = true;
+		Main.crown = true;
+		Main.flower = true;
+		Main.beeCreab = true;
+		
+		Main.entities = new ArrayList<Entity>();
+		Main.walls = new ArrayList<WallTile>();
+		Main.playerBullets = new ArrayList<PlayerBullet>();
+		Main.BossBullets = new ArrayList<Bullet>();
+		Main.shootWalls = new ArrayList<ShootTile>();
+		Main.tombs = new ArrayList<Entity>();
+		Main.iceShootWalls = new ArrayList<IceShootTile>();
+		Main.shootWallsSlow = new ArrayList<ShootTileSlow>();
+		Main.player = new Player(0, 0, 8, 8, Main.spritesheet.getSpritesheet(0, 0, 8, 8));
+		Main.entities.add(Main.player);
+		Main.boss_1 = new Finn(228, 140, 16, 16, Entity.FINN_EN);
+		Main.boss_2 = new FireP(144, 680, 16, 16, Entity.FIRE_EN);
+		Main.boss_3 = new IceKing(826, 752, 16, 16, Entity.ICE_EN);
+		Main.isBoss = true;
+		Main.isBossF = true;
+		Main.isBossI = true;
+		
+		Main.teleporters();
+		
+		Main.puppy = new Puppy(67  *8, 63 * 8, 16, 16, Entity.PUPPY_TALK_0);
+		Main.entities.add(Main.puppy);
 	}
 	
 }

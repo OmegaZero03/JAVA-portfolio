@@ -1,10 +1,10 @@
 package com.beyastudio.entities;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import com.beyastudio.main.Main;
+import com.beyastudio.main.Sound;
 import com.beyastudio.wolrd.Camera;
 
 public class Crown extends Entity{
@@ -60,6 +60,7 @@ public class Crown extends Entity{
 			}
 			
 			if(Entity.isColliding(this, Main.player)) {
+				Sound.powerUp.play();
 				Main.ui.crown = true;
 				Main.player.haveCrown = true;
 			}

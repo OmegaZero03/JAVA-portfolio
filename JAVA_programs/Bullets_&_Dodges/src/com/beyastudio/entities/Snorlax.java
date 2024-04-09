@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import com.beyastudio.main.Main;
+import com.beyastudio.main.Sound;
 import com.beyastudio.wolrd.Camera;
 
 public class Snorlax extends Entity{
@@ -60,6 +61,7 @@ public class Snorlax extends Entity{
 	@Override
 	public void tick() {
 		if(this.life < 0) {
+			Sound.bossDied.play();
 			Main.entities.remove(this);
 		}
 		

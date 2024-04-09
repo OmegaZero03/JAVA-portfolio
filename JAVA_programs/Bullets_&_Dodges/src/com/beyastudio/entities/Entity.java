@@ -123,6 +123,8 @@ public class Entity {
 	public static BufferedImage FIRE_EN   	=Main.spritesheet.getSpritesheet(88, 208, _16x_16, _16x_16);
 	public static BufferedImage PIKACHU_EN 	=Main.spritesheet.getSpritesheet(40, 0, _16x_16, _16x_16);
 	public static BufferedImage BULLET_PL 	=Main.spritesheet.getSpritesheet(72, 0, _8x8, _8x8);
+	public static BufferedImage BULLET_PL_A	=Main.spritesheet.getSpritesheet(56, 0, _8x8, _8x8);
+
 	public static BufferedImage BULLET_FLOWER_PL =Main.spritesheet.getSpritesheet(64, 0, _8x8, _8x8);
 	
 	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

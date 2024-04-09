@@ -3,9 +3,7 @@ package com.beyastudio.wolrd;
 import java.awt.image.BufferedImage;
 
 import com.beyastudio.boss_1.Bullet;
-import com.beyastudio.boss_1.Bullet_sword_h;
 import com.beyastudio.boss_1.Bullet_sword_slow;
-import com.beyastudio.boss_1.Bullet_sword_w;
 import com.beyastudio.entities.Entity;
 import com.beyastudio.main.Main;
 

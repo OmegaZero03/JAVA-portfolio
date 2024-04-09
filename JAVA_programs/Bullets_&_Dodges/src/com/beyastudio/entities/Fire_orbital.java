@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import com.beyastudio.main.Main;
+import com.beyastudio.main.Sound;
 import com.beyastudio.wolrd.Camera;
 
 public class Fire_orbital extends Entity{
@@ -85,6 +86,7 @@ public class Fire_orbital extends Entity{
 			}
 			
 			if(Entity.isColliding(Main.player,this)) {
+				Sound.powerUp.play();
 				Main.ui.orbF = true;
 				Main.player.haveFire = true;
 			}

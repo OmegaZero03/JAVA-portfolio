@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 
 import com.beyastudio.entities.Entity;
 import com.beyastudio.main.Main;
+import com.beyastudio.main.Sound;
 import com.beyastudio.wolrd.Camera;
 import com.beyastudio.wolrd.Tile;
 
@@ -78,11 +79,12 @@ public class Bullet extends Entity {
 
 	public void isHitting() {
 		if (isColliding(this, Main.player)) {
+			Sound.hurtPlayer.play();
 			Main.BossBullets.remove(this);
 			Main.player.life -= damage;
 		}
 	}
-
+	
 	public void setSpd(double spd) {
 		this.spd = spd;
 	}

@@ -38,7 +38,7 @@ import com.beyastudio.entities.Player;
 import com.beyastudio.entities.PlayerBullet;
 import com.beyastudio.entities.Puppy;
 import com.beyastudio.entities.Tombstone;
-import com.beyastudio.wolrd.Camera;
+import com.beyastudio.entities.teleporters.Teleporter;
 import com.beyastudio.wolrd.IceShootTile;
 import com.beyastudio.wolrd.Portal;
 import com.beyastudio.wolrd.ShootTile;
@@ -100,13 +100,11 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 					  gameoverTextAlphaBG = 10;
 	
 	public Main() {
-		
 		this.addMouseMotionListener(this);
 		this.addKeyListener(this);
 		this.addMouseListener(this);
 		setPreferredSize(new Dimension(muxW, muxH));
 		initFrame();
-		
 		// Init Objects
 		ran = new Random();
 		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -128,7 +126,7 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		player = new Player(0, 0, 8, 8, spritesheet.getSpritesheet(0, 0, 8, 8));
 		ui = new UI();
 		entities.add(player);
-		puppy = new Puppy(70  *8, 57 * 8, 16, 16, Entity.PUPPY_TALK_0);
+		puppy = new Puppy(67  *8, 63 * 8, 16, 16, Entity.PUPPY_TALK_0);
 		entities.add(puppy);
 		world = new World("/world2.png");
 		this.setFocusable(true);
@@ -138,33 +136,36 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		
 		menu = new Menu();
 		
-		portal_grass_1 = new Portal(352, 480, Entity.PORTAL_GRASS);
-		portals.add(portal_grass_1);
+		Sound.mainMusic.loop();
 		
-		portal_grass_2 = new Portal(248, 480, Entity.PORTAL_GRASS);
-		portals.add(portal_grass_2);
-		
-		portal_ice_1 = new Portal(552, 568, Entity.PORTAL_ICE);
-		portals.add(portal_ice_1);
-		
-		portal_ice_2 = new Portal(552, 600, Entity.PORTAL_ICE_2);
-		portals.add(portal_ice_2);
-		
-		portal_fire_1 = new Portal(536, 768, Entity.PORTAL_FIRE);
-		portals.add(portal_fire_1);
-		
-		portal_fire_2 = new Portal(424, 768, Entity.PORTAL_FIRE);
-		portals.add(portal_fire_2);
-
-		portal_gold_1 = new Portal(680, 480, Entity.PORTAL_GOLD);
-		portals.add(portal_gold_1);
-		
-		portal_gold_2 = new Portal(824 - 8, 480, Entity.PORTAL_GOLD);
-		portals.add(portal_gold_2);
-		//portal_gold = new Portal(0, 0, Entity.PORTAL_GOLD);
+//		portal_grass_1 = new Portal(352, 480, Entity.PORTAL_GRASS);
+//		portals.add(portal_grass_1);
+//		
+//		portal_grass_2 = new Portal(248, 480, Entity.PORTAL_GRASS);
+//		portals.add(portal_grass_2);
+//		
+//		portal_ice_1 = new Portal(552, 568, Entity.PORTAL_ICE);
+//		portals.add(portal_ice_1);
+//		
+//		portal_ice_2 = new Portal(552, 600, Entity.PORTAL_ICE_2);
+//		portals.add(portal_ice_2);
+//		
+//		portal_fire_1 = new Portal(536, 768, Entity.PORTAL_FIRE);
+//		portals.add(portal_fire_1);
+//		
+//		portal_fire_2 = new Portal(424, 768, Entity.PORTAL_FIRE);
+//		portals.add(portal_fire_2);
+//
+//		portal_gold_1 = new Portal(680, 480, Entity.PORTAL_GOLD);
+//		portals.add(portal_gold_1);
+//		
+//		portal_gold_2 = new Portal(824 - 8, 480, Entity.PORTAL_GOLD);
+//		portals.add(portal_gold_2);
 		
 		//In the world 2
 		if(World.WIDTH == 120  && World.HEIGHT == 120) {
+			teleporters();
+			
 			boss_1 = new Finn(228 , 140, 16, 16, Entity.FINN_EN);
 			boss_2 = new FireP(144, 680, 16, 16, Entity.FIRE_EN);
 			boss_3 = new IceKing(826, 752, 16, 16, Entity.ICE_EN);
@@ -244,6 +245,7 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 			
 			this.restartGame = false;
 			if(player.life <= 0) {
+				Sound.diedPlayer.play();
 				player.life = 0;
 				cursed_tomb = new Tombstone(player.getX() - 4, player.getY() - 8, 16, 16, Entity.CURSED_TOMB_STONE);
 				Main.entities.remove(player);
@@ -339,11 +341,11 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 			
 			if(restartGame) {
 				this.restartGame = false;
+				Sound.menuSelect.play();
 				gameState = "normal";
 				World.restartGame("world2.png");
 				gameoverTextAlpha = 0;
 				gameoverTextAlphaBG = 0;
-				
 			}
 			
 			break;
@@ -483,7 +485,7 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 			g.drawImage(art.getSpritesheet(0, 0, 650, 650), 0, 0, null);
 			menu.render(g);
 			g.setFont(new Font("arial", Font.BOLD, 10));
-			g.setColor(Color.white);
+			g.setColor(Color.black);
 			g.drawString("Beya's Studio", 20 + 20, 530);
 			g.drawImage(logo.getSpritesheet(0, 0, 100, 100), 20, 530, null);
 		}
@@ -589,6 +591,29 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 			}
 		}
 		
+	}
+	
+	public static void teleporters() {
+		for(int i=0; i<3; i++) {
+			switch(i) {
+			
+				case 0:
+					entities.add(
+							new Teleporter
+							(440, 520, 16, 16, Entity.BULLET_FINN_FLOWER, 224, 224));
+					break;
+				case 1:
+					entities.add(
+							new Teleporter
+							(432, 536, 16, 16, Entity.BULLET_FIRE_BLAST, 160, 736));
+					break;
+				case 2:
+					entities.add(
+							new Teleporter
+							(448, 536, 16, 16, Entity.BULLET_ICE_CUBE, 832, 928));
+					break;
+			}
+		}
 	}
 
 	@Override

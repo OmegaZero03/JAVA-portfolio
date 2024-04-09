@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 
 import com.beyastudio.boss_3.Penguin;
 import com.beyastudio.main.Main;
+import com.beyastudio.main.Sound;
 import com.beyastudio.wolrd.Camera;
 import com.beyastudio.wolrd.Tile;
 
@@ -81,7 +82,7 @@ public class PlayerBullet extends Entity {
 			return;
 
 		if (Entity.isColliding(this, Main.boss_1)) {
-
+			Sound.bossHurt.play();
 			Main.boss_1.life -= damage;
 			Main.boss_1.isDamaged = true;
 			Main.player.life += heal;
@@ -98,7 +99,7 @@ public class PlayerBullet extends Entity {
 			return;
 
 		if (Entity.isColliding(this, Main.boss_2)) {
-
+			Sound.bossHurt.play();
 			Main.boss_2.life -= damage;
 			Main.boss_2.isDamaged = true;
 			Main.player.life += heal;
@@ -114,6 +115,7 @@ public class PlayerBullet extends Entity {
 			return;
 
 		if (Entity.isColliding(this, Main.boss_3)) {
+			Sound.bossHurt.play();
 			Main.boss_3.life -= damage;
 			Main.boss_3.isDamaged = true;
 			Main.player.life += heal;
@@ -135,6 +137,7 @@ public class PlayerBullet extends Entity {
 
 			if (isEnemy || isPenguin) {
 				if (Entity.isColliding(this, atual)) {
+					Sound.bossHurt.play();
 					atual.life -= damage;
 					atual.isDamaged = true;
 					Main.player.life += heal;
@@ -148,6 +151,7 @@ public class PlayerBullet extends Entity {
 			}
 			if(isPikachu || isSoul) {
 				if (Entity.isColliding(this, atual)) {
+					Sound.bossHurt.play();
 					atual.life -= damage;
 					atual.isDamaged = true;
 					Main.player.life += heal + 3;

@@ -7,9 +7,8 @@ import java.awt.image.BufferedImage;
 import com.beyastudio.entities.Boss_tombstone;
 import com.beyastudio.entities.Entity;
 import com.beyastudio.entities.Fire_orbital;
-import com.beyastudio.entities.Grass_orbital;
-import com.beyastudio.entities.Ice_orbital;
 import com.beyastudio.main.Main;
+import com.beyastudio.main.Sound;
 import com.beyastudio.wolrd.Camera;
 
 public class FireP extends Entity{
@@ -58,7 +57,7 @@ public class FireP extends Entity{
 		
 		
 		if (life <= 0) {
-
+			Sound.bossDied.play();
 			Boss_tombstone tb = new Boss_tombstone(this.getX() - 4, this.getY() - 20, 16, 16, Entity.TOMB_NEUTRAL, "fire");
 			Main.tombs.add(tb);
 			
@@ -126,26 +125,6 @@ public class FireP extends Entity{
 			count ++;
 			
 			if(canCreat) {
-				
-				Fire_pilar p = new Fire_pilar(16, 776,Entity.RED_FIRE_PILAR, 270, "red");
-				Main.shootWalls.add(p);
-				
-				Fire_pilar p1 = new Fire_pilar(48, 776,Entity.RED_FIRE_PILAR, 180, "blue");
-				Main.shootWalls.add(p1);
-				
-				
-				Fire_pilar p2 = new Fire_pilar(16, 872,Entity.RED_FIRE_PILAR, 180, "red");
-				Main.shootWalls.add(p2);
-				
-				Fire_pilar p3 = new Fire_pilar(48, 872 ,Entity.RED_FIRE_PILAR, 180, "blue");
-				Main.shootWalls.add(p3);
-				
-				
-				Fire_pilar p4 = new Fire_pilar(16, 912,Entity.RED_FIRE_PILAR, 180, "red");
-				Main.shootWalls.add(p4);
-				
-				Fire_pilar p5 = new Fire_pilar(48 + 8, 920 - 8,Entity.RED_FIRE_PILAR, 180, "blue");
-				Main.shootWalls.add(p5);
 				
 				
 				

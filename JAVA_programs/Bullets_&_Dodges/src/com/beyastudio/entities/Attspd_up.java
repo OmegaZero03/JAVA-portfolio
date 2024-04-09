@@ -3,6 +3,7 @@ package com.beyastudio.entities;
 import java.awt.image.BufferedImage;
 
 import com.beyastudio.main.Main;
+import com.beyastudio.main.Sound;
 
 public class Attspd_up extends Entity{
 
@@ -16,6 +17,7 @@ public class Attspd_up extends Entity{
 			Entity atual = Main.entities.get(i);
 			if(atual instanceof Player){
 				if(Entity.isColliding(this, atual)) {
+					Sound.powerUp.play();
 					Main.ui.attspd = true;
 					Main.player.atackSpeed -= 0.07;
 					if(Main.player.atackSpeed < 1) {

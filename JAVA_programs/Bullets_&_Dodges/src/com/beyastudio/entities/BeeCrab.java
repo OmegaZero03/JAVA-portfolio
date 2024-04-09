@@ -4,11 +4,12 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import com.beyastudio.main.Main;
+import com.beyastudio.main.Sound;
 import com.beyastudio.wolrd.Camera;
 
 public class BeeCrab extends Entity{
 	
-	private int direction;
+	//private int direction;
 	private BufferedImage sprites;
 	private BufferedImage[] nsprites;
 	
@@ -57,6 +58,7 @@ public class BeeCrab extends Entity{
 			}
 			
 			if(Entity.isColliding(this, Main.player)) {
+				Sound.powerUp.play();
 				Main.ui.beeCrab = true;
 				Main.player.haveBeeCrab = true;
 			}

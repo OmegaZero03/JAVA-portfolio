@@ -6,14 +6,13 @@ import java.awt.image.BufferedImage;
 import com.beyastudio.boss_1.Bullet;
 import com.beyastudio.main.Main;
 import com.beyastudio.wolrd.Camera;
-import com.beyastudio.wolrd.Tile;
 
 public class Orb_destroy extends Entity{
 	
 	private String beeCrab;
 	private BufferedImage[] sprites;
 	private int count = 0;
-	private double dx, dy;
+	//private double dx, dy;
 	public int spd = 0;
 	public int move = 30;
 	

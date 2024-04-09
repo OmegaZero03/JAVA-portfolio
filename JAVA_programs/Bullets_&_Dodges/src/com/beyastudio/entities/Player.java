@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import com.beyastudio.main.Main;
+import com.beyastudio.main.Sound;
 import com.beyastudio.wolrd.Camera;
 import com.beyastudio.wolrd.World;
 
@@ -15,7 +16,7 @@ public class Player extends Entity {
 	// STATUS
 	public int tLife = 100;
 	public double spd = 1.4;
-	public int dmg = 6;
+	public int dmg = 500;
 	public double healling = .7;
 	public double atackSpeed = 2;
 	//
@@ -23,6 +24,10 @@ public class Player extends Entity {
 	//ARTIFACTS
 	public boolean haveCrown = false, haveFlower = false, haveBeeCrab = false;
 	//
+	
+	private boolean alternativaSkin = true;
+	
+	private BufferedImage bullet_atual;
 	
 	private PlayerBullet b;
 
@@ -70,55 +75,66 @@ public class Player extends Entity {
 		/***********************/
 		upAtack = new BufferedImage[2];
 		downAtack = new BufferedImage[2];
+		
+		
+		
 
-		for (int i = 0; i < 2; i++) {
-			rightPlayer[i] = Main.spritesheet.getSpritesheet(0 + (i * 8), 0, 8, 8);
-			leftPlayer[i] = Main.spritesheet.getSpritesheet(16 + (i * 8), 0, 8, 8);
+		if(this.alternativaSkin == false) {
+			
+			this.bullet_atual = Entity.BULLET_PL;
 
-			upAtack[i] = Main.spritesheet.getSpritesheet(0 + (i * 8), 56, 8, 8);
-			downAtack[i] = Main.spritesheet.getSpritesheet(0 + (i * 8), 64, 8, 8);
+			
+			for (int i = 0; i < 2; i++) {
+				rightPlayer[i] = Main.spritesheet.getSpritesheet(0 + (i * 8), 0, 8, 8);
+				leftPlayer[i] = Main.spritesheet.getSpritesheet(16 + (i * 8), 0, 8, 8);
 
-			rightAtack[i] = Main.spritesheet.getSpritesheet(0, 24 + (i * 8), 16, 8);
-			leftAtack[i] = Main.spritesheet.getSpritesheet(0, 40 + (i * 8), 16, 8);
+				upAtack[i] = Main.spritesheet.getSpritesheet(0 + (i * 8), 56, 8, 8);
+				downAtack[i] = Main.spritesheet.getSpritesheet(0 + (i * 8), 64, 8, 8);
+
+				rightAtack[i] = Main.spritesheet.getSpritesheet(0, 24 + (i * 8), 16, 8);
+				leftAtack[i] = Main.spritesheet.getSpritesheet(0, 40 + (i * 8), 16, 8);
+			}
+
+			for (int i = 0; i < 3; i++) {
+				upPlayer[i] = Main.spritesheet.getSpritesheet(0 + (i * 8), 8, 8, 8);
+			}
+			for (int i = 0; i < 4; i++) {
+				downPlayer[i] = Main.spritesheet.getSpritesheet(0 + (i * 8), 16, 8, 8);
+			}
+			
+		}else {
+			
+			this.bullet_atual = Entity.BULLET_PL_A;
+
+			for (int i = 0; i < 2; i++) {
+				rightPlayer[i] = Main.spritesheet.getSpritesheet(248 + (i * 8), 0, 8, 8);
+				leftPlayer[i] = Main.spritesheet.getSpritesheet((248+16) + (i * 8), 0, 8, 8);
+
+				upAtack[i] = Main.spritesheet.getSpritesheet(248 + (i * 8), 56, 8, 8);
+				downAtack[i] = Main.spritesheet.getSpritesheet(248 + (i * 8), 64, 8, 8);
+
+				rightAtack[i] = Main.spritesheet.getSpritesheet(248, 24 + (i * 8), 16, 8);
+				leftAtack[i] = Main.spritesheet.getSpritesheet(248, 40 + (i * 8), 16, 8);
+			}
+
+			for (int i = 0; i < 3; i++) {
+				upPlayer[i] = Main.spritesheet.getSpritesheet(248 + (i * 8), 8, 8, 8);
+			}
+			for (int i = 0; i < 4; i++) {
+				downPlayer[i] = Main.spritesheet.getSpritesheet(248 + (i * 8), 16, 8, 8);
+			}
+			
 		}
-
-		for (int i = 0; i < 3; i++) {
-			upPlayer[i] = Main.spritesheet.getSpritesheet(0 + (i * 8), 8, 8, 8);
-		}
-		for (int i = 0; i < 4; i++) {
-			downPlayer[i] = Main.spritesheet.getSpritesheet(0 + (i * 8), 16, 8, 8);
-		}
-
+		
+		
 	}
 
 	@Override
 	public void tick() {
 
 		maxLife = tLife;
-
-		moved = false;
-		if (right && World.isFree((int) (x + spd), this.getY())) {
-			moved = true;
-			dir = right_dir;
-			x += spd;
-		}
-		if (left && World.isFree((int) (x - spd), this.getY())) {
-			moved = true;
-			dir = left_dir;
-			x -= spd;
-		}
-
-		if (up && World.isFree(this.getX(), (int) (y - spd))) {
-			moved = true;
-			dir = down_dir;
-			y -= spd;
-
-		}
-		if (down && World.isFree(this.getX(), (int) (y + spd))) {
-			moved = true;
-			dir = up_dir;
-			y += spd;
-		}
+		
+		this.moving();
 
 		if (moved || shoot || autoShoot) {
 			frames++;
@@ -140,152 +156,12 @@ public class Player extends Entity {
 
 		}
 
-		this.collidingEnemy();
-
-		Camera.x = Camera.clamp(this.getX() - (Main.width / 2), 0, World.WIDTH * 8 - Main.width);
-		Camera.y = Camera.clamp(this.getY() - (Main.height / 2), 0, World.HEIGHT * 8 - Main.height);
-
-		if (System.currentTimeMillis() < nextShoot) {
-			return;
-		}
-
-		nextShoot = System.currentTimeMillis() + (atackSpeed * 100);
-
-		double angle = Math.atan2(my - (this.getY() - Camera.y + 5), mx - (this.getX() - Camera.x + 5));
-
-		dx = Math.cos(angle);
-		dy = Math.sin(angle);
-
-		if (shoot || autoShoot) {
-
-			if (dir == right_dir) {
-				
-				if(haveFlower) {
-					b = new PlayerBullet(this.getX() + 7, this.getY() - 3, 8, 8, Entity.BULLET_FLOWER_PL, dx, dy,
-							this.range_flower);
-					b.maskx = 1;
-					b.masky = 1;
-					b.mwidth = 6;
-					b.mheight = 6;
-				}else {
-					b = new PlayerBullet(this.getX() + 7, this.getY() - 3, 8, 8, Entity.BULLET_PL, dx, dy,
-							this.range_bullet);
-				}
-				
-				
-				
-				if(haveCrown) {
-					b.damage = dmg * 2;
-				}else {
-					b.damage = dmg;
-				}
-				b.heal = healling;
-				Main.playerBullets.add(b);
-
-			} else if (dir == left_dir) {
-				
-				if(haveFlower) {
-					b = new PlayerBullet(this.getX() - 7, this.getY() - 3, 8, 8, Entity.BULLET_FLOWER_PL, dx, dy,
-							this.range_flower);
-					b.maskx = 1;
-					b.masky = 1;
-					b.mwidth = 6;
-					b.mheight = 6;
-				}else {
-					
-					b = new PlayerBullet(this.getX() - 7, this.getY() - 3, 8, 8, Entity.BULLET_PL, dx, dy,
-							this.range_bullet);
-				}
-				
-				
-				if(haveCrown) {
-					b.damage = dmg * 2;
-				}else {
-					b.damage = dmg;
-				}
-				b.heal = healling;
-				Main.playerBullets.add(b);
-			}
-
-			if (dir == down_dir) {
-				if(haveFlower) {
-					b = new PlayerBullet(this.getX(), this.getY() - 4, 8, 8, Entity.BULLET_FLOWER_PL, dx, dy,
-							this.range_flower);
-					b.maskx = 1;
-					b.masky = 1;
-					b.mwidth = 6;
-					b.mheight = 6;
-				}else {
-					
-					b = new PlayerBullet(this.getX(), this.getY() - 4, 8, 8, Entity.BULLET_PL, dx, dy,
-							this.range_bullet);
-				}
-				
-				if(haveCrown) {
-					b.damage = dmg * 2;
-				}else {
-					b.damage = dmg;
-				}
-				b.heal = healling;
-				Main.playerBullets.add(b);
-				
-			} else if (dir == up_dir) {
-				if(haveFlower) {
-
-					b = new PlayerBullet(this.getX() + 2, this.getY() + 4, 8, 8, Entity.BULLET_FLOWER_PL, dx, dy,
-							this.range_flower);
-					b.maskx = 1;
-					b.masky = 1;
-					b.mwidth = 6;
-					b.mheight = 6;
-					
-				}else {
-					
-					b = new PlayerBullet(this.getX() + 2, this.getY() + 4, 8, 8, Entity.BULLET_PL, dx, dy,
-							this.range_bullet);
-					
-				}
-				
-				
-				if(haveCrown) {
-					b.damage = dmg * 2;
-				}else {
-					b.damage = dmg;
-				}
-				
-				b.heal = healling;
-				Main.playerBullets.add(b);
-			}
-
-		}
-
+		this.shotting();
+		
 	}
+	
+	/************************GRÁFICO********************************/
 
-	// CLOSE WINDOW ON DEATH
-//	public void death() {
-//		if(this.life >= 0) {
-//			return;
-//		}
-//		System.exit(1);
-//	}
-
-	public void collidingEnemy() {
-		for (int i = 0; i < Main.entities.size(); i++) {
-			Entity atual = Main.entities.get(i);
-
-			if (atual instanceof Enemy) {
-				if (Entity.isColliding(this, atual)) {
-
-					if (Main.ran.nextInt(100) >= 30) {
-						System.out.println("Falhou");
-						return;
-					}
-					life--;
-					System.out.println(life);
-				}
-			}
-		}
-	}
 
 	@Override
 	public void render(Graphics g) {
@@ -324,6 +200,177 @@ public class Player extends Entity {
 			g.fillRect((this.getX() + maskx) - Camera.x, (this.getY() + masky) - Camera.y, mwidth, mheight);
 		}
 	}
+	
+	/************************SISTEMA DE MOVIMENTO********************************/
+	
+	private void moving() {
+		
+		moved = false;
+		
+		
+		if((right || left) && (up || down)) {
+			spd = (1.4 * 0.70) + 0.013;
+		}else {
+			spd = 1.4;
+		}
+		
+		if (right && World.isFree((int) (x + spd), this.getY())) {
+			moved = true;
+			dir = right_dir;
+			x += spd;
+		}
+		else if (left && World.isFree((int) (x - spd), this.getY())) {
+			moved = true;
+			dir = left_dir;
+			x -= spd;
+		}
+
+		if (up && World.isFree(this.getX(), (int) (y - spd))) {
+			moved = true;
+			dir = down_dir;
+			y -= spd;
+
+		}
+		else if (down && World.isFree(this.getX(), (int) (y + spd))) {
+			moved = true;
+			dir = up_dir;
+			y += spd;
+		}
+	}
+	
+	private double normalize() {
+		
+		double length = Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));
+		
+		return 0;
+
+	}
+	
+	/************************ SISTEMA DE TIRO********************************/
+	
+	
+	
+	public void shotting() {
+		Camera.x = Camera.clamp(this.getX() - (Main.width / 2), 0, World.WIDTH * 8 - Main.width);
+		Camera.y = Camera.clamp(this.getY() - (Main.height / 2), 0, World.HEIGHT * 8 - Main.height);
+
+		if (System.currentTimeMillis() < nextShoot) {
+			return;
+		}
+
+		nextShoot = System.currentTimeMillis() + (atackSpeed * 100);
+
+		double angle = Math.atan2(my - (this.getY() - Camera.y + 5), mx - (this.getX() - Camera.x + 5));
+
+		dx = Math.cos(angle);
+		dy = Math.sin(angle);
+
+		if (shoot || autoShoot) {
+			Sound.shootPlayer.play();
+
+			if (dir == right_dir) {
+				
+				if(haveFlower) {
+					b = new PlayerBullet(this.getX() + 7, this.getY() - 3, 8, 8, Entity.BULLET_FLOWER_PL, dx, dy,
+							this.range_flower);
+					b.maskx = 1;
+					b.masky = 1;
+					b.mwidth = 6;
+					b.mheight = 6;
+				}else {
+					b = new PlayerBullet(this.getX() + 7, this.getY() - 3, 8, 8, bullet_atual, dx, dy,
+							this.range_bullet);
+				}
+				
+				
+				
+				if(haveCrown) {
+					b.damage = dmg * 2;
+				}else {
+					b.damage = dmg;
+				}
+				b.heal = healling;
+				Main.playerBullets.add(b);
+
+			} else if (dir == left_dir) {
+				
+				if(haveFlower) {
+					b = new PlayerBullet(this.getX() - 7, this.getY() - 3, 8, 8, Entity.BULLET_FLOWER_PL, dx, dy,
+							this.range_flower);
+					b.maskx = 1;
+					b.masky = 1;
+					b.mwidth = 6;
+					b.mheight = 6;
+				}else {
+					
+					b = new PlayerBullet(this.getX() - 7, this.getY() - 3, 8, 8, bullet_atual, dx, dy,
+							this.range_bullet);
+				}
+				
+				
+				if(haveCrown) {
+					b.damage = dmg * 2;
+				}else {
+					b.damage = dmg;
+				}
+				b.heal = healling;
+				Main.playerBullets.add(b);
+			}
+
+			if (dir == down_dir) {
+				if(haveFlower) {
+					b = new PlayerBullet(this.getX(), this.getY() - 4, 8, 8, Entity.BULLET_FLOWER_PL, dx, dy,
+							this.range_flower);
+					b.maskx = 1;
+					b.masky = 1;
+					b.mwidth = 6;
+					b.mheight = 6;
+				}else {
+					
+					b = new PlayerBullet(this.getX(), this.getY() - 4, 8, 8, bullet_atual, dx, dy,
+							this.range_bullet);
+				}
+				
+				if(haveCrown) {
+					b.damage = dmg * 2;
+				}else {
+					b.damage = dmg;
+				}
+				b.heal = healling;
+				Main.playerBullets.add(b);
+				
+			} else if (dir == up_dir) {
+				if(haveFlower) {
+
+					b = new PlayerBullet(this.getX() + 2, this.getY() + 4, 8, 8, Entity.BULLET_FLOWER_PL, dx, dy,
+							this.range_flower);
+					b.maskx = 1;
+					b.masky = 1;
+					b.mwidth = 6;
+					b.mheight = 6;
+					
+				}else {
+					
+					b = new PlayerBullet(this.getX() + 2, this.getY() + 4, 8, 8, bullet_atual, dx, dy,
+							this.range_bullet);
+					
+				}
+				
+				
+				if(haveCrown) {
+					b.damage = dmg * 2;
+				}else {
+					b.damage = dmg;
+				}
+				
+				b.heal = healling;
+				Main.playerBullets.add(b);
+			}
+
+		}
+
+	}
+	
 
 	public double getAtackSpeed() {
 		return atackSpeed;
@@ -340,9 +387,4 @@ public class Player extends Entity {
 	public void setDir(int dir) {
 		this.dir = dir;
 	}
-	
-	
-
-	
-	
 }

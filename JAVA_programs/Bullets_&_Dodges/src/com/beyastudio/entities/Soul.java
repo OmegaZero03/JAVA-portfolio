@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import com.beyastudio.main.Main;
+import com.beyastudio.main.Sound;
 import com.beyastudio.wolrd.Camera;
 
 public class Soul extends Entity{
@@ -21,7 +22,7 @@ public class Soul extends Entity{
 	private boolean drawShape = false;
 	private int count;
 	public int damageFrames = 5, currentFrames = 0;
-	private int chance, roll;
+	private int /*chance,*/ roll;
 	private int rollArt;
 	
 	public Soul(int x, int y, int width, int height, BufferedImage sprite, String type) {
@@ -33,14 +34,14 @@ public class Soul extends Entity{
 		
 		roll = Main.ran.nextInt(100);
 		rollArt = Main.ran.nextInt(100);
-		chance = 0;
+		//chance = 0;
 	}
 	
 	@Override
 	public void tick() {
 		
 		if(life <= 0) {
-			
+			Sound.bossDied.play();
 			//System.out.println("SEU ROLL FOI DE = "+roll);
 			System.out.println("SEU ROLL FOI DE = "+rollArt);
 			
@@ -77,31 +78,25 @@ public class Soul extends Entity{
 					
 				}
 			}
+			switch(type) {
 			
-			if(roll <= 30) {
-				Dmg_up dmg = new Dmg_up(this.getX() - 16, this.getY(), 8,8, Entity.DMG_UP);
-				Main.entities.add(dmg);
-				Heal_up heal = new Heal_up(this.getX() + 16, this.getY(), 8,8, Entity.HEAL_UP);
-				Main.entities.add(heal);
-			}
-			else if(roll <= 60) {
-				Dmg_up dmg1 = new Dmg_up(this.getX() - 16, this.getY(), 8,8, Entity.DMG_UP);
-				Main.entities.add(dmg1);
-				Attspd_up attspd1 = new Attspd_up(this.getX() + 16, this.getY(), 8,8, Entity.ATTSPD_UP);
-				Main.entities.add(attspd1);
-
-			}
-			else if(roll <= 80) {
+			case "grass":
 				Heal_up heal12 = new Heal_up(this.getX() + 16, this.getY(), 8,8, Entity.HEAL_UP);
 				Main.entities.add(heal12);
+				break;
+				
+			case "ice":
+				Dmg_up dmg = new Dmg_up(this.getX() - 16, this.getY(), 8,8, Entity.DMG_UP);
+				Main.entities.add(dmg);
+				break;
+			
+				
+			case "fire":
 				Attspd_up attspd = new Attspd_up(this.getX() - 16, this.getY(), 8,8, Entity.ATTSPD_UP);
 				Main.entities.add(attspd);
-			}else {
-				Dmg_up dmg21 = new Dmg_up(this.getX() + 16, this.getY(), 8,8, Entity.DMG_UP);
-				Main.entities.add(dmg21);
-				Spd_up spd = new Spd_up(this.getX() - 16, this.getY(), 8,8, Entity.SPD_UP);
-				Main.entities.add(spd);
-			}		
+				break;
+			
+			}
 			
 			Main.entities.remove(this);
 		}
@@ -178,9 +173,9 @@ public class Soul extends Entity{
 		case "ice":
 			if(drawShape == false) {
 				count++;
-				y -= 1;
+				//y -= 1;
 				
-				if(count >= amp) {
+				if(count >= 1) {
 					drawShape = true;
 					count = 0;
 				}

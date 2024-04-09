@@ -8,6 +8,7 @@ import com.beyastudio.entities.Boss_tombstone;
 import com.beyastudio.entities.Entity;
 import com.beyastudio.entities.Grass_orbital;
 import com.beyastudio.main.Main;
+import com.beyastudio.main.Sound;
 import com.beyastudio.wolrd.Camera;
 import com.beyastudio.wolrd.ShootTile;
 import com.beyastudio.wolrd.ShootTileSlow;
@@ -81,6 +82,7 @@ public class Finn extends Entity {
 		
 		if (this.life <= 0) {
 			
+			Sound.bossDied.play();
 			Boss_tombstone tb = new Boss_tombstone(this.getX() - 4, this.getY() - 20, 16, 16, Entity.TOMB_NEUTRAL, "grass");
 			Main.tombs.add(tb);
 			
@@ -141,11 +143,6 @@ public class Finn extends Entity {
 		case "atacando_tentacle":
 
 			if (canCreat) {
-				
-				for(int i = 0; i < 5; i++) {
-					ShootTile t = new ShootTile(206 + (i*7), 210, Tile.TILE_INV, 90);
-					Main.shootWalls.add(t);
-				}
 				
 				
 				/*-----------360_down-----------*/
@@ -269,10 +266,6 @@ public class Finn extends Entity {
 		case "fase_2":
 			
 			if(canCreat) {
-				for(int i = 0; i < 5; i++) {
-					ShootTile t = new ShootTile(206 + (i*7), 210, Tile.TILE_INV, 90);
-					Main.shootWalls.add(t);
-				}
 			}
 			canCreat = false;
 			
@@ -438,11 +431,6 @@ public class Finn extends Entity {
 			}
 			
 			
-
-			
-			
-			
-			
 			if(life <= maxLife * .5) {
 				estado = "fase_3";
 				Main.shootWalls.removeAll(Main.shootWalls);
@@ -457,11 +445,6 @@ public class Finn extends Entity {
 			if(canCreat) {
 				
 				capa = false;
-				
-				for(int i = 0; i < 5; i++) {
-					ShootTile t = new ShootTile(206 + (i*7), 210, Tile.TILE_INV, 90);
-					Main.shootWalls.add(t);
-				}
 				
 				/*-----------360_down-----------*/
 				

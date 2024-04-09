@@ -8,6 +8,7 @@ import com.beyastudio.entities.Boss_tombstone;
 import com.beyastudio.entities.Entity;
 import com.beyastudio.entities.Ice_orbital;
 import com.beyastudio.main.Main;
+import com.beyastudio.main.Sound;
 import com.beyastudio.wolrd.Camera;
 import com.beyastudio.wolrd.IceShootTile;
 import com.beyastudio.wolrd.Tile;
@@ -61,7 +62,7 @@ public class IceKing extends Entity{
 	
 	public void tick() {
 		if (life <= 0) {
-			
+			Sound.bossDied.play();
 			Boss_tombstone tb = new Boss_tombstone(this.getX() - 4, this.getY() - 20, 16, 16, Entity.TOMB_NEUTRAL, "ice");
 			Main.tombs.add(tb);
 			
@@ -127,13 +128,7 @@ public class IceKing extends Entity{
 				if(canCreat) {
 	
 					for(int i = 0; i < 5; i++) {
-							
-						IceShootTile t2 = new IceShootTile(552, 902 + (i * 8), Tile.TILE_INV, 360);
-						Main.iceShootWalls.add(t2);
-						
-						IceShootTile t3 = new IceShootTile(548 + (i * 8), 872 - 50, Tile.TILE_INV, 90);
-						t3.setAttackSpeed(3);
-						Main.iceShootWalls.add(t3);
+
 						
 					}
 	

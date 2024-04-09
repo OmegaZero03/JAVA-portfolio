@@ -3,6 +3,7 @@ package com.beyastudio.entities;
 import java.awt.image.BufferedImage;
 
 import com.beyastudio.main.Main;
+import com.beyastudio.main.Sound;
 
 public class Dmg_up extends Entity{
 
@@ -16,6 +17,7 @@ public class Dmg_up extends Entity{
 			Entity atual = Main.entities.get(i);
 			if(atual instanceof Player){
 				if(Entity.isColliding(this, atual)) {
+					Sound.powerUp.play();
 					Main.ui.dmg = true;
 					Main.player.dmg += 1;
 					Main.entities.remove(this);

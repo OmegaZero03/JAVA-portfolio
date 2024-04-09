@@ -3,7 +3,6 @@ package com.beyastudio.entities;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.GraphicsEnvironment;
 import java.awt.image.BufferedImage;
 
 import com.beyastudio.main.Main;
