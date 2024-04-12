@@ -93,10 +93,7 @@ public class FireP extends Entity{
 				isDamaged = false;
 				
 			}
-			
 		}
-		
-		
 	}
 	
 	
@@ -125,8 +122,6 @@ public class FireP extends Entity{
 			count ++;
 			
 			if(canCreat) {
-				
-				
 				
 				canCreat = false;
 			}

@@ -16,7 +16,7 @@ public class Player extends Entity {
 	// STATUS
 	public int tLife = 100;
 	public double spd = 1.4;
-	public int dmg = 500;
+	public int dmg = 5;
 	public double healling = .7;
 	public double atackSpeed = 2;
 	//

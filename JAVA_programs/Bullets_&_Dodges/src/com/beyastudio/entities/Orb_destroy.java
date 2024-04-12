@@ -57,7 +57,7 @@ public class Orb_destroy extends Entity{
 			break;
 		}
 		
-		
+		System.out.println("sdasd");
 		collidingBullet();
 	}
 	
@@ -85,7 +85,6 @@ public class Orb_destroy extends Entity{
 		case "crab":
 			g.drawImage(sprites[1], this.getX() - Camera.x, this.getY() - Camera.y, null);
 			break;
-		
 		
 		}
 	}

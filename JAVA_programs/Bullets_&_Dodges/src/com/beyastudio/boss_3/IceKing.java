@@ -128,7 +128,6 @@ public class IceKing extends Entity{
 				if(canCreat) {
 	
 					for(int i = 0; i < 5; i++) {
-
 						
 					}
 	
