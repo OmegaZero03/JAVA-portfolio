@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import com.beyastudio.entities.Boss_tombstone;
 import com.beyastudio.entities.Entity;
 import com.beyastudio.entities.Grass_orbital;
+import com.beyastudio.entities.teleporters.Teleport_back;
 import com.beyastudio.main.Main;
 import com.beyastudio.main.Sound;
 import com.beyastudio.wolrd.Camera;
@@ -92,9 +93,13 @@ public class Finn extends Entity {
 				Main.orbgrass = false;
 			}
 			
+			Main.entities.add(
+					Main.tbGrass =
+					new Teleport_back
+					(256, 216, 16, 16, Entity.LOBBY_TELEPORT, Teleport_back.xBack, Teleport_back.yBack));
 
 			
-			Main.isBoss = false;
+			Main.isBossG = false;
 			Main.shootWalls.removeAll(Main.shootWalls);
 			Main.shootWallsSlow.removeAll(Main.shootWallsSlow);
 		}
@@ -137,6 +142,7 @@ public class Finn extends Entity {
 				
 				estado = "atacando_tentacle";
 				att = true;
+				Main.entities.remove(Main.tbGrass);
 			}
 			break;
 
@@ -148,16 +154,14 @@ public class Finn extends Entity {
 				/*-----------360_down-----------*/
 				
 				for(int i = 0; i < 4; i++) {
-					ShootTile tile_0 = new ShootTile(160 - (i*8), 232 - (i*8), Tile.TILE_WALL, 360);
+					ShootTile tile_0 = new ShootTile(160 - (i*8), 232 +4- (i*8), Tile.TILE_WALL, 360);
 					Main.shootWalls.add(tile_0);
-
 				}
 
 				/*-----------180_down-----------*/
 				for(int i = 0; i < 4; i++) {
-					ShootTile tile_180 = new ShootTile(288 + (i*8), 232 - (i*8), Tile.TILE_WALL, 180);
+					ShootTile tile_180 = new ShootTile(288 + (i*8), 232 +4- (i*8), Tile.TILE_WALL, 180);
 					Main.shootWalls.add(tile_180);
-
 				}
 				
 				/*-----------90_down-----------*/
@@ -200,7 +204,7 @@ public class Finn extends Entity {
 				
 				/*-----------270_up-----------*/
 				for(int i = 0; i < 3; i++) {
-					ShootTile tile_180 = new ShootTile(312 - (i*8), 80 - (i*8), Tile.TILE_WALL, 90);
+					ShootTile tile_180 = new ShootTile(312 - 6 - (i*8), 80 - (i*8), Tile.TILE_WALL, 90);
 					Main.shootWalls.add(tile_180);
 
 				}
@@ -501,7 +505,7 @@ public class Finn extends Entity {
 				
 				/*-----------270_up-----------*/
 				for(int i = 0; i < 3; i++) {
-					ShootTile tile_180 = new ShootTile(312 - (i*8), 80 - (i*8), Tile.TILE_WALL, 90);
+					ShootTile tile_180 = new ShootTile(312 - 6 - (i*8), 80 - (i*8), Tile.TILE_WALL, 90);
 					Main.shootWalls.add(tile_180);
 
 				}
@@ -593,10 +597,18 @@ public class Finn extends Entity {
 		
 			if (canCreat) {
 				
-				for(int i = 0; i < 5; i++) {
-					ShootTile t = new ShootTile(206 + (i*7), 210, Tile.TILE_INV, 90);
-					Main.shootWalls.add(t);
-					}
+				/*-----------90_up-----------*/
+				for(int i = 0; i < 3; i++) {
+					ShootTile tile_90 = new ShootTile(136 + (i*8), 80 - (i*8), Tile.TILE_WALL, 90);
+					Main.shootWalls.add(tile_90);
+				}
+				
+				/*-----------270_up-----------*/
+				for(int i = 0; i < 3; i++) {
+					ShootTile tile_180 = new ShootTile(312 - 6 - (i*8), 80 - (i*8), Tile.TILE_WALL, 90);
+					Main.shootWalls.add(tile_180);
+
+				}
 					
 				/*-----------90_down-----------*/
 				for(int i = 0; i < 3; i++) {

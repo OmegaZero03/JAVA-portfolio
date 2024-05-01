@@ -154,7 +154,7 @@ public class Boss_tombstone extends Entity{
 				
 				case "grass":
 					stop = true;
-					Main.isBoss = true;
+					Main.isBossG = true;
 					Main.boss_1 = new Finn(228 , 140, 16, 16, Entity.FINN_EN);
 					break;
 					

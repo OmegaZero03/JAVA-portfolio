@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import com.beyastudio.entities.Boss_tombstone;
 import com.beyastudio.entities.Entity;
 import com.beyastudio.entities.Ice_orbital;
+import com.beyastudio.entities.teleporters.Teleport_back;
 import com.beyastudio.main.Main;
 import com.beyastudio.main.Sound;
 import com.beyastudio.wolrd.Camera;
@@ -66,6 +67,11 @@ public class IceKing extends Entity{
 			Boss_tombstone tb = new Boss_tombstone(this.getX() - 4, this.getY() - 20, 16, 16, Entity.TOMB_NEUTRAL, "ice");
 			Main.tombs.add(tb);
 			
+			Main.entities.add(
+					Main.tbIce =
+					new Teleport_back
+					(864, 928 - 8, 16, 16, Entity.LOBBY_TELEPORT, Teleport_back.xBack, Teleport_back.yBack));
+			
 			if(Main.orbice) {
 				Ice_orbital o = new Ice_orbital(this.getX(), this.getY(), 8, 8, Entity.ICE_ORB);
 				Main.entities.add(o);
@@ -118,6 +124,7 @@ public class IceKing extends Entity{
 					canCreat = true;
 					att = true;
 					//System.out.println(this.calculateDistance(this.getX(), this.getY(), Main.player.getX(), Main.player.getY()));
+					Main.entities.remove(Main.tbIce);
 				}
 				break;
 				

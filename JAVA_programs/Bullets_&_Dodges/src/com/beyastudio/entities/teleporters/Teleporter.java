@@ -9,7 +9,7 @@ import com.beyastudio.main.Sound;
 
 public class Teleporter extends Entity{
 	
-	private int yTeleportLocation, xTeleportLocation;
+	protected int yTeleportLocation, xTeleportLocation;
 	
 
 	public Teleporter(int x, int y, int width, int height, BufferedImage sprite, int xTeleport, int yTeleport) {

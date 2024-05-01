@@ -50,6 +50,7 @@ public class PlayerBullet extends Entity {
 		collidingFinn();
 		collidingIce();
 		collidingFire();
+		collidingSamurai();
 
 		if ((x >= lifeTime_right) || (x <= lifeTime_left) || (y >= lifeTime_up) || (y <= lifeTime_down)) {
 			Main.playerBullets.remove(this);
@@ -90,6 +91,23 @@ public class PlayerBullet extends Entity {
 				Main.player.life = Main.player.maxLife;
 			}
 			System.out.println("vida = " + Main.boss_1.life);
+			Main.playerBullets.remove(this);
+		}
+	}
+	
+	public void collidingSamurai() {
+		if (Main.boss_A == null)
+			return;
+
+		if (Entity.isColliding(this, Main.boss_A)) {
+			Sound.bossHurt.play();
+			Main.boss_A.life -= damage;
+			Main.boss_A.isDamaged = true;
+			Main.player.life += heal;
+			if(Main.player.life > Main.player.maxLife) {
+				Main.player.life = Main.player.maxLife;
+			}
+			System.out.println("vida = " + Main.boss_A.life);
 			Main.playerBullets.remove(this);
 		}
 	}

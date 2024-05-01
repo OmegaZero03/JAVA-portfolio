@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import com.beyastudio.entities.Boss_tombstone;
 import com.beyastudio.entities.Entity;
 import com.beyastudio.entities.Fire_orbital;
+import com.beyastudio.entities.teleporters.Teleport_back;
 import com.beyastudio.main.Main;
 import com.beyastudio.main.Sound;
 import com.beyastudio.wolrd.Camera;
@@ -63,6 +64,11 @@ public class FireP extends Entity{
 			
 			Main.shootWalls.removeAll(Main.shootWalls);
 			
+			Main.entities.add(
+					Main.tbFire =
+					new Teleport_back
+					(192, 736 - 8, 16, 16, Entity.LOBBY_TELEPORT, Teleport_back.xBack, Teleport_back.yBack));
+			
 			if(Main.orbfire) {
 				Fire_orbital o = new Fire_orbital(this.getX(), this.getY(), 8, 8, Entity.FIRE_ORB);
 				Main.entities.add(o);
@@ -111,6 +117,7 @@ public class FireP extends Entity{
 				att = true;
 				canCreat = true;
 				count = 0;
+				Main.entities.remove(Main.tbFire);
 			}
 			
 			break;

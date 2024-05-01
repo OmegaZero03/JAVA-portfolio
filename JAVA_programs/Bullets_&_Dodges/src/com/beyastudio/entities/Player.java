@@ -21,11 +21,11 @@ public class Player extends Entity {
 	public double atackSpeed = 2;
 	//
 	
-	//ARTIFACTS
+	//ARTIFACTS 
 	public boolean haveCrown = false, haveFlower = false, haveBeeCrab = false;
 	//
 	
-	private boolean alternativaSkin = true;
+	private boolean alternativaSkin = false;
 	
 	private BufferedImage bullet_atual;
 	
@@ -238,13 +238,6 @@ public class Player extends Entity {
 		}
 	}
 	
-	private double normalize() {
-		
-		double length = Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));
-		
-		return 0;
-
-	}
 	
 	/************************ SISTEMA DE TIRO********************************/
 	

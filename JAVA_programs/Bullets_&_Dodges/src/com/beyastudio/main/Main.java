@@ -31,6 +31,7 @@ import com.beyastudio.boss_1.Bullet;
 import com.beyastudio.boss_1.Finn;
 import com.beyastudio.boss_2.FireP;
 import com.beyastudio.boss_3.IceKing;
+import com.beyastudio.boss_A.Spooky;
 import com.beyastudio.entities.Enemy;
 import com.beyastudio.entities.Entity;
 import com.beyastudio.entities.Orb_destroy;
@@ -38,6 +39,7 @@ import com.beyastudio.entities.Player;
 import com.beyastudio.entities.PlayerBullet;
 import com.beyastudio.entities.Puppy;
 import com.beyastudio.entities.Tombstone;
+import com.beyastudio.entities.teleporters.Teleport_back;
 import com.beyastudio.entities.teleporters.Teleporter;
 import com.beyastudio.wolrd.IceShootTile;
 import com.beyastudio.wolrd.Portal;
@@ -65,6 +67,8 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	private boolean showMessageGameover  = true, restartGame = false;
 	private int framesgameover = 0;
 	
+	public static String atualWorld = "/world2.png";
+	
 	private BufferedImage image;
 	public static List<WallTile> walls;
 	public static List<WallTile> portals;
@@ -76,13 +80,14 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	public static List<Entity> tombs;
 	public static List<Bullet> BossBullets;
 	public static List<Orb_destroy> bee;
-	public static Spritesheet spritesheet, hurt_spritesheet, control, art, logo;
+	public static Spritesheet spritesheet, hurt_spritesheet, control, art, logo, teleports, boss_placeholders;
 	
-	public static boolean isBoss = false, isBossF = false, isBossI = false;
+	public static boolean isBossG = false, isBossF = false, isBossI = false, isBossS = false;
 	
 	public static Finn boss_1;
 	public static FireP boss_2;
 	public static IceKing boss_3;
+	public static Spooky boss_A;
 	public static World world;
 	public static Player player;
 	public static Puppy puppy;
@@ -91,6 +96,7 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	public static Random ran;
 	public static Tombstone cursed_tomb;
 	public static Portal portal_grass_1,portal_grass_2 , portal_ice_1,portal_ice_2, portal_fire_1, portal_fire_2, portal_gold_1, portal_gold_2;
+	public static Teleport_back tbGrass, tbFire, tbIce;
 	
 	public static Menu menu;
 	
@@ -121,8 +127,10 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		spritesheet = new Spritesheet("/spritesheet.png");
 		control = new Spritesheet("/control_screen.png");
 		art = new Spritesheet("/menu.png");
+		boss_placeholders = new Spritesheet("/bossPlaceHolder.png");
 		hurt_spritesheet = new Spritesheet("/hurt_spritesheet.png");
 		logo = new Spritesheet("/logo.png");
+		teleports = new Spritesheet("/portals.png");
 		player = new Player(0, 0, 8, 8, spritesheet.getSpritesheet(0, 0, 8, 8));
 		ui = new UI();
 		entities.add(player);
@@ -136,25 +144,8 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		
 		menu = new Menu();
 		
-		Sound.mainMusic.loop();
-		
-//		portal_grass_1 = new Portal(352, 480, Entity.PORTAL_GRASS);
-//		portals.add(portal_grass_1);
-//		
-//		portal_grass_2 = new Portal(248, 480, Entity.PORTAL_GRASS);
-//		portals.add(portal_grass_2);
-//		
-//		portal_ice_1 = new Portal(552, 568, Entity.PORTAL_ICE);
-//		portals.add(portal_ice_1);
-//		
-//		portal_ice_2 = new Portal(552, 600, Entity.PORTAL_ICE_2);
-//		portals.add(portal_ice_2);
-//		
-//		portal_fire_1 = new Portal(536, 768, Entity.PORTAL_FIRE);
-//		portals.add(portal_fire_1);
-//		
-//		portal_fire_2 = new Portal(424, 768, Entity.PORTAL_FIRE);
-//		portals.add(portal_fire_2);
+		//LOOP DA MAIN MUSIC
+		//Sound.mainMusic.loop();
 //
 //		portal_gold_1 = new Portal(680, 480, Entity.PORTAL_GOLD);
 //		portals.add(portal_gold_1);
@@ -163,21 +154,20 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 //		portals.add(portal_gold_2);
 		
 		//In the world 2
-		if(World.WIDTH == 120  && World.HEIGHT == 120) {
+		if(Main.atualWorld == "/world2.png") {
 			teleporters();
 			
 			boss_1 = new Finn(228 , 140, 16, 16, Entity.FINN_EN);
 			boss_2 = new FireP(144, 680, 16, 16, Entity.FIRE_EN);
 			boss_3 = new IceKing(826, 752, 16, 16, Entity.ICE_EN);
-			isBoss = true;
+			isBossG = true;
 			isBossF = true;
 			isBossI = true;
 			
+			
 			//Tombs = player na frente
-			//Portal = player atrás
-			
-			
-			
+			//Portal = player atrásS
+			portais();
 		}
 		
 	}
@@ -254,7 +244,7 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		
 			//tick boss IF it EXIST
 			
-			if(isBoss) {
+			if(isBossG) {
 				boss_1.tick();
 				}
 			else boss_1 = null;
@@ -269,6 +259,12 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 				boss_3.tick();
 			}else {
 				boss_3 = null;
+			}
+			
+			if(isBossS) {
+				boss_A.tick();
+			}else {
+				boss_A = null;
 			}
 		
 			for(int i = 0; i < shootWalls.size(); i++) {
@@ -425,7 +421,7 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 				}
 		}
 		
-		if(isBoss) {
+		if(isBossG) {
 			boss_1.render(g);
 			for(int i = 0; i < shootWalls.size(); i++) {
 				ShootTile e = shootWalls.get(i);
@@ -436,6 +432,7 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 				e.render(g);
 			}
 		}
+		
 
 		if(isBossI) {
 			boss_3.render(g);
@@ -444,6 +441,11 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 				IceShootTile e = iceShootWalls.get(i);
 				e.render(g);
 			}
+		}
+		
+		
+		if(isBossS) {
+			boss_A.render(g);
 		}
 		
 		for(int i = 0; i < portals.size(); i++) {
@@ -573,6 +575,7 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		if(e.getKeyCode() == KeyEvent.VK_ENTER) {
 			if(gameState == "normal") {
 				player.debug = !player.debug;
+				player.dmg = 50;
 			}
 		}
 		
@@ -593,27 +596,102 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		
 	}
 	
+	public static void portais() {
+		portal_grass_1 = new Portal(457, 504, Entity.PORTAL_GRASS);
+		portals.add(portal_grass_1);
+		
+		portal_grass_2 = new Portal(418, 504, Entity.PORTAL_GRASS);
+		portals.add(portal_grass_2);
+		
+		portal_ice_1 = new Portal(392, 513, Entity.PORTAL_ICE);
+		portals.add(portal_ice_1);
+		
+		portal_ice_2 = new Portal(392, 552, Entity.PORTAL_ICE_2);
+		portals.add(portal_ice_2);
+	
+		portal_fire_1 = new Portal(418, 552, Entity.PORTAL_FIRE);
+		portals.add(portal_fire_1);
+		
+		portal_fire_2 = new Portal(457, 552, Entity.PORTAL_FIRE);
+		portals.add(portal_fire_2);
+	}
+	
+	public static void removePortais() {
+		portals.removeAll(portals);
+	}
+	
 	public static void teleporters() {
-		for(int i=0; i<3; i++) {
-			switch(i) {
+		
+		int num_teleports = 0;
+		
+		if(Main.atualWorld == "/world2.png") {
+			num_teleports = 6;
+		}
+	
+		
+		if(num_teleports < 6) {
 			
-				case 0:
-					entities.add(
-							new Teleporter
-							(440, 520, 16, 16, Entity.BULLET_FINN_FLOWER, 224, 224));
-					break;
-				case 1:
-					entities.add(
-							new Teleporter
-							(432, 536, 16, 16, Entity.BULLET_FIRE_BLAST, 160, 736));
-					break;
-				case 2:
-					entities.add(
-							new Teleporter
-							(448, 536, 16, 16, Entity.BULLET_ICE_CUBE, 832, 928));
-					break;
+			num_teleports = 1;
+			
+			for(int i=0; i<num_teleports; i++) {
+				switch(i) {
+				
+					case 0:
+						entities.add(
+								new Teleporter
+								(584, 568, 16, 16, Entity.GRASS_TELEPORT, 160, 152));
+						break;
+				}
 			}
 		}
+		
+		else if(num_teleports == 6) {
+			//Teleportes pros bosses da área 1
+			for(int i=0; i<num_teleports; i++) {
+				switch(i) {
+				
+					case 0:
+						entities.add(
+								new Teleporter
+								(437, 508, 16, 16, Entity.GRASS_TELEPORT, 224, 224));
+						break;
+					case 1:
+						entities.add(
+								new Teleporter
+								(437, 557, 16, 16, Entity.FIRE_TELEPORT, 160, 736));
+						break;  
+					case 2:
+						entities.add(
+								new Teleporter
+								(396, 533, 16, 16, Entity.ICE_TELEPORT, 832, 928));
+						break;
+						
+					case 3:
+						entities.add(
+								tbGrass =
+								new Teleport_back
+								(256, 216, 16, 16, Entity.LOBBY_TELEPORT, Teleport_back.xBack, Teleport_back.yBack));
+						break;
+						
+					case 4:
+						entities.add(
+								tbFire =
+								new Teleport_back
+								(192, 736 - 8, 16, 16, Entity.LOBBY_TELEPORT, Teleport_back.xBack, Teleport_back.yBack));
+						break;
+						
+					case 5: 
+						entities.add(
+								tbIce =
+								new Teleport_back
+								(864, 928 - 8, 16, 16, Entity.LOBBY_TELEPORT, Teleport_back.xBack, Teleport_back.yBack));
+						break;
+				}
+			}
+		}
+		
+		
+		
 	}
 
 	@Override

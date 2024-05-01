@@ -109,6 +109,14 @@ public class Entity {
 								BULLET_BLUE_FIRE = Main.spritesheet.getSpritesheet(120, 56, _16x_16, _16x_16);
 								
 	
+	
+	
+	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+	
+								/*********SAMURAI BOOS SPRITES**********/
+	//public static BufferedImage SAMURAI_EN =
+
+	
 	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 	
 	public static BufferedImage PORTAL_GRASS = Main.spritesheet.getSpritesheet(64, 248, _16x_16, 24),
@@ -232,8 +240,22 @@ public class Entity {
 
 
 
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+		/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 	
+	
+							/*********TELEPORTS**********/
+	public static BufferedImage GRASS_TELEPORT = Main.teleports.getSpritesheet(0, 0, _16x_16, _16x_16),
+							FIRE_TELEPORT = Main.teleports.getSpritesheet(16, 0, _16x_16, _16x_16),
+							ICE_TELEPORT = Main.teleports.getSpritesheet(32, 0, _16x_16, _16x_16),
+							LOBBY_TELEPORT = Main.teleports.getSpritesheet(48, 0, _16x_16, _16x_16);
+						/*********/////////////////**********/
+	
+		/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+	
+	
+							/*********PLACEHOLDERS(ROTMG)**********/
+	public static BufferedImage SPOOKY_EN = Main.boss_placeholders.getSpritesheet(0, 16, _8x8, _16x_16);
+						/*********/////////////////**********/
 	
 	
 	protected int width, height;

@@ -12,6 +12,7 @@ import com.beyastudio.boss_1.Bullet;
 import com.beyastudio.boss_1.Finn;
 import com.beyastudio.boss_2.FireP;
 import com.beyastudio.boss_3.IceKing;
+import com.beyastudio.boss_A.Spooky;
 import com.beyastudio.entities.Enemy;
 import com.beyastudio.entities.Entity;
 import com.beyastudio.entities.Heal;
@@ -118,6 +119,10 @@ public class World {
 							
 						case 0xffff0086:
 							Main.entities.add(new NextLvl(xx*8, yy*8, 8, 8, Entity.NEXT_LVL));
+							break;
+							
+						case 0xffff0087:
+							Main.entities.add(new NextLvl(xx*8, yy*8, 8, 8, Entity.LOBBY_TELEPORT, "world2.png"));
 							break;
 							
 						//GrassWalls
@@ -740,6 +745,35 @@ public class World {
 		Main.player = new Player(0, 0, 8, 8, Main.spritesheet.getSpritesheet(0, 0, 8, 8));
 		Main.entities.add(Main.player);
 		Main.world = new World("/"+lvl);
+		
+		if(lvl == "world2.png") {
+			Main.portais();
+			Main.teleporters();
+			
+			Main.boss_1 = new Finn(228 , 140, 16, 16, Entity.FINN_EN);
+			Main.boss_2 = new FireP(144, 680, 16, 16, Entity.FIRE_EN);
+			Main.boss_3 = new IceKing(826, 752, 16, 16, Entity.ICE_EN);
+			Main.puppy = new Puppy(67  *8, 63 * 8, 16, 16, Entity.PUPPY_TALK_0);
+
+			Main.isBossG = true;
+			Main.isBossF = true;
+			Main.isBossI = true;
+			
+			Main.tombs.clear();
+			Main.tombs = new ArrayList<Entity>();
+			
+
+		}
+		else if(lvl == "world.png") {
+			Main.isBossG = false;
+			Main.isBossF = false;
+			Main.isBossI = false;
+			
+			Main.isBossS = true;
+			Main.boss_A = new Spooky(152, 88, 16, 16, Entity.SPOOKY_EN);
+			
+			Main.teleporters();
+		}
 		return;
 	}
 	
@@ -794,7 +828,7 @@ public class World {
 		Main.boss_1 = new Finn(228, 140, 16, 16, Entity.FINN_EN);
 		Main.boss_2 = new FireP(144, 680, 16, 16, Entity.FIRE_EN);
 		Main.boss_3 = new IceKing(826, 752, 16, 16, Entity.ICE_EN);
-		Main.isBoss = true;
+		Main.isBossG = true;
 		Main.isBossF = true;
 		Main.isBossI = true;
 		
