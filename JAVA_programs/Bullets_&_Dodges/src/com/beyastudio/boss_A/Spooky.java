@@ -151,7 +151,7 @@ public class Spooky extends Entity{
 			
 			
 			walking = true;
-			attacking = false;
+			attacking = false; 
 			
 			att = true;
 			
