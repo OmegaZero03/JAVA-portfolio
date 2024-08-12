@@ -17,36 +17,43 @@ public class Spooky extends Entity{
 	private double dx, dy, angle;
 	private String estado = "parado";
 	
-	private boolean att = false, canCreat = false, attacking = false, walking = false;
+	private boolean att = true, canCreat = true;
+	
+	//Controle das animações por switch_case
+	/*
+	 * idle
+	 * blink
+	 * attack
+	 */
+	
+	private String animationState = "idle";
 	
 	public int damageFrames = 5, currentFrames = 0;
 	
-	private BufferedImage[] sprites, spritesAtt; 
+	private BufferedImage[] idleAnimationSprites, blinkAnimationSprites;
+	
+	private boolean canResetFrames = true;
 	
 	private int frames = 0,
-			maxFrames = 9,
+			maxFrames = 20,
 			index = 0,
-			maxIndex = 2;
+			maxIndex = 3;
+	
+	private int idlespriteNum, blinkspriteNum;
 
 	public Spooky(int x, int y, int width, int height, BufferedImage sprite) {
 		super(x, y, width, height, sprite);
 		
-		this.life = 1000;
-		this.maxLife = 1000;
+		this.life = 10000;
+		this.maxLife = 10000;
 		
-		sprites = new BufferedImage[3];
-		
-		
-		for (int i=0; i<3; i++) {
-			sprites[i] = Main.spritesheet.getSpritesheet(0 + (i*16), 16, 16, 16);
-		}
+		this.idlespriteNum = 4;
+		this.blinkspriteNum = 4;
 		
 		
-		spritesAtt = new BufferedImage[3];
-		
-		for (int i=0; i<3; i++) {
-			sprites[i] = Main.spritesheet.getSpritesheet(64 + (i*16), 16, 16, 16);
-		}
+		idleAnimationSprites = new BufferedImage[idlespriteNum];
+		blinkAnimationSprites = new BufferedImage[blinkspriteNum];
+
 	}
 	
 	
@@ -84,51 +91,56 @@ public class Spooky extends Entity{
 	@Override
 	public void render(Graphics g) {
 		
-		super.render(g);
+		//super.render(g);
 		
 		if(!isDamaged) {
-			if(attacking) {
-				
-				spritesAtt[0] = Main.boss_placeholders.getSpritesheet(64, 16, 16, 16);
-				spritesAtt[1] = Main.boss_placeholders.getSpritesheet(80, 16, 16, 16);
-				spritesAtt[2] = Main.boss_placeholders.getSpritesheet(96, 16, 16, 16);
-				
-				if(index == 0) g.drawImage(spritesAtt[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
-				if(index == 1) g.drawImage(spritesAtt[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
-				if(index == 2) g.drawImage(spritesAtt[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
-				
-			}
-			if(walking) {
-				
-				sprites[0] = Main.boss_placeholders.getSpritesheet(0, 16, 16, 16);
-				sprites[1] = Main.boss_placeholders.getSpritesheet(16, 16, 16, 16);
-				sprites[2] = Main.boss_placeholders.getSpritesheet(32, 16, 16, 16);
-				
-				if(index == 0) g.drawImage(sprites[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
-				if(index == 1) g.drawImage(sprites[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
-				if(index == 2) g.drawImage(sprites[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
-			}
-		}else {
-		
-			if(walking) {
-				
-				sprites[0] = Entity.ICE_DAMAGED_ATT_1;
-				sprites[1] = Entity.ICE_DAMAGED_ATT_2;
-				sprites[2] = Entity.ICE_DAMAGED_ATT_2;
-				
-				if(index == 0) g.drawImage(sprites[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
-				if(index == 1) g.drawImage(sprites[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
-				if(index == 2) g.drawImage(sprites[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
-			}
-			if(attacking) {
-				
-				spritesAtt[0] = Entity.ICE_DAMAGED_WALK_1;
-				spritesAtt[1] = Entity.ICE_DAMAGED_WALK_2;
-				
-				if(index == 0) g.drawImage(spritesAtt[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
-				if(index == 1) g.drawImage(spritesAtt[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
+			switch(this.animationState) {
+			
+				case "idle":
+					
+					if(canResetFrames) {
+						index = 0;
+						maxFrames = 20;
+						canResetFrames = false;
+					}
+					
+					for(int i=0; i < this.idlespriteNum; i++) {
+					idleAnimationSprites[i] = Main.boss_samurai.getSpritesheet(0 + (16 * i),0, 16, 16);
+					g.drawImage(idleAnimationSprites[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
+				}
+					
+					break;
+					
+					
+				case "blink":
+					
+					if(canResetFrames) {
+						index = 0;
+						maxFrames = 25;
+						canResetFrames = false;
+					}
+
+					for(int i=0; i < this.blinkspriteNum; i++) {
+					idleAnimationSprites[i] = Main.boss_samurai.getSpritesheet(0 + (i*16), 16, 16, 16);
+					g.drawImage(idleAnimationSprites[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
+					
+					if(index == 3) {
+						maxFrames = 45;
+					}else {
+						maxFrames = 25;
+					}
+					
+				}
+					
+					break;
+					
+					
+				case "attack":
+					
+					break;
 			}
 			
+		}else {
 		
 		}
 		
@@ -150,67 +162,61 @@ public class Spooky extends Entity{
 		case "parado":
 			
 			
-			walking = true;
-			attacking = false; 
-			
 			att = true;
 			
-			time++;
-			
-			
-			float spd = .5f;
-			
-			switch(dir) {
-				case 0:
-					y+=spd;
-					x-=spd;
-					
-					if(time >= 100) {
-						dir = 1;
-					}
-					
-					break;
-					
-				case 1:
-					y+=spd;
-					x+=spd;
-					System.out.println("???");
-					if(time >= 200) {
-						dir = 2;
-					}
-					
-					break;
-					
-				case 2:
-					y-=spd;
-					x+=spd;
-					
-					if(time > 300) {
-						dir = 3;
-					}
-					
-					break;
-					
-				case 3:
-					y-=spd;
-					x-=spd;
-					
-					if(time > 400) {
-						time = 0;
-						dir = 0;
-					}
-					
-					break;
-				
-			}
-
-			
-			
+//			time++;
+//			
+//			
+//			float spd = .5f;
+//			
+//			switch(dir) {
+//				case 0:
+//					y+=spd;
+//					x-=spd;
+//					
+//					if(time >= 100) {
+//						dir = 1;
+//					}
+//					
+//					break;
+//					
+//				case 1:
+//					y+=spd;
+//					x+=spd;
+//					System.out.println("???");
+//					if(time >= 200) {
+//						dir = 2;
+//					}
+//					
+//					break;
+//					
+//				case 2:
+//					y-=spd;
+//					x+=spd;
+//					
+//					if(time > 300) {
+//						dir = 3;
+//					}
+//					
+//					break;
+//					
+//				case 3:
+//					y-=spd;
+//					x-=spd;
+//					
+//					if(time > 400) {
+//						time = 0;
+//						dir = 0;
+//					}
+//					
+//					break;
+//				
+//			}
 			
 			if(life != maxLife) {
 			this.estado = "fase_1";
 				canCreat = true;
-
+				this.animationState = "blink";
 			}
 			
 			break;
@@ -219,30 +225,37 @@ public class Spooky extends Entity{
 		case "fase_1":
 			
 			
-			System.out.println(walking);
-			System.out.println(attacking);
-			
-			int playerY = Main.player.getY() - 5;
-			int playerX = Main.player.getX() - 3;
-			double dis = this.calculateDistance(this.getX(), this.getY(), Main.player.getX(), Main.player.getY());
-			
-			if(dis > 0) {
-				
-				walking = false;
-				attacking = true;
-				
-				spd = .5f;
-
-				angle = Math.atan2(playerY- y, playerX - x);
-
-				dx = Math.cos(angle);
-				dy = Math.sin(angle);
-			
-				x += dx * spd;
-				y += dy * spd;
+			if(life < 9950) {
+				canCreat = true;
+				this.animationState = "idle";
 			}
 			
-			break;
+			
+//			
+//			
+//
+//			
+//			int playerY = Main.player.getY() - 5;
+//			int playerX = Main.player.getX() - 3;
+//			double dis = this.calculateDistance(this.getX(), this.getY(), Main.player.getX(), Main.player.getY());
+//			
+//			if(dis > 0) {
+//				
+////				walking = false;
+////				attacking = true;
+//				
+//				spd = .5f;
+//
+//				angle = Math.atan2(playerY- y, playerX - x);
+//
+//				dx = Math.cos(angle);
+//				dy = Math.sin(angle);
+//			
+//				x += dx * spd;
+//				y += dy * spd;
+//			}
+//			
+//			break;
 		}
 	}
 
