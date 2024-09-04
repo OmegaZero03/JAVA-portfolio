@@ -257,6 +257,16 @@ public class Entity {
 	public static BufferedImage SPOOKY_EN = Main.boss_placeholders.getSpritesheet(0, 16, _8x8, _16x_16);
 						/*********/////////////////**********/
 	
+		/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+	
+	public static BufferedImage BULLET_SHURIKEN =  Main.boss_samurai.getSpritesheet(0, 64, _16x_16, _16x_16),
+								BULLET_KUNAI = 	   Main.boss_samurai.getSpritesheet(16, 64, _16x_16, _16x_16),
+								BULLET_PINK_LEAF = Main.boss_samurai.getSpritesheet(32, 64, _16x_16, _16x_16),
+								BULLET_PINK_PETAL= Main.boss_samurai.getSpritesheet(48, 64, _16x_16, _16x_16);
+	
+		/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+	
 	
 	protected int width, height;
 	protected double x, y;

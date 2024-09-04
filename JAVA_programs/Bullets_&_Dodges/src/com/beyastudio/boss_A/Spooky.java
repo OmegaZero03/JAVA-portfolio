@@ -100,6 +100,7 @@ public class Spooky extends Entity{
 					
 					if(canResetFrames) {
 						index = 0;
+						frames = 0;
 						maxFrames = 20;
 						canResetFrames = false;
 					}
@@ -116,6 +117,7 @@ public class Spooky extends Entity{
 					
 					if(canResetFrames) {
 						index = 0;
+						frames = 0;
 						maxFrames = 25;
 						canResetFrames = false;
 					}
@@ -155,15 +157,46 @@ public class Spooky extends Entity{
 	}
 	
 	
+	public void setAnimation() {
+		
+		
+	}
+	
+	
+	
 	public void stateMachine() {
 		
 		switch(estado) {
 		
 		case "parado":
 			
-			
 			att = true;
+		
 			
+			if(life != maxLife) {
+			this.estado = "fase_1";
+				canCreat = true;
+				this.animationState = "blink";
+			}
+			
+			break;
+			
+			
+		case "fase_1":
+			
+			
+			if(canCreat) {
+				canCreat = false;
+				this.canResetFrames = true;
+			}
+			
+			if(life < 9950) {
+				this.animationState = "idle";
+			}
+			
+			
+			
+//         SE QUISER Q ELE ANDE EM UM LOSANGULO
 //			time++;
 //			
 //			
@@ -212,25 +245,6 @@ public class Spooky extends Entity{
 //					break;
 //				
 //			}
-			
-			if(life != maxLife) {
-			this.estado = "fase_1";
-				canCreat = true;
-				this.animationState = "blink";
-			}
-			
-			break;
-			
-			
-		case "fase_1":
-			
-			
-			if(life < 9950) {
-				canCreat = true;
-				this.animationState = "idle";
-			}
-			
-			
 //			
 //			
 //

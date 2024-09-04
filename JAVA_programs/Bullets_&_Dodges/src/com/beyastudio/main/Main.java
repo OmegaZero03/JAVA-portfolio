@@ -80,7 +80,10 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	public static List<Entity> tombs;
 	public static List<Bullet> BossBullets;
 	public static List<Orb_destroy> bee;
-	public static Spritesheet spritesheet, hurt_spritesheet, control, art, logo, teleports, boss_placeholders, boss_samurai;
+	public static Spritesheet spritesheet, 
+	hurt_spritesheet, control, art, logo, 
+	teleports, boss_placeholders, boss_samurai,
+	trees;
 	
 	public static boolean isBossG = false, isBossF = false, isBossI = false, isBossS = false;
 	
@@ -132,6 +135,7 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		logo = new Spritesheet("/logo.png");
 		teleports = new Spritesheet("/portals.png");
 		boss_samurai = new Spritesheet("/samurai.png");
+		trees = new Spritesheet("/trees.png");
 		player = new Player(0, 0, 8, 8, spritesheet.getSpritesheet(0, 0, 8, 8));
 		ui = new UI();
 		entities.add(player);
