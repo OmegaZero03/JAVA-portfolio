@@ -113,10 +113,23 @@ public class Entity {
 	
 	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 	
-								/*********SAMURAI BOOS SPRITES**********/
-	//public static BufferedImage SAMURAI_EN =
+							/********SAMURAI BOSS SPRITES**********/
+	public static BufferedImage BULLET_SHURIKEN =  Main.boss_samurai.getSpritesheet(0, 64, _16x_16, _16x_16),
+			BULLET_KUNAI = 	   Main.boss_samurai.getSpritesheet(16, 64, _16x_16, _16x_16),
+			BULLET_PINK_LEAF = Main.boss_samurai.getSpritesheet(32, 64, _16x_16, _16x_16),
+			BULLET_PINK_PETAL= Main.boss_samurai.getSpritesheet(48, 64, _16x_16, _16x_16);
 
+							/*********////////////////**********/
+		
+						/********SAMURAI TREES**********/
+	public static BufferedImage PINK_TREE_1 = Main.trees.getSpritesheet(0, 0, 32, 32),
+								PINK_TREE_2 = Main.trees.getSpritesheet(32, 0, 32, 32),
+								PINK_TREE_3 = Main.trees.getSpritesheet(64, 0, 32, 32),
+								METAL_TREE  = Main.trees.getSpritesheet(96, 0, 32, 32),
+								BROKEN_METAL_TREE = Main.trees.getSpritesheet(96, 32, 32, 32);
 	
+							/*********////////////////**********/
+
 	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 	
 	public static BufferedImage PORTAL_GRASS = Main.spritesheet.getSpritesheet(64, 248, _16x_16, 24),
@@ -258,15 +271,6 @@ public class Entity {
 						/*********/////////////////**********/
 	
 		/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-	
-	public static BufferedImage BULLET_SHURIKEN =  Main.boss_samurai.getSpritesheet(0, 64, _16x_16, _16x_16),
-								BULLET_KUNAI = 	   Main.boss_samurai.getSpritesheet(16, 64, _16x_16, _16x_16),
-								BULLET_PINK_LEAF = Main.boss_samurai.getSpritesheet(32, 64, _16x_16, _16x_16),
-								BULLET_PINK_PETAL= Main.boss_samurai.getSpritesheet(48, 64, _16x_16, _16x_16);
-	
-		/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-	
 	
 	protected int width, height;
 	protected double x, y;
