@@ -30,9 +30,7 @@ public class Spooky extends Entity{
 	
 	public int damageFrames = 5, currentFrames = 0;
 	
-	private BufferedImage[] idleAnimationSprites, blinkAnimationSprites;
-	
-	private boolean canResetFrames = true;
+	private BufferedImage[] AnimationSprites;
 	
 	private int frames = 0,
 			maxFrames = 20,
@@ -51,8 +49,7 @@ public class Spooky extends Entity{
 		this.blinkspriteNum = 4;
 		
 		
-		idleAnimationSprites = new BufferedImage[idlespriteNum];
-		blinkAnimationSprites = new BufferedImage[blinkspriteNum];
+		AnimationSprites = new BufferedImage[idlespriteNum];
 
 	}
 	
@@ -85,6 +82,9 @@ public class Spooky extends Entity{
 		
 		
 		stateMachine();
+		
+
+		
 	}
 	
 	
@@ -98,16 +98,9 @@ public class Spooky extends Entity{
 			
 				case "idle":
 					
-					if(canResetFrames) {
-						index = 0;
-						frames = 0;
-						maxFrames = 20;
-						canResetFrames = false;
-					}
-					
 					for(int i=0; i < this.idlespriteNum; i++) {
-					idleAnimationSprites[i] = Main.boss_samurai.getSpritesheet(0 + (16 * i),0, 16, 16);
-					g.drawImage(idleAnimationSprites[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
+					AnimationSprites[i] = Main.boss_samurai.getSpritesheet(0 + (16 * i),0, 16, 16);
+					g.drawImage(AnimationSprites[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
 				}
 					
 					break;
@@ -115,23 +108,15 @@ public class Spooky extends Entity{
 					
 				case "blink":
 					
-					if(canResetFrames) {
-						index = 0;
-						frames = 0;
-						maxFrames = 25;
-						canResetFrames = false;
-					}
-
-					for(int i=0; i < this.blinkspriteNum; i++) {
-					idleAnimationSprites[i] = Main.boss_samurai.getSpritesheet(0 + (i*16), 16, 16, 16);
-					g.drawImage(idleAnimationSprites[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
-					
 					if(index == 3) {
 						maxFrames = 45;
 					}else {
 						maxFrames = 25;
 					}
 					
+					for(int i=0; i < this.blinkspriteNum; i++) {
+					AnimationSprites[i] = Main.boss_samurai.getSpritesheet(0 + (i*16), 16, 16, 16);
+					g.drawImage(AnimationSprites[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
 				}
 					
 					break;
@@ -157,8 +142,22 @@ public class Spooky extends Entity{
 	}
 	
 	
-	public void setAnimation() {
+	public void setAnimation(String animationState) {
 		
+		this.animationState = animationState;
+		index = 0;
+		frames = 0;
+		
+		switch(animationState) {
+		
+			case "idle":
+				maxFrames = 20;
+				break;
+				
+			case "blink":
+				maxFrames = 25;
+				break;
+		}
 		
 	}
 	
@@ -176,7 +175,7 @@ public class Spooky extends Entity{
 			if(life != maxLife) {
 			this.estado = "fase_1";
 				canCreat = true;
-				this.animationState = "blink";
+				setAnimation("blink");
 			}
 			
 			break;
@@ -185,13 +184,14 @@ public class Spooky extends Entity{
 		case "fase_1":
 			
 			
-			if(canCreat) {
-				canCreat = false;
-				this.canResetFrames = true;
-			}
 			
-			if(life < 9950) {
-				this.animationState = "idle";
+			if(life < 9950)
+			{
+				
+				if(canCreat) {
+					setAnimation("idle");
+					canCreat = false;
+				}
 			}
 			
 			
