@@ -44,7 +44,12 @@ public class World {
 				for(int yy = 0; yy < map.getHeight(); yy++) {
 					 
 					int pixelAtual = pixels[xx + (yy * map.getWidth())];
-					tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_STONE_2);
+					
+					if(Main.atualWorld.equals("/world2.png")) {
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_STONE_2);
+					}else if(Main.atualWorld.equals("/world.png")) {
+						tiles[xx + (yy * WIDTH)] = new AnimatedTile(xx * 8, yy * 8, Tile.TILE_BLACK, Tile.TILE_WATER, Tile.TILE_ANI_WATER);
+					}
 					
 					
 					switch(pixelAtual) {
@@ -685,6 +690,137 @@ public class World {
 						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_STONE_5);
 						break;
 						
+						
+						
+					// BOOS SAMURAI AGUA TILES ANIMADOS LINDOS
+						
+					case 0xff20d6c0:
+						tiles[xx + (yy * WIDTH)] = new AnimatedTile(xx * 8, yy * 8, Tile.TILE_BLACK, Tile.TILE_WATER, Tile.TILE_ANI_WATER);
+						break;
+						
+					// BOOS SAMURAI AGUA chao TILES ANIMADOS LINDOS
+						
+					case 0xff20d6c1:
+						tiles[xx + (yy * WIDTH)] = new AnimatedTile(xx * 8, yy * 8, Tile.TILE_BLACK, Tile.TILE_WGROUND_0, Tile.TILE_ANI_WGROUND_0);
+						break;
+						
+					case 0xff20d6c2:
+						tiles[xx + (yy * WIDTH)] = new AnimatedTile(xx * 8, yy * 8, Tile.TILE_BLACK, Tile.TILE_WGROUND_1, Tile.TILE_ANI_WGROUND_1);
+						break;
+						
+					case 0xff20d6c3:
+						tiles[xx + (yy * WIDTH)] = new AnimatedTile(xx * 8, yy * 8, Tile.TILE_BLACK, Tile.TILE_WGROUND_2, Tile.TILE_ANI_WGROUND_2);
+						break;
+						
+						
+					case 0xff20d6c4:
+						tiles[xx + (yy * WIDTH)] = new AnimatedTile(xx * 8, yy * 8, Tile.TILE_BLACK, Tile.TILE_WGROUND_3, Tile.TILE_ANI_WGROUND_3);
+						break;
+						
+					case 0xff20d6c5:
+						tiles[xx + (yy * WIDTH)] = new AnimatedTile(xx * 8, yy * 8, Tile.TILE_BLACK, Tile.TILE_WGROUND_4, Tile.TILE_ANI_WGROUND_4);
+						break;
+						
+						
+					case 0xff20d6c6:
+						tiles[xx + (yy * WIDTH)] = new AnimatedTile(xx * 8, yy * 8, Tile.TILE_BLACK, Tile.TILE_WGROUND_5, Tile.TILE_ANI_WGROUND_5);
+						break;
+						
+						
+					case 0xff20d6c7:
+						tiles[xx + (yy * WIDTH)] = new AnimatedTile(xx * 8, yy * 8, Tile.TILE_BLACK, Tile.TILE_WGROUND_6, Tile.TILE_ANI_WGROUND_6);
+						break;
+						
+					case 0xff20d6c8:
+						tiles[xx + (yy * WIDTH)] = new AnimatedTile(xx * 8, yy * 8, Tile.TILE_BLACK, Tile.TILE_WGROUND_7, Tile.TILE_ANI_WGROUND_7);
+						break;
+						
+					case 0xff20d6c9:
+						tiles[xx + (yy * WIDTH)] = new AnimatedTile(xx * 8, yy * 8, Tile.TILE_BLACK, Tile.TILE_WGROUND_8, Tile.TILE_ANI_WGROUND_8);
+						break;
+						
+						
+					case 0xff20d6ca:
+						tiles[xx + (yy * WIDTH)] = new AnimatedTile(xx * 8, yy * 8, Tile.TILE_BLACK, Tile.TILE_WGROUND_9, Tile.TILE_ANI_WGROUND_9);
+						break;
+						
+					case 0xff20d6cb:
+						tiles[xx + (yy * WIDTH)] = new AnimatedTile(xx * 8, yy * 8, Tile.TILE_BLACK, Tile.TILE_WGROUND_10, Tile.TILE_ANI_WGROUND_10);
+						break;
+						
+					case 0xff20d6cc:
+						tiles[xx + (yy * WIDTH)] = new AnimatedTile(xx * 8, yy * 8, Tile.TILE_BLACK, Tile.TILE_WGROUND_11, Tile.TILE_ANI_WGROUND_11);
+						break;
+						
+					// BOOS SAMURAI CHAO
+					
+					case 0xfffad6b6:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_PINK_0);
+						break;
+						
+					case 0xfffad6b7:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_PINK_1);
+						break;
+						
+					case 0xfffad6b8:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_PINK_2);
+						break;
+						
+					case 0xfffad6b9:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_PINK_3);
+						break;
+						
+					case 0xfffad6ba:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_PINK_4);
+						break;
+						
+					case 0xfffad6bb:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_PINK_5);
+						break;
+						
+					case 0xfffad6bc:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_PINK_6);
+						break;
+						
+					case 0xfffad6bd:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_PINK_7);
+						break;
+						
+					case 0xfffad6be:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_PINK_8);
+						break;
+						
+						
+						
+						
+					
+					// BOOS SAMURAI TILES SOMBRA DA ARVORE
+					case 0xfffad6b0:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_UNDER_TREE_0);
+						break;
+						
+					case 0xfffad6b1:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_UNDER_TREE_1);
+						break;
+						
+					case 0xfffad6b2:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_UNDER_TREE_2);
+						break;
+						
+					case 0xfffad6b3:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_UNDER_TREE_3);
+						break;
+						
+					case 0xfffad6b4:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_UNDER_TREE_4);
+						break;
+						
+					case 0xfffad6b5:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_UNDER_TREE_5);
+						break;
+						
+						
+					//
 						
 				
 					}

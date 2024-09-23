@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import com.beyastudio.entities.Crown;
 import com.beyastudio.entities.Entity;
 import com.beyastudio.main.Main;
 import com.beyastudio.wolrd.Camera;
@@ -42,6 +43,14 @@ public class Spooky extends Entity{
 	public Spooky(int x, int y, int width, int height, BufferedImage sprite) {
 		super(x, y, width, height, sprite);
 		
+		
+		//TEST
+		if(Main.crown) {
+			Crown c = new Crown(Main.player.getX(), Main.player.getY(), 8, 8, Entity.CROWN_DIR);
+			Main.entities.add(c);
+			Main.crown = false;
+		}
+		
 		this.life = 10000;
 		this.maxLife = 10000;
 		
@@ -68,7 +77,6 @@ public class Spooky extends Entity{
 				if(index > maxIndex) {
 					index = 0;
 				}
-			
 			}
 		}
 		
@@ -125,7 +133,6 @@ public class Spooky extends Entity{
 					
 					
 				case "attack":
-					
 					for(int i=0; i < this.attSpriteNum; i++) {
 					attAnimationSprites[i] = Main.boss_samurai.getSpritesheet(0 + (i*32), 32, 32, 32);
 					g.drawImage(attAnimationSprites[index], this.getX() - Camera.x - 16, this.getY() - Camera.y - 16, null);
@@ -140,10 +147,14 @@ public class Spooky extends Entity{
 		
 		
 		if (life != maxLife) {
+			
+			int yOffSet = -17;
+			int xOffSet = 2;
+			
 			g.setColor(Color.red);
-			g.fillRect((int) x - Camera.x - 3, (int) y - 4 - Camera.y, 20, 2);
+			g.fillRect((int) x - Camera.x - xOffSet, (int) y - yOffSet - Camera.y, 20, 2);
 			g.setColor(new Color(0xff5c31ab));
-			g.fillRect((int) x - Camera.x - 3, (int) y - 4 - Camera.y, (int) ((life / maxLife) * 20), 2);
+			g.fillRect((int) x - Camera.x - xOffSet, (int) y - yOffSet - Camera.y, (int) ((life / maxLife) * 20), 2);
 		}
 
 	}

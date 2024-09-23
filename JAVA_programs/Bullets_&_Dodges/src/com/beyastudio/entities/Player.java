@@ -77,6 +77,8 @@ public class Player extends Entity {
 		downAtack = new BufferedImage[2];
 		
 		
+		//TEST 
+		
 		
 
 		if(this.alternativaSkin == false) {

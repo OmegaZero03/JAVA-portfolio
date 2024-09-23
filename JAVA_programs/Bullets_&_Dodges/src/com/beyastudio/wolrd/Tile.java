@@ -149,6 +149,58 @@ public class Tile {
 								TILE_STONE_4 = Main.spritesheet.getSpritesheet(152, 120, tile_size, tile_size),
 								TILE_STONE_5 = Main.spritesheet.getSpritesheet(144, 128, tile_size, tile_size);
 	
+				/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+	
+	public static BufferedImage TILE_UNDER_TREE_0 = Main.tiles_samurai.getSpritesheet(32, 16, tile_size, tile_size),
+								TILE_UNDER_TREE_1 = Main.tiles_samurai.getSpritesheet(40, 16, tile_size, tile_size),
+								TILE_UNDER_TREE_2 = Main.tiles_samurai.getSpritesheet(48, 16, tile_size, tile_size),
+								TILE_UNDER_TREE_3 = Main.tiles_samurai.getSpritesheet(32, 24, tile_size, tile_size),
+								TILE_UNDER_TREE_4 = Main.tiles_samurai.getSpritesheet(40, 24, tile_size, tile_size),
+								TILE_UNDER_TREE_5 = Main.tiles_samurai.getSpritesheet(48, 24, tile_size, tile_size);
+	
+				/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+	
+	public static BufferedImage TILE_PINK_0 = Main.tiles_samurai.getSpritesheet(128, 8, tile_size, tile_size),
+			TILE_PINK_1 = Main.tiles_samurai.getSpritesheet(136, 8, tile_size, tile_size),
+			TILE_PINK_2 = Main.tiles_samurai.getSpritesheet(144, 8, tile_size, tile_size),
+			TILE_PINK_3 = Main.tiles_samurai.getSpritesheet(128, 16, tile_size, tile_size),
+			TILE_PINK_4 = Main.tiles_samurai.getSpritesheet(136, 16, tile_size, tile_size),
+			TILE_PINK_5 = Main.tiles_samurai.getSpritesheet(144, 16, tile_size, tile_size),
+			TILE_PINK_6 = Main.tiles_samurai.getSpritesheet(128, 24, tile_size, tile_size),
+			TILE_PINK_7 = Main.tiles_samurai.getSpritesheet(136, 24, tile_size, tile_size),
+			TILE_PINK_8 = Main.tiles_samurai.getSpritesheet(144, 24, tile_size, tile_size);
+	
+				/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+	
+	public static BufferedImage TILE_WATER = Main.tiles_samurai.getSpritesheet(128, 0, tile_size, tile_size),
+			TILE_WGROUND_0 = Main.tiles_samurai.getSpritesheet(136, 0, tile_size, tile_size),
+			TILE_WGROUND_1 = Main.tiles_samurai.getSpritesheet(144, 0, tile_size, tile_size),
+			TILE_WGROUND_2 = Main.tiles_samurai.getSpritesheet(144, 8, tile_size, tile_size),
+			TILE_WGROUND_3 = Main.tiles_samurai.getSpritesheet(152, 8, tile_size, tile_size),
+			TILE_WGROUND_4 = Main.tiles_samurai.getSpritesheet(152, 16, tile_size, tile_size),
+			TILE_WGROUND_5 = Main.tiles_samurai.getSpritesheet(152, 24, tile_size, tile_size),
+			TILE_WGROUND_6 = Main.tiles_samurai.getSpritesheet(144, 32, tile_size, tile_size),
+			TILE_WGROUND_7 = Main.tiles_samurai.getSpritesheet(136, 32, tile_size, tile_size),
+			TILE_WGROUND_8 = Main.tiles_samurai.getSpritesheet(128, 32, tile_size, tile_size),
+			TILE_WGROUND_9 = Main.tiles_samurai.getSpritesheet(120, 24, tile_size, tile_size),
+			TILE_WGROUND_10 = Main.tiles_samurai.getSpritesheet(120, 16, tile_size, tile_size),
+			TILE_WGROUND_11 = Main.tiles_samurai.getSpritesheet(120, 8, tile_size, tile_size),
+			//**********ANIMATED PARTS******************
+			TILE_ANI_WATER = Main.tiles_samurai.getSpritesheet(128, 8, tile_size, tile_size),
+			TILE_ANI_WGROUND_0 = Main.tiles_samurai.getSpritesheet(128, 8, tile_size, tile_size),
+			TILE_ANI_WGROUND_1 = Main.tiles_samurai.getSpritesheet(136, 8, tile_size, tile_size),
+			TILE_ANI_WGROUND_2 = Main.tiles_samurai.getSpritesheet(144, 8, tile_size, tile_size),
+			TILE_ANI_WGROUND_3 = Main.tiles_samurai.getSpritesheet(128, 16, tile_size, tile_size),
+			TILE_ANI_WGROUND_4 = Main.tiles_samurai.getSpritesheet(136, 16, tile_size, tile_size),
+			TILE_ANI_WGROUND_5 = Main.tiles_samurai.getSpritesheet(144, 16, tile_size, tile_size),
+			TILE_ANI_WGROUND_6 = Main.tiles_samurai.getSpritesheet(128, 24, tile_size, tile_size),
+			TILE_ANI_WGROUND_7 = Main.tiles_samurai.getSpritesheet(136, 24, tile_size, tile_size),
+			TILE_ANI_WGROUND_8 = Main.tiles_samurai.getSpritesheet(144, 24, tile_size, tile_size),
+			TILE_ANI_WGROUND_9 = Main.tiles_samurai.getSpritesheet(144, 24, tile_size, tile_size),
+			TILE_ANI_WGROUND_10 = Main.tiles_samurai.getSpritesheet(144, 24, tile_size, tile_size),
+			TILE_ANI_WGROUND_11 = Main.tiles_samurai.getSpritesheet(144, 24, tile_size, tile_size);
+			
+	
 	
 	
 	

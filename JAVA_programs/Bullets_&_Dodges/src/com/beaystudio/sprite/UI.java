@@ -21,93 +21,104 @@ public class UI {
 	}
 	
 	public void render(Graphics g) {
+		g.setColor(Color.BLACK);
+		g.fillRect(x + 14, y - 20, 21, 3);
+		g.fillRect(x + 13, y - 21, 21, 3);
+		
+		g.setColor(new Color(0xffaa00ff));
+		g.fillRect(x+13, y - 18, 1, 1);
+		g.fillRect(x+34, y - 21, 1, 1);
+		
+		g.fillRect(x+34, y - 18, 1, 1);
+		g.fillRect(x+13, y - 21, 1, 1);
+		
 		g.setColor(Color.red);
-		g.fillRect(x - 7, y, 50, 7);
-		g.setColor(new Color(255, 0 ,255));
-		g.fillRect(x - 7, y, (int)((Main.player.life/Main.player.maxLife)*50) , 7);
-		g.setColor(Color.WHITE);
-		g.setFont(new Font("arial", Font.BOLD, 8));
-		g.drawString("HP", x - 5, y + 7);
+		g.fillRect(x + 14, y - 20, 20, 2);
+		g.setColor(Color.GREEN);
+		g.fillRect(x + 14, y - 20, (int)((Main.player.life/Main.player.maxLife)*20) , 2);
+
+//		g.setFont(new Font("arial", Font.BOLD, 8));
+//		g.drawString("HP", x - 5, y + 7);
 		
 		g.setFont(new Font("arial",Font.PLAIN, 8));
-		String s = String.valueOf((int)Main.player.life);
-		String ss = String.valueOf((int)Main.player.maxLife);
-		g.drawString(s + "/" + ss, x + 12 , y + 7);
+//		String s = String.valueOf((int)Main.player.life);
+//		String ss = String.valueOf((int)Main.player.maxLife);
+//		g.drawString(s + "/" + ss, x + 12 , y + 7);
 		
 		//SansSerif
 		g.setColor(new Color(0xffee3fbb));
 		g.setFont(new Font("SansSerif",Font.BOLD, 8));
-		if(Main.player.haveCrown) {
-			g.drawString("dmg ▶ " + Main.player.dmg * 2, x - 55, y + 7);
-		}else {
-			g.drawString("dmg ▶ " + Main.player.dmg, x - 55, y + 7);
-		}
-		
-		g.setColor(new Color(0xff6b3d38));
-		String ssss = String.format("%.1f",Main.player.spd);
-		g.drawString("Spd ▶ " + ssss, x - 55, y-141);
-		g.setColor(new Color(0xffdae0ea));
-		String sss = String.format("%.1f",Main.player.atackSpeed);
-		g.drawString("attSpd ▶ " + sss, x +52 - 3, y+7);
-		g.setColor(new Color(0xffaa00ff));
-		String sssss = String.format("%.1f", Main.player.healling);
-		g.drawString("LifeSteal ▶ " + sssss, x +52 - 7, y-141);
-		
-		if(dmg) {
-			countDmg++;
-			if(countDmg <= timepop) {
-				g.setFont(new Font("arial",Font.BOLD, 11));
-				g.setColor(new Color(0xffee3fbb));
-				g.drawString("DMG UP", x - 45, y - 24);
-			}else {
-				dmg = false;
-				countDmg = 0;
-			}
-		}else {
-			countDmg = 0;
-		}
-		
-		if(spd) {
-			countSpd++;
-			if(countSpd <= timepop) {
-				g.setFont(new Font("arial",Font.BOLD, 11));
-				g.setColor(new Color(0xff6b3d38));
-				g.drawString("SPD UP", x - 35, y - 105);
-			}else {
-				spd = false;
-				countSpd = 0;
-			}
-		}else {
-			countSpd = 0;
-		}
-		
-		if(attspd) {
-			countAttspd++;
-			if(countAttspd <= timepop) {
-				g.setFont(new Font("arial",Font.BOLD, 11));
-				g.setColor(new Color(0xffdae0ea));
-				g.drawString("ATT SPD UP", x +35, y- 20);
-			}else {
-				attspd = false;
-				countAttspd = 0;
-			}
-		}else {
-			countAttspd = 0;
-		}
-		
-		if(hp) {
-			countHp++;
-			if(countHp <= timepop) {
-				g.setFont(new Font("arial",Font.BOLD, 11));
-				g.setColor(new Color(255, 0 ,255));
-				g.drawString("HP UP", x, y - 10);
-			}else {
-				hp = false;
-				countHp = 0;
-			}
-		}else {
-			countHp = 0;
-		}
+//		if(Main.player.haveCrown) {
+//			g.drawString("dmg ▶ " + Main.player.dmg * 2, x - 55, y + 7);
+//		}else {
+//			g.drawString("dmg ▶ " + Main.player.dmg, x - 55, y + 7);
+//		}
+//		
+//		g.setColor(new Color(0xff6b3d38));
+//		String ssss = String.format("%.1f",Main.player.spd);
+//		g.drawString("Spd ▶ " + ssss, x - 55, y-141);
+//		g.setColor(new Color(0xffdae0ea));
+//		String sss = String.format("%.1f",Main.player.atackSpeed);
+//		g.drawString("attSpd ▶ " + sss, x +52 - 3, y+7);
+//		g.setColor(new Color(0xffaa00ff));
+//		String sssss = String.format("%.1f", Main.player.healling);
+//		g.drawString("LifeSteal ▶ " + sssss, x +52 - 7, y-141);
+//		
+//		if(dmg) {
+//			countDmg++;
+//			if(countDmg <= timepop) {
+//				g.setFont(new Font("arial",Font.BOLD, 11));
+//				g.setColor(new Color(0xffee3fbb));
+//				g.drawString("DMG UP", x - 45, y - 24);
+//			}else {
+//				dmg = false;
+//				countDmg = 0;
+//			}
+//		}else {
+//			countDmg = 0;
+//		}
+//		
+//		if(spd) {
+//			countSpd++;
+//			if(countSpd <= timepop) {
+//				g.setFont(new Font("arial",Font.BOLD, 11));
+//				g.setColor(new Color(0xff6b3d38));
+//				g.drawString("SPD UP", x - 35, y - 105);
+//			}else {
+//				spd = false;
+//				countSpd = 0;
+//			}
+//		}else {
+//			countSpd = 0;
+//		}
+//		
+//		if(attspd) {
+//			countAttspd++;
+//			if(countAttspd <= timepop) {
+//				g.setFont(new Font("arial",Font.BOLD, 11));
+//				g.setColor(new Color(0xffdae0ea));
+//				g.drawString("ATT SPD UP", x +35, y- 20);
+//			}else {
+//				attspd = false;
+//				countAttspd = 0;
+//			}
+//		}else {
+//			countAttspd = 0;
+//		}
+//		
+//		if(hp) {
+//			countHp++;
+//			if(countHp <= timepop) {
+//				g.setFont(new Font("arial",Font.BOLD, 11));
+//				g.setColor(new Color(255, 0 ,255));
+//				g.drawString("HP UP", x, y - 10);
+//			}else {
+//				hp = false;
+//				countHp = 0;
+//			}
+//		}else {
+//			countHp = 0;
+//		}
 		
 		if(crown) {
 			countCrown++;

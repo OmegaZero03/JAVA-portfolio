@@ -41,6 +41,7 @@ import com.beyastudio.entities.Puppy;
 import com.beyastudio.entities.Tombstone;
 import com.beyastudio.entities.teleporters.Teleport_back;
 import com.beyastudio.entities.teleporters.Teleporter;
+import com.beyastudio.wolrd.AnimatedTile;
 import com.beyastudio.wolrd.IceShootTile;
 import com.beyastudio.wolrd.Portal;
 import com.beyastudio.wolrd.ShootTile;
@@ -54,8 +55,8 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	private static final long serialVersionUID = 1L;
 	private Thread th;
 	private boolean isRunning = true;
-	public static final int width = 160;
-	public static final int height = 160;
+	public static final int width = 120*2;
+	public static final int height = 120 * 2;
 	public static final int escala = 4,
 							muxW = width * escala,
 							muxH = height * escala;
@@ -63,11 +64,11 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	public static boolean orbgrass = true, orbice = true, orbfire = true;
 	public static boolean crown = true, flower = true, beeCreab = true;
 	
-	public static String gameState = "menu";
+	public static String gameState = "normal";
 	private boolean showMessageGameover  = true, restartGame = false;
 	private int framesgameover = 0;
 	
-	public static String atualWorld = "/world2.png";
+	public static String atualWorld = "/world.png";
 	
 	private BufferedImage image;
 	public static List<WallTile> walls;
@@ -80,10 +81,11 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	public static List<Entity> tombs;
 	public static List<Bullet> BossBullets;
 	public static List<Orb_destroy> bee;
+	public static List<AnimatedTile> animatedTiles;
 	public static Spritesheet spritesheet, 
 	hurt_spritesheet, control, art, logo, 
 	teleports, boss_placeholders, boss_samurai,
-	trees;
+	trees, tiles_samurai;
 	
 	public static boolean isBossG = false, isBossF = false, isBossI = false, isBossS = false;
 	
@@ -112,7 +114,6 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		this.addMouseMotionListener(this);
 		this.addKeyListener(this);
 		this.addMouseListener(this);
-		setPreferredSize(new Dimension(muxW, muxH));
 		initFrame();
 		// Init Objects
 		ran = new Random();
@@ -125,6 +126,7 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		shootWalls = new ArrayList<ShootTile>();
 		tombs = new ArrayList<Entity>();
 		bee = new ArrayList<Orb_destroy>();
+		animatedTiles = new ArrayList<AnimatedTile>();
 		iceShootWalls = new ArrayList<IceShootTile>();
 		shootWallsSlow = new ArrayList<ShootTileSlow>();
 		spritesheet = new Spritesheet("/spritesheet.png");
@@ -135,13 +137,12 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		logo = new Spritesheet("/logo.png");
 		teleports = new Spritesheet("/portals.png");
 		boss_samurai = new Spritesheet("/samurai.png");
+		tiles_samurai = new Spritesheet("/tiles_samurai.png");
 		trees = new Spritesheet("/trees.png");
 		player = new Player(0, 0, 8, 8, spritesheet.getSpritesheet(0, 0, 8, 8));
 		ui = new UI();
 		entities.add(player);
-		puppy = new Puppy(67  *8, 63 * 8, 16, 16, Entity.PUPPY_TALK_0);
-		entities.add(puppy);
-		world = new World("/world2.png");
+		world = new World(atualWorld);
 		this.setFocusable(true);
 		this.requestFocus();
 		
@@ -158,9 +159,18 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 //		portal_gold_2 = new Portal(824 - 8, 480, Entity.PORTAL_GOLD);
 //		portals.add(portal_gold_2);
 		
+		
+		//TESTE*********************************************
+		isBossS = true;
+		boss_A = new Spooky(464, 472, 16, 16, Entity.SPOOKY_EN);
+		
+		
 		//In the world 2
 		if(Main.atualWorld == "/world2.png") {
 			teleporters();
+			
+			puppy = new Puppy(67  *8, 63 * 8, 16, 16, Entity.PUPPY_TALK_0);
+			entities.add(puppy);
 			
 			boss_1 = new Finn(228 , 140, 16, 16, Entity.FINN_EN);
 			boss_2 = new FireP(144, 680, 16, 16, Entity.FIRE_EN);
@@ -181,6 +191,13 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		JFrame frame = new JFrame("Bullest & Dodges");
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		setPreferredSize(new Dimension(muxW, muxH));
+		
+		frame.setVisible(true);
+		
 		frame.add(this);
 		frame.pack();
 		
@@ -281,6 +298,12 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 			
 			for(int i = 0; i < tombs.size(); i++) {
 				Entity b = tombs.get(i);
+				b.tick();
+			}
+			
+			
+			for(int i = 0; i < animatedTiles.size(); i++) {
+				AnimatedTile b = animatedTiles.get(i);
 				b.tick();
 			}
 			
@@ -386,8 +409,15 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		/**Quanto mais em cima mais embaixo renderiza**/
 		
 		
+		
+		for(int i = 0; i < animatedTiles.size(); i++) {
+			AnimatedTile b = animatedTiles.get(i);
+			b.render(g);
+		}
 		world.render(g);
 		//render boss IF it EXIST
+		
+		ui.render(g);
 		
 		for(int i = 0; i < tombs.size(); i++) {
 			Entity b = tombs.get(i);
@@ -405,6 +435,8 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 			
 		}
 		
+		
+		
 		// renderizando cada entidade
 		for(int i = 0; i < entities.size(); i++) {
 			Entity e = entities.get(i);
@@ -417,6 +449,8 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 			Entity fb = BossBullets.get(i);
 			fb.render(g);
 		}
+		
+		
 		
 		if(isBossF) {
 			boss_2.render(g);
@@ -458,7 +492,6 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 			e.render(g);
 		}
 		
-		ui.render(g);
 	
 		/**Quanto mais embaixo mais em cima renderiza**/
 		
@@ -727,10 +760,12 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		player.shoot = true;
-		player.mx = e.getX() / 4 + 5;
-		player.my = e.getY() / 4 + 10;
-		player.autoShoot = false;
+		if(player != null) {
+			player.shoot = true;
+			player.mx = e.getX() / 4 + 5;
+			player.my = e.getY() / 4 + 10;
+			player.autoShoot = false;
+		}
 	}
 
 	@Override
@@ -757,9 +792,11 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		
-		player.shoot = true;
-		player.mx = e.getX() / 4 + 5;
-		player.my = e.getY() / 4 + 10;
+		if(player != null) {
+			player.shoot = true;
+			player.mx = e.getX() / 4 + 5;
+			player.my = e.getY() / 4 + 10;
+		}
 	}
 
 	@Override
