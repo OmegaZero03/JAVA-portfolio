@@ -265,6 +265,14 @@ public class Entity {
 								BULLET_PINK_PETAL= Main.boss_samurai.getSpritesheet(48, 64, _16x_16, _16x_16);
 	
 		/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+	//0, 0
+	//32,0
+	//64,0
+	//96,0
+	//BROKEN = 96, 32
+	public static BufferedImage SAKURA_0 =  Main.trees.getSpritesheet(0, 64, _16x_16, _16x_16);
+	
+		/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 	
 	

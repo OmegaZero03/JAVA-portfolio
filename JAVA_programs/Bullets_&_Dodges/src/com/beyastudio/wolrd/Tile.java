@@ -172,10 +172,11 @@ public class Tile {
 	
 				/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 	
-	public static BufferedImage TILE_WATER = Main.tiles_samurai.getSpritesheet(128, 0, tile_size, tile_size),
-			TILE_WGROUND_0 = Main.tiles_samurai.getSpritesheet(136, 0, tile_size, tile_size),
-			TILE_WGROUND_1 = Main.tiles_samurai.getSpritesheet(144, 0, tile_size, tile_size),
-			TILE_WGROUND_2 = Main.tiles_samurai.getSpritesheet(144, 8, tile_size, tile_size),
+	
+	public static BufferedImage TILE_WATER = Main.tiles_samurai.getSpritesheet(96, 0, tile_size, tile_size),
+			TILE_WGROUND_0 = Main.tiles_samurai.getSpritesheet(128, 0, tile_size, tile_size),
+			TILE_WGROUND_1 = Main.tiles_samurai.getSpritesheet(136, 0, tile_size, tile_size),
+			TILE_WGROUND_2 = Main.tiles_samurai.getSpritesheet(144, 0, tile_size, tile_size),
 			TILE_WGROUND_3 = Main.tiles_samurai.getSpritesheet(152, 8, tile_size, tile_size),
 			TILE_WGROUND_4 = Main.tiles_samurai.getSpritesheet(152, 16, tile_size, tile_size),
 			TILE_WGROUND_5 = Main.tiles_samurai.getSpritesheet(152, 24, tile_size, tile_size),
@@ -186,20 +187,68 @@ public class Tile {
 			TILE_WGROUND_10 = Main.tiles_samurai.getSpritesheet(120, 16, tile_size, tile_size),
 			TILE_WGROUND_11 = Main.tiles_samurai.getSpritesheet(120, 8, tile_size, tile_size),
 			//**********ANIMATED PARTS******************
-			TILE_ANI_WATER = Main.tiles_samurai.getSpritesheet(128, 8, tile_size, tile_size),
-			TILE_ANI_WGROUND_0 = Main.tiles_samurai.getSpritesheet(128, 8, tile_size, tile_size),
-			TILE_ANI_WGROUND_1 = Main.tiles_samurai.getSpritesheet(136, 8, tile_size, tile_size),
-			TILE_ANI_WGROUND_2 = Main.tiles_samurai.getSpritesheet(144, 8, tile_size, tile_size),
-			TILE_ANI_WGROUND_3 = Main.tiles_samurai.getSpritesheet(128, 16, tile_size, tile_size),
-			TILE_ANI_WGROUND_4 = Main.tiles_samurai.getSpritesheet(136, 16, tile_size, tile_size),
-			TILE_ANI_WGROUND_5 = Main.tiles_samurai.getSpritesheet(144, 16, tile_size, tile_size),
-			TILE_ANI_WGROUND_6 = Main.tiles_samurai.getSpritesheet(128, 24, tile_size, tile_size),
-			TILE_ANI_WGROUND_7 = Main.tiles_samurai.getSpritesheet(136, 24, tile_size, tile_size),
-			TILE_ANI_WGROUND_8 = Main.tiles_samurai.getSpritesheet(144, 24, tile_size, tile_size),
-			TILE_ANI_WGROUND_9 = Main.tiles_samurai.getSpritesheet(144, 24, tile_size, tile_size),
-			TILE_ANI_WGROUND_10 = Main.tiles_samurai.getSpritesheet(144, 24, tile_size, tile_size),
-			TILE_ANI_WGROUND_11 = Main.tiles_samurai.getSpritesheet(144, 24, tile_size, tile_size);
+			TILE_ANI_WATER = Main.tiles_samurai.getSpritesheet(104, 0, tile_size, tile_size),
+			TILE_ANI_WGROUND_0 = Main.tiles_samurai.getSpritesheet(176, 0, tile_size, tile_size),
+			TILE_ANI_WGROUND_1 = Main.tiles_samurai.getSpritesheet(184, 0, tile_size, tile_size),
+			TILE_ANI_WGROUND_2 = Main.tiles_samurai.getSpritesheet(192, 0, tile_size, tile_size),
+			TILE_ANI_WGROUND_3 = Main.tiles_samurai.getSpritesheet(200, 8, tile_size, tile_size),
+			TILE_ANI_WGROUND_4 = Main.tiles_samurai.getSpritesheet(200, 16, tile_size, tile_size),
+			TILE_ANI_WGROUND_5 = Main.tiles_samurai.getSpritesheet(200, 24, tile_size, tile_size),
+			TILE_ANI_WGROUND_6 = Main.tiles_samurai.getSpritesheet(192, 32, tile_size, tile_size),
+			TILE_ANI_WGROUND_7 = Main.tiles_samurai.getSpritesheet(184, 32, tile_size, tile_size),
+			TILE_ANI_WGROUND_8 = Main.tiles_samurai.getSpritesheet(176, 32, tile_size, tile_size),
+			TILE_ANI_WGROUND_9 = Main.tiles_samurai.getSpritesheet(168, 24, tile_size, tile_size),
+			TILE_ANI_WGROUND_10 = Main.tiles_samurai.getSpritesheet(168, 16, tile_size, tile_size),
+			TILE_ANI_WGROUND_11 = Main.tiles_samurai.getSpritesheet(168, 8, tile_size, tile_size);
+	
+	
+			/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+	public static BufferedImage TILE_RED_FLOWER_0 = Main.tiles_samurai.getSpritesheet(64, 0, tile_size, tile_size),
+			TILE_RED_FLOWER_1 = Main.tiles_samurai.getSpritesheet(72, 0, tile_size, tile_size),
+			TILE_RED_FLOWER_2 = Main.tiles_samurai.getSpritesheet(80, 0, tile_size, tile_size),
+			TILE_BLUE_FLOWER_0 = Main.tiles_samurai.getSpritesheet(64, 8, tile_size, tile_size),
+			TILE_BLUE_FLOWER_1 = Main.tiles_samurai.getSpritesheet(72, 8, tile_size, tile_size),
+			TILE_BLUE_FLOWER_2 = Main.tiles_samurai.getSpritesheet(80, 8, tile_size, tile_size);		
+	
+	
+			/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+	
+	public static BufferedImage 
+	
+			TILE_BRIDGE_GROUND_PINK_0 = Main.tiles_samurai.getSpritesheet(0, 40, tile_size, tile_size),
+			TILE_BRIDGE_GROUND_PINK_1 = Main.tiles_samurai.getSpritesheet(8, 40, tile_size, tile_size),
+			TILE_BRIDGE_GROUND_PINK_2 = Main.tiles_samurai.getSpritesheet(16, 40, tile_size, tile_size),
+			TILE_BRIDGE_GROUND_PINK_3 = Main.tiles_samurai.getSpritesheet(24, 40, tile_size, tile_size),
+			TILE_VER_BRIDGE_0 = Main.tiles_samurai.getSpritesheet(0, 48, tile_size, tile_size),
+			TILE_VER_BRIDGE_1 = Main.tiles_samurai.getSpritesheet(8, 48, tile_size, tile_size),
+			TILE_VER_BRIDGE_2 = Main.tiles_samurai.getSpritesheet(16,48, tile_size, tile_size),
+			TILE_VER_BRIDGE_3 = Main.tiles_samurai.getSpritesheet(24,48, tile_size, tile_size),
+			TILE_VER_BRIDGE_4 = Main.tiles_samurai.getSpritesheet(0, 56, tile_size, tile_size),
+			TILE_VER_BRIDGE_5 = Main.tiles_samurai.getSpritesheet(24, 56, tile_size, tile_size),
+			TILE_VER_BRIDGE_6 = Main.tiles_samurai.getSpritesheet(0,64, tile_size, tile_size),
+			TILE_VER_BRIDGE_7 = Main.tiles_samurai.getSpritesheet(8,64, tile_size, tile_size),
+			TILE_VER_BRIDGE_8 = Main.tiles_samurai.getSpritesheet(16, 64, tile_size, tile_size),
+			TILE_VER_BRIDGE_9 = Main.tiles_samurai.getSpritesheet(24, 64, tile_size, tile_size),
 			
+			TILE_BRIDGE_0 = Main.tiles_samurai.getSpritesheet(8, 56, tile_size, tile_size),
+			TILE_BRIDGE_1 = Main.tiles_samurai.getSpritesheet(16, 72, tile_size, tile_size),
+			TILE_BRIDGE_2 = Main.tiles_samurai.getSpritesheet(24, 72, tile_size, tile_size),
+			TILE_BRIDGE_3 = Main.tiles_samurai.getSpritesheet(48, 72, tile_size, tile_size),
+							
+			
+			
+			TILE_HOR_BRIDGE_0 = Main.tiles_samurai.getSpritesheet(40, 40, tile_size, tile_size),
+			TILE_HOR_BRIDGE_1 = Main.tiles_samurai.getSpritesheet(48, 40, tile_size, tile_size),
+			TILE_HOR_BRIDGE_2 = Main.tiles_samurai.getSpritesheet(56,40, tile_size, tile_size),
+			TILE_HOR_BRIDGE_3 = Main.tiles_samurai.getSpritesheet(40,48, tile_size, tile_size),
+			TILE_HOR_BRIDGE_4 = Main.tiles_samurai.getSpritesheet(56, 48, tile_size, tile_size),
+			TILE_HOR_BRIDGE_5 = Main.tiles_samurai.getSpritesheet(40, 56, tile_size, tile_size),
+			TILE_HOR_BRIDGE_6 = Main.tiles_samurai.getSpritesheet(48, 56, tile_size, tile_size),
+			TILE_HOR_BRIDGE_7 = Main.tiles_samurai.getSpritesheet(56, 56, tile_size, tile_size),
+			
+			TILE_W_BRIDGE_0= Main.tiles_samurai.getSpritesheet(40, 64, tile_size, tile_size),
+			TILE_W_BRIDGE_1 = Main.tiles_samurai.getSpritesheet(48, 64, tile_size, tile_size),
+			TILE_W_BRIDGE_2= Main.tiles_samurai.getSpritesheet(56, 64, tile_size, tile_size);
 	
 	
 	

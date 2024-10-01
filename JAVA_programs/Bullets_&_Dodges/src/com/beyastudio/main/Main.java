@@ -55,8 +55,8 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	private static final long serialVersionUID = 1L;
 	private Thread th;
 	private boolean isRunning = true;
-	public static final int width = 120*2;
-	public static final int height = 120 * 2;
+	public static final int width = 120*4;
+	public static final int height = 140 * 2;
 	public static final int escala = 4,
 							muxW = width * escala,
 							muxH = height * escala;
@@ -162,7 +162,7 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		
 		//TESTE*********************************************
 		isBossS = true;
-		boss_A = new Spooky(464, 472, 16, 16, Entity.SPOOKY_EN);
+		boss_A = new Spooky(472, 472, 16, 16, Entity.SPOOKY_EN);
 		
 		
 		//In the world 2

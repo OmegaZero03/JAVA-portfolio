@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import com.beyastudio.entities.Crown;
+import com.beyastudio.boss_1.Bullet;
 import com.beyastudio.entities.Entity;
 import com.beyastudio.main.Main;
 import com.beyastudio.wolrd.Camera;
@@ -27,6 +27,10 @@ public class Spooky extends Entity{
 	 * attack
 	 */
 	
+	private double nextShoot, attackSpeed = 5;
+	
+	
+	
 	private String animationState = "idle";
 	
 	public int damageFrames = 5, currentFrames = 0;
@@ -44,12 +48,6 @@ public class Spooky extends Entity{
 		super(x, y, width, height, sprite);
 		
 		
-		//TEST
-		if(Main.crown) {
-			Crown c = new Crown(Main.player.getX(), Main.player.getY(), 8, 8, Entity.CROWN_DIR);
-			Main.entities.add(c);
-			Main.crown = false;
-		}
 		
 		this.life = 10000;
 		this.maxLife = 10000;
@@ -211,13 +209,14 @@ public class Spooky extends Entity{
 			
 			
 			
-			if(life < 9970)
+			if(life < 9990)
 			{
 				
 				if(canCreat) {
 					setAnimation("attack");
 					canCreat = false;
 				}
+
 			}
 			
 			

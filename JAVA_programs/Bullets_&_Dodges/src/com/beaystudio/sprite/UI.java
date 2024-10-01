@@ -21,21 +21,24 @@ public class UI {
 	}
 	
 	public void render(Graphics g) {
+		
+		int offset = 21;
+		
 		g.setColor(Color.BLACK);
-		g.fillRect(x + 14, y - 20, 21, 3);
-		g.fillRect(x + 13, y - 21, 21, 3);
+		g.fillRect(x + 14, y - 20 + offset, 21, 3);
+		g.fillRect(x + 13, y - 21+ offset, 21, 3);
 		
 		g.setColor(new Color(0xffaa00ff));
-		g.fillRect(x+13, y - 18, 1, 1);
-		g.fillRect(x+34, y - 21, 1, 1);
+		g.fillRect(x+13, y - 18+ offset, 1, 1);
+		g.fillRect(x+34, y - 21+ offset, 1, 1);
 		
-		g.fillRect(x+34, y - 18, 1, 1);
-		g.fillRect(x+13, y - 21, 1, 1);
+		g.fillRect(x+34, y - 18+ offset, 1, 1);
+		g.fillRect(x+13, y - 21+ offset, 1, 1);
 		
 		g.setColor(Color.red);
-		g.fillRect(x + 14, y - 20, 20, 2);
+		g.fillRect(x + 14, y - 20+ offset, 20, 2);
 		g.setColor(Color.GREEN);
-		g.fillRect(x + 14, y - 20, (int)((Main.player.life/Main.player.maxLife)*20) , 2);
+		g.fillRect(x + 14, y - 20+ offset, (int)((Main.player.life/Main.player.maxLife)*20) , 2);
 
 //		g.setFont(new Font("arial", Font.BOLD, 8));
 //		g.drawString("HP", x - 5, y + 7);

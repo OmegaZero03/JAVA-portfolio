@@ -6,7 +6,7 @@ import java.sql.Time;
 
 import com.beyastudio.main.Main;
 
-public class AnimatedTile extends FloorTile{
+public class AnimatedTile extends WallTile{
 	
 	private int frames = 0,
 			maxFrames = 38,

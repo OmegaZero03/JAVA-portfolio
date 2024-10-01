@@ -48,7 +48,7 @@ public class World {
 					if(Main.atualWorld.equals("/world2.png")) {
 						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_STONE_2);
 					}else if(Main.atualWorld.equals("/world.png")) {
-						tiles[xx + (yy * WIDTH)] = new AnimatedTile(xx * 8, yy * 8, Tile.TILE_BLACK, Tile.TILE_WATER, Tile.TILE_ANI_WATER);
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_BRIDGE_0);
 					}
 					
 					
@@ -789,6 +789,164 @@ public class World {
 					case 0xfffad6be:
 						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_PINK_8);
 						break;
+						
+// BOOS SAMURAI TILES FLORES
+						
+					case 0xffb42020:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_RED_FLOWER_0);
+						break;
+						
+					case 0xffb42021:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_RED_FLOWER_1);
+						break;
+						
+					case 0xffb42022:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_RED_FLOWER_2);
+						break;
+						
+					case 0xff285cc0:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_BLUE_FLOWER_0);
+						break;
+						
+					case 0xff285cc1:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_BLUE_FLOWER_1);
+						break;
+						
+					case 0xff285cc2:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_BLUE_FLOWER_2);
+						break;
+						
+						
+						// BOOS SAMURAI TILES BRIDGE
+						
+						//VER
+						
+					case 0xff5d4037:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_BRIDGE_GROUND_PINK_0);
+						break;
+						
+					case 0xff795548:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_BRIDGE_GROUND_PINK_1);
+						break;
+						
+					case 0xff8d6e63:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_BRIDGE_GROUND_PINK_2);
+						break;
+						
+					case 0xffa1887f:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_BRIDGE_GROUND_PINK_3);
+						break;
+						
+					case 0xffd7ccc8:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_VER_BRIDGE_0);
+						break;
+						
+					case 0xff6d4c41:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_VER_BRIDGE_1);
+						break;
+						
+					case 0xffbcaaa4:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_VER_BRIDGE_2);
+						break;
+						
+					case 0xff4e342e:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_VER_BRIDGE_3);
+						break;
+						
+					case 0xffd8ebe9:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_VER_BRIDGE_4);
+						break;
+						
+					case 0xff9e9d24:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_VER_BRIDGE_5);
+
+						break;
+						
+					case 0xff7e6a56:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_VER_BRIDGE_6);
+
+						break;
+						
+					case 0xff654321:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_VER_BRIDGE_7);
+
+						break;
+						
+					case 0xffa0522d:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_VER_BRIDGE_8);
+						break;
+						
+					case 0xff8b4514:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_VER_BRIDGE_9);
+						break;
+						
+						//SIMPLE BRIDGE
+						
+					case 0xff8d8d51:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_BRIDGE_0);
+						break;
+						
+					case 0xffde919e:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_BRIDGE_1);
+						break;
+						
+					case 0xfff4a460:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_BRIDGE_2);
+						break;
+						
+					case 0xff964b00:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_BRIDGE_3);
+						break;
+						
+						//HOR
+						
+					case 0xffbc8f8f:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_HOR_BRIDGE_0);
+						break;
+						
+					case 0xfff5deb4:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_HOR_BRIDGE_1);
+						break;
+						
+					case 0xff5c4033:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_HOR_BRIDGE_2);
+						break;
+						
+					case 0xff8e7618:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_HOR_BRIDGE_3);
+						break;
+						
+					case 0xff4e2a1e:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_HOR_BRIDGE_4);
+						break;
+						
+					case 0xff704214:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_HOR_BRIDGE_5);
+						break;
+						
+					case 0xff3b2f2f:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_HOR_BRIDGE_6);
+						break;
+						
+					case 0xff81b48c:
+						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_HOR_BRIDGE_7);
+						break;
+						
+						//wATER WALL BRIDGE
+						
+					case 0xffd2b48c:
+						tiles[xx + (yy * WIDTH)] = new WallTile(xx * 8, yy * 8, Tile.TILE_W_BRIDGE_0);
+						break;
+						
+					case 0xffb87333:
+						tiles[xx + (yy * WIDTH)] = new WallTile(xx * 8, yy * 8, Tile.TILE_W_BRIDGE_1);
+						break;
+						
+					case 0xff8d5524:
+						tiles[xx + (yy * WIDTH)] = new WallTile(xx * 8, yy * 8, Tile.TILE_W_BRIDGE_2);
+						
+						break;
+						
 						
 						
 						
