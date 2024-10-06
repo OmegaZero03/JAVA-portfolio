@@ -31,6 +31,7 @@ import com.beyastudio.boss_1.Bullet;
 import com.beyastudio.boss_1.Finn;
 import com.beyastudio.boss_2.FireP;
 import com.beyastudio.boss_3.IceKing;
+import com.beyastudio.boss_A.Sakura;
 import com.beyastudio.boss_A.Spooky;
 import com.beyastudio.entities.Enemy;
 import com.beyastudio.entities.Entity;
@@ -52,11 +53,12 @@ import com.beyastudio.wolrd.World;
 public class Main extends Canvas implements Runnable, KeyListener, MouseListener, MouseMotionListener{
 	
 	
+	
 	private static final long serialVersionUID = 1L;
 	private Thread th;
 	private boolean isRunning = true;
-	public static final int width = 120*4;
-	public static final int height = 140 * 2;
+	public static final int width = 120*3/* original = 4*/;
+	public static final int height = 140 * 2/*ORIGINAL = 2*/;
 	public static final int escala = 4,
 							muxW = width * escala,
 							muxH = height * escala;
@@ -82,6 +84,7 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	public static List<Bullet> BossBullets;
 	public static List<Orb_destroy> bee;
 	public static List<AnimatedTile> animatedTiles;
+	public static List<Sakura> sakura_trees;
 	public static Spritesheet spritesheet, 
 	hurt_spritesheet, control, art, logo, 
 	teleports, boss_placeholders, boss_samurai,
@@ -129,6 +132,7 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		animatedTiles = new ArrayList<AnimatedTile>();
 		iceShootWalls = new ArrayList<IceShootTile>();
 		shootWallsSlow = new ArrayList<ShootTileSlow>();
+		sakura_trees = new ArrayList<Sakura>();
 		spritesheet = new Spritesheet("/spritesheet.png");
 		control = new Spritesheet("/control_screen.png");
 		art = new Spritesheet("/menu.png");
@@ -301,6 +305,13 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 				b.tick();
 			}
 			
+				
+			for(int i = 0; i < sakura_trees.size(); i++) {
+				Entity b = sakura_trees.get(i);
+				b.tick();
+			}
+				
+			
 			
 			for(int i = 0; i < animatedTiles.size(); i++) {
 				AnimatedTile b = animatedTiles.get(i);
@@ -417,6 +428,13 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		world.render(g);
 		//render boss IF it EXIST
 		
+		
+		for(int i = 0; i < sakura_trees.size(); i++) {
+			Entity b = sakura_trees.get(i);
+			b.render(g);
+		}	
+		
+		
 		ui.render(g);
 		
 		for(int i = 0; i < tombs.size(); i++) {
@@ -434,8 +452,8 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 			b.render(g);
 			
 		}
-		
-		
+				
+
 		
 		// renderizando cada entidade
 		for(int i = 0; i < entities.size(); i++) {

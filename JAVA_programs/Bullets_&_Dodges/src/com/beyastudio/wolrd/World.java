@@ -790,7 +790,7 @@ public class World {
 						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_PINK_8);
 						break;
 						
-// BOOS SAMURAI TILES FLORES
+						// BOOS SAMURAI TILES FLORES
 						
 					case 0xffb42020:
 						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_RED_FLOWER_0);
@@ -955,6 +955,8 @@ public class World {
 					// BOOS SAMURAI TILES SOMBRA DA ARVORE
 					case 0xfffad6b0:
 						tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 8, yy * 8, Tile.TILE_UNDER_TREE_0);
+						Heal heal1 = new Heal(xx * 8, yy * 8, 8, 8, Entity.HEAL_EN);
+						Main.entities.add(heal1);
 						break;
 						
 					case 0xfffad6b1:

@@ -151,12 +151,12 @@ public class Tile {
 	
 				/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 	
-	public static BufferedImage TILE_UNDER_TREE_0 = Main.tiles_samurai.getSpritesheet(32, 16, tile_size, tile_size),
-								TILE_UNDER_TREE_1 = Main.tiles_samurai.getSpritesheet(40, 16, tile_size, tile_size),
-								TILE_UNDER_TREE_2 = Main.tiles_samurai.getSpritesheet(48, 16, tile_size, tile_size),
-								TILE_UNDER_TREE_3 = Main.tiles_samurai.getSpritesheet(32, 24, tile_size, tile_size),
-								TILE_UNDER_TREE_4 = Main.tiles_samurai.getSpritesheet(40, 24, tile_size, tile_size),
-								TILE_UNDER_TREE_5 = Main.tiles_samurai.getSpritesheet(48, 24, tile_size, tile_size);
+	public static BufferedImage TILE_UNDER_TREE_0 = Main.tiles_samurai.getSpritesheet(32, 0, tile_size, tile_size),
+								TILE_UNDER_TREE_1 = Main.tiles_samurai.getSpritesheet(40, 0, tile_size, tile_size),
+								TILE_UNDER_TREE_2 = Main.tiles_samurai.getSpritesheet(48, 0, tile_size, tile_size),
+								TILE_UNDER_TREE_3 = Main.tiles_samurai.getSpritesheet(32, 8, tile_size, tile_size),
+								TILE_UNDER_TREE_4 = Main.tiles_samurai.getSpritesheet(40, 8, tile_size, tile_size),
+								TILE_UNDER_TREE_5 = Main.tiles_samurai.getSpritesheet(48, 8, tile_size, tile_size);
 	
 				/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 	

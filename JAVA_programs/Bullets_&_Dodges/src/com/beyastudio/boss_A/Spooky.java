@@ -193,6 +193,17 @@ public class Spooky extends Entity{
 		
 		case "parado":
 			
+			if(canCreat) {
+				
+				Sakura s = new Sakura(408, 536 -8, 16, 32, Entity.SAKURA_0_DOWN);
+				Main.sakura_trees.add(s);
+				
+				Sakura s1 = new Sakura(408, 536 -24, 16, 32, Entity.SAKURA_0_UP);
+				Main.entities.add(s1);
+				
+				canCreat = false;
+			}
+			
 			att = true;
 		
 			
