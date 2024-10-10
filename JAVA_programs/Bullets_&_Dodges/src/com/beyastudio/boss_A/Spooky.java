@@ -3,8 +3,9 @@ package com.beyastudio.boss_A;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 
-import com.beyastudio.boss_1.Bullet;
 import com.beyastudio.entities.Entity;
 import com.beyastudio.main.Main;
 import com.beyastudio.wolrd.Camera;
@@ -185,6 +186,71 @@ public class Spooky extends Entity{
 		
 	}
 	
+	public void generateSakuras() {
+		
+		Sakura s;
+		List<Integer> choosen;
+		choosen = new ArrayList<Integer>();
+		int xx = 0, yy = 0;
+		
+		
+		for(int i=0; i<4; i++) {
+			
+			if(i == 0) {
+				s = new MechSakura(0, 0, 16, 32, Entity.METAL_SAKURA_DOWN, Entity.METAL_SAKURA_UP);
+			}
+			
+			else if(i == 1) {
+				s = new Sakura(0, 0, 16, 32, Entity.SAKURA_0_DOWN, Entity.SAKURA_0_UP);
+			}
+			
+			else if(i == 2) {
+				s = new Sakura(0, 0, 16, 32, Entity.SAKURA_1_DOWN, Entity.SAKURA_1_UP);
+			}
+			
+			else {
+				s = new Sakura(0, 0, 16, 32, Entity.SAKURA_2_DOWN, Entity.SAKURA_2_UP);
+			}
+			
+			
+			int ranLocation = Main.ran.nextInt(0, 4);
+			
+			while(choosen.contains(ranLocation)) {
+				ranLocation = Main.ran.nextInt(0, 4);
+			}
+			
+			choosen.add(ranLocation);
+			
+			switch(ranLocation) {
+			
+			case 0:
+				xx = 408;
+				yy = 536;
+				break;
+				
+			case 1:
+				xx = 520;
+				yy = 536;
+				break;
+				
+			case 2:
+				xx = 520;
+				yy = 424;
+				break;
+				
+			case 3:
+				xx = 408;
+				yy = 424;
+				break;
+			}
+			
+			s.setX(xx);
+			s.setY(yy - 4);
+			s.setUp(xx, yy-4);
+		}
+	}
+	
+	
 	
 	
 	public void stateMachine() {
@@ -195,11 +261,7 @@ public class Spooky extends Entity{
 			
 			if(canCreat) {
 				
-				Sakura s = new Sakura(408, 536 -8, 16, 32, Entity.SAKURA_0_DOWN);
-				Main.sakura_trees.add(s);
-				
-				Sakura s1 = new Sakura(408, 536 -24, 16, 32, Entity.SAKURA_0_UP);
-				Main.entities.add(s1);
+				generateSakuras();
 				
 				canCreat = false;
 			}

@@ -57,8 +57,8 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	private static final long serialVersionUID = 1L;
 	private Thread th;
 	private boolean isRunning = true;
-	public static final int width = 120*3/* original = 4*/;
-	public static final int height = 140 * 2/*ORIGINAL = 2*/;
+	public static final int width = 120*4;
+	public static final int height = 140 * 2;
 	public static final int escala = 4,
 							muxW = width * escala,
 							muxH = height * escala;
@@ -198,7 +198,8 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		
 		
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		setPreferredSize(new Dimension(muxW, muxH));
+		setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize()));
+		//setPreferredSize(new Dimension(muxW, muxH));
 		
 		frame.setVisible(true);
 		
@@ -535,7 +536,7 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		g.dispose();
 		g = bs.getDrawGraphics();
 		
-		g.drawImage(image, 0, 0, muxW, muxH, null);
+		g.drawImage(image, 0, 0, Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height, null);
 		
 		if(gameState == "control") {
 			g.drawImage(control.getSpritesheet(0, 0, 673, 673), 0, 0, null);
@@ -551,7 +552,7 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 	}
 	 
 	@Override
-	public void run() {
+	public void run() { 
 		
 		long lastTime = System.nanoTime();
 		double numTicks = 60.0;

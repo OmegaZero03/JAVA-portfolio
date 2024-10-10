@@ -267,13 +267,16 @@ public class Entity {
 		/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 					/*********SAMURAI SAKURA TREES**********/
 
-	public static BufferedImage SAKURA_0_UP =  Main.trees.getSpritesheet(0, 0, _16x_16*2, _16x_16),
-								SAKURA_0_DOWN = Main.trees.getSpritesheet(0, 16, _16x_16*2, _16x_16),
-								SAKURA_1 = Main.trees.getSpritesheet(32, 0, _16x_16*2, _16x_16),
-								SAKURA_2 = Main.trees.getSpritesheet(64, 0, _16x_16*2, _16x_16),
-								METAL_SAKURA = Main.trees.getSpritesheet(96, 0, _16x_16*2, _16x_16),
-								BROKE_SAKURA = Main.trees.getSpritesheet(96, 32, _16x_16*2, _16x_16);
-
+	public static BufferedImage SAKURA_0_UP =  Main.trees.getSpritesheet(0, 0, _16x_16*2, _16x_16+5),
+								SAKURA_0_DOWN = Main.trees.getSpritesheet(0, 21, _16x_16*2, _8x8+3),
+								SAKURA_1_UP =  Main.trees.getSpritesheet(32, 0, _16x_16*2, _16x_16+5),
+								SAKURA_1_DOWN = Main.trees.getSpritesheet(32, 21, _16x_16*2, _8x8+3),
+								SAKURA_2_UP =  Main.trees.getSpritesheet(64, 0, _16x_16*2, _16x_16+5),
+								SAKURA_2_DOWN = Main.trees.getSpritesheet(64, 21, _16x_16*2, _8x8+3),
+								METAL_SAKURA_UP =  Main.trees.getSpritesheet(96, 0, _16x_16*2, _16x_16+5),
+								METAL_SAKURA_DOWN = Main.trees.getSpritesheet(96, 21, _16x_16*2, _8x8+3),
+								BROKEN_METAL_SAKURA = Main.trees.getSpritesheet(96, 32, _16x_16, _16x_16);
+						
 		/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 	

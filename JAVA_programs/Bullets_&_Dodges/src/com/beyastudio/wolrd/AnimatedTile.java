@@ -9,9 +9,9 @@ import com.beyastudio.main.Main;
 public class AnimatedTile extends WallTile{
 	
 	private int frames = 0,
-			maxFrames = 38,
+			maxFrames = 38,	
 			frameIndex = 0,
-			maxIndex = 1;
+			maxIndex = 1;	
 	
 	private BufferedImage[] aguaAnimationSprites;
 
