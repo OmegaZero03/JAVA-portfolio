@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.beyastudio.boss_A_bullets.SakuraShoter;
 import com.beyastudio.entities.Entity;
 import com.beyastudio.main.Main;
 import com.beyastudio.wolrd.Camera;
@@ -215,9 +216,7 @@ public class Spooky extends Entity{
 			
 			int ranLocation = Main.ran.nextInt(0, 4);
 			
-			while(choosen.contains(ranLocation)) {
-				ranLocation = Main.ran.nextInt(0, 4);
-			}
+			while(choosen.contains(ranLocation)) ranLocation = Main.ran.nextInt(0, 4);
 			
 			choosen.add(ranLocation);
 			
@@ -262,6 +261,8 @@ public class Spooky extends Entity{
 			if(canCreat) {
 				
 				generateSakuras();
+				
+				new SakuraShoter(440, 530, 8, 8, null);
 				
 				canCreat = false;
 			}

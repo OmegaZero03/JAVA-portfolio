@@ -30,8 +30,4 @@ public class Sakura extends Entity{
 	protected void setUp(int xx, int yy) {
 		Main.entities.add(new Sakura(xx, yy-21, 16, 32, spriteUp)); 
 	}
-	
-
-	
-	
 }
