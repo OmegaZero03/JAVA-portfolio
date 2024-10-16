@@ -63,7 +63,7 @@ public class IceKing extends Entity{
 	
 	public void tick() {
 		if (life <= 0) {
-			Sound.bossDied.play();
+			//Sound.bossDied.play();
 			Boss_tombstone tb = new Boss_tombstone(this.getX() - 4, this.getY() - 20, 16, 16, Entity.TOMB_NEUTRAL, "ice");
 			Main.tombs.add(tb);
 			

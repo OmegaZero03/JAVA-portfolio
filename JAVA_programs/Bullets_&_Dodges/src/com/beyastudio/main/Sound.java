@@ -8,16 +8,16 @@ public class Sound {
 
 	private AudioClip clip;
 	
-	public static final Sound musicBackground = new Sound("/music.wav"),
-							hurtPlayer = new Sound("/hurt_player.wav"),
-							shootPlayer = new Sound("/shoot_player.wav"),
-							diedPlayer = new Sound("/PLAYER_DIED.wav"),
-							bossDied = new Sound("/BOSS_DIED.wav"),
-							bossHurt = new Sound("/boss_hurt.wav"),
-							powerUp = new Sound("/powerUp.wav"),
-							menuChange = new Sound("/menu_change.wav"),
-							menuSelect = new Sound("/menu_select.wav"),
-							mainMusic = new Sound("/music.wav");
+//	public static final Sound musicBackground = new Sound("/music.wav"),
+//							hurtPlayer = new Sound("/hurt_player.wav"),
+//							shootPlayer = new Sound("/shoot_player.wav"),
+//							diedPlayer = new Sound("/PLAYER_DIED.wav"),
+//							bossDied = new Sound("/BOSS_DIED.wav"),
+//							bossHurt = new Sound("/boss_hurt.wav"),
+//							powerUp = new Sound("/powerUp.wav"),
+//							menuChange = new Sound("/menu_change.wav"),
+//							menuSelect = new Sound("/menu_select.wav"),
+//							mainMusic = new Sound("/music.wav");
 							
 	
 	private Sound(String name) {

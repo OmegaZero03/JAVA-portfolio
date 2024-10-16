@@ -61,7 +61,7 @@ public class Snorlax extends Entity{
 	@Override
 	public void tick() {
 		if(this.life < 0) {
-			Sound.bossDied.play();
+			//Sound.bossDied.play();
 			Main.entities.remove(this);
 		}
 		

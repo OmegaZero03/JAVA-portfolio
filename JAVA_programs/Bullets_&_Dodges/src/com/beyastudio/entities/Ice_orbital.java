@@ -92,7 +92,7 @@ public class Ice_orbital extends Entity{
 			
 			
 			if(Entity.isColliding(this, Main.player)) {
-				Sound.powerUp.play();
+				//Sound.powerUp.play();
 				Main.ui.orbI = true;
 				Main.player.haveIce = true;
 			}

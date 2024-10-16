@@ -190,6 +190,7 @@ public class Spooky extends Entity{
 	public void generateSakuras() {
 		
 		Sakura s;
+		SakuraShoter ss;
 		List<Integer> choosen;
 		choosen = new ArrayList<Integer>();
 		int xx = 0, yy = 0;
@@ -199,18 +200,22 @@ public class Spooky extends Entity{
 			
 			if(i == 0) {
 				s = new MechSakura(0, 0, 16, 32, Entity.METAL_SAKURA_DOWN, Entity.METAL_SAKURA_UP);
+				ss = new SakuraShoter(0, 0, 8, 8, null);
 			}
 			
 			else if(i == 1) {
 				s = new Sakura(0, 0, 16, 32, Entity.SAKURA_0_DOWN, Entity.SAKURA_0_UP);
+				ss = new SakuraShoter(0, 0, 8, 8, null);
 			}
 			
 			else if(i == 2) {
 				s = new Sakura(0, 0, 16, 32, Entity.SAKURA_1_DOWN, Entity.SAKURA_1_UP);
+				ss = new SakuraShoter(0, 0, 8, 8, null);
 			}
 			
 			else {
 				s = new Sakura(0, 0, 16, 32, Entity.SAKURA_2_DOWN, Entity.SAKURA_2_UP);
+				ss = new SakuraShoter(0, 0, 8, 8, null);
 			}
 			
 			
@@ -243,6 +248,8 @@ public class Spooky extends Entity{
 				break;
 			}
 			
+			ss.setX(xx+12);
+			ss.setY(yy);
 			s.setX(xx);
 			s.setY(yy - 4);
 			s.setUp(xx, yy-4);
@@ -261,8 +268,6 @@ public class Spooky extends Entity{
 			if(canCreat) {
 				
 				generateSakuras();
-				
-				new SakuraShoter(440, 530, 8, 8, null);
 				
 				canCreat = false;
 			}
@@ -290,6 +295,8 @@ public class Spooky extends Entity{
 					setAnimation("attack");
 					canCreat = false;
 				}
+				
+				
 
 			}
 			

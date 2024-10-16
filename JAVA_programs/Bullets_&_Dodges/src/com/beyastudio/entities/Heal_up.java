@@ -17,7 +17,7 @@ public class Heal_up extends Entity{
 			Entity atual = Main.entities.get(i);
 			if(atual instanceof Player){
 				if(Entity.isColliding(this, atual)) {
-					Sound.powerUp.play();
+					//Sound.powerUp.play();
 					Main.ui.hp = true;
 					Main.player.tLife += 5;
 					Main.entities.remove(this);

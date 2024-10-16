@@ -79,7 +79,7 @@ public class Bullet extends Entity {
 
 	public void isHitting() {
 		if (isColliding(this, Main.player)) {
-			Sound.hurtPlayer.play();
+			//Sound.hurtPlayer.play();
 			Main.BossBullets.remove(this);
 			Main.player.life -= damage;
 		}

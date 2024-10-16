@@ -83,7 +83,7 @@ public class PlayerBullet extends Entity {
 			return;
 
 		if (Entity.isColliding(this, Main.boss_1)) {
-			Sound.bossHurt.play();
+			//Sound.bossHurt.play();
 			Main.boss_1.life -= damage;
 			Main.boss_1.isDamaged = true;
 			Main.player.life += heal;
@@ -100,7 +100,7 @@ public class PlayerBullet extends Entity {
 			return;
 
 		if (Entity.isColliding(this, Main.boss_A)) {
-			Sound.bossHurt.play();
+			//Sound.bossHurt.play();
 			Main.boss_A.life -= damage;
 			Main.boss_A.isDamaged = true;
 			Main.player.life += heal;
@@ -117,7 +117,7 @@ public class PlayerBullet extends Entity {
 			return;
 
 		if (Entity.isColliding(this, Main.boss_2)) {
-			Sound.bossHurt.play();
+			//Sound.bossHurt.play();
 			Main.boss_2.life -= damage;
 			Main.boss_2.isDamaged = true;
 			Main.player.life += heal;
@@ -133,7 +133,7 @@ public class PlayerBullet extends Entity {
 			return;
 
 		if (Entity.isColliding(this, Main.boss_3)) {
-			Sound.bossHurt.play();
+			//Sound.bossHurt.play();
 			Main.boss_3.life -= damage;
 			Main.boss_3.isDamaged = true;
 			Main.player.life += heal;
@@ -155,7 +155,7 @@ public class PlayerBullet extends Entity {
 
 			if (isEnemy || isPenguin) {
 				if (Entity.isColliding(this, atual)) {
-					Sound.bossHurt.play();
+					//Sound.bossHurt.play();
 					atual.life -= damage;
 					atual.isDamaged = true;
 					Main.player.life += heal;
@@ -169,7 +169,7 @@ public class PlayerBullet extends Entity {
 			}
 			if(isPikachu || isSoul) {
 				if (Entity.isColliding(this, atual)) {
-					Sound.bossHurt.play();
+					//Sound.bossHurt.play();
 					atual.life -= damage;
 					atual.isDamaged = true;
 					Main.player.life += heal + 3;

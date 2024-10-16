@@ -17,7 +17,7 @@ public class Spd_up extends Entity{
 			Entity atual = Main.entities.get(i);
 			if(atual instanceof Player){
 				if(Entity.isColliding(this, atual)) {
-					Sound.powerUp.play();
+					//Sound.powerUp.play();
 					Main.ui.spd = true;
 					Main.player.spd += .07;
 					Main.entities.remove(this);

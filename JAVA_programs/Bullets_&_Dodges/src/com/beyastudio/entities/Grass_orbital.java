@@ -86,7 +86,7 @@ public class Grass_orbital extends Entity{
 			}
 			
 			if(Entity.isColliding(this, Main.player)) {
-				Sound.powerUp.play();
+				//Sound.powerUp.play();
 				Main.ui.orbG = true;
 				Main.player.haveGrass = true;
 			}

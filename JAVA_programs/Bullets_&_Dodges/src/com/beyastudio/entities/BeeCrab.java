@@ -58,7 +58,7 @@ public class BeeCrab extends Entity{
 			}
 			
 			if(Entity.isColliding(this, Main.player)) {
-				Sound.powerUp.play();
+				//Sound.powerUp.play();
 				Main.ui.beeCrab = true;
 				Main.player.haveBeeCrab = true;
 			}

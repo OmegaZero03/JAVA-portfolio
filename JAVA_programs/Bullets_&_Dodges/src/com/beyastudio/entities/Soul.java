@@ -41,7 +41,7 @@ public class Soul extends Entity{
 	public void tick() {
 		
 		if(life <= 0) {
-			Sound.bossDied.play();
+			//Sound.bossDied.play();
 			//System.out.println("SEU ROLL FOI DE = "+roll);
 			System.out.println("SEU ROLL FOI DE = "+rollArt);
 			

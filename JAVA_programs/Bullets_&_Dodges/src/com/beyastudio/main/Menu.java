@@ -16,13 +16,13 @@ public class Menu {
 	public void tick() {
 		
 		if(up) {
-			Sound.menuChange.play();
+			//Sound.menuChange.play();
 			up = false;
 			currentOption--;
 			if(currentOption < 0) currentOption = maxOption;
 		}
 		if(down) {
-			Sound.menuChange.play();
+			//Sound.menuChange.play();
 			down = false;
 			this.currentOption++;
 			if(this.currentOption > maxOption) currentOption = 0;
@@ -30,7 +30,7 @@ public class Menu {
 		}
 		
 		if(enter) {
-			Sound.menuSelect.play();
+			//Sound.menuSelect.play();
 			enter = false;
 			if(options[currentOption] == options[0]) {
 				Main.gameState = "control";

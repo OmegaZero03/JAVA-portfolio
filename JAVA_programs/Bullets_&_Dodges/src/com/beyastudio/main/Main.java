@@ -262,7 +262,7 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 			
 			this.restartGame = false;
 			if(player.life <= 0) {
-				Sound.diedPlayer.play();
+				//Sound.diedPlayer.play();
 				player.life = 0;
 				cursed_tomb = new Tombstone(player.getX() - 4, player.getY() - 8, 16, 16, Entity.CURSED_TOMB_STONE);
 				Main.entities.remove(player);
@@ -377,9 +377,9 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 			
 			if(restartGame) {
 				this.restartGame = false;
-				Sound.menuSelect.play();
+				//Sound.menuSelect.play();
 				gameState = "normal";
-				World.restartGame("world2.png");
+				World.restartGame("world.png");
 				gameoverTextAlpha = 0;
 				gameoverTextAlphaBG = 0;
 			}
@@ -573,7 +573,7 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 			}
 			
 			if(System.currentTimeMillis() - timer >= 1000) {
-				System.out.println("FPS: " + frames);
+				//System.out.println("FPS: " + frames);
 				frames = 0;
 				timer += 1000;
 			}
@@ -637,6 +637,9 @@ public class Main extends Canvas implements Runnable, KeyListener, MouseListener
 		}
 		
 		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+			if(gameState == "normal") {
+				Main.player.life -= 100;
+			}
 			this.restartGame = true;
 		}
 		

@@ -261,7 +261,7 @@ public class Player extends Entity {
 		dy = Math.sin(angle);
 
 		if (shoot || autoShoot) {
-			Sound.shootPlayer.play();
+			//Sound.shootPlayer.play();
 
 			if (dir == right_dir) {
 				

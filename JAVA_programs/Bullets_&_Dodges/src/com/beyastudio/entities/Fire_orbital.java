@@ -86,7 +86,7 @@ public class Fire_orbital extends Entity{
 			}
 			
 			if(Entity.isColliding(Main.player,this)) {
-				Sound.powerUp.play();
+				//Sound.powerUp.play();
 				Main.ui.orbF = true;
 				Main.player.haveFire = true;
 			}

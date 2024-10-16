@@ -12,6 +12,7 @@ import com.beyastudio.boss_1.Bullet;
 import com.beyastudio.boss_1.Finn;
 import com.beyastudio.boss_2.FireP;
 import com.beyastudio.boss_3.IceKing;
+import com.beyastudio.boss_A.Sakura;
 import com.beyastudio.boss_A.Spooky;
 import com.beyastudio.entities.Enemy;
 import com.beyastudio.entities.Entity;
@@ -1063,10 +1064,14 @@ public class World {
 			Main.isBossF = false;
 			Main.isBossI = false;
 			
-			Main.isBossS = true;
-			Main.boss_A = new Spooky(152, 88, 16, 16, Entity.SPOOKY_EN);
+			Main.sakura_trees.clear();
+			Main.sakura_trees = new ArrayList<Sakura>();
 			
-			Main.teleporters();
+			
+			
+			Main.isBossS = true;
+			Main.boss_A = new Spooky(472, 472, 16, 16, Entity.SPOOKY_EN);
+			
 		}
 		return;
 	}
@@ -1102,6 +1107,9 @@ public class World {
 		Main.iceShootWalls.clear();
 		Main.tombs.clear();
 		
+		Main.isBossS = false;
+		Main.boss_A = null;
+		
 		Main.orbgrass = true;
 		Main.orbice = true;
 		Main.orbfire = true;
@@ -1119,17 +1127,42 @@ public class World {
 		Main.shootWallsSlow = new ArrayList<ShootTileSlow>();
 		Main.player = new Player(0, 0, 8, 8, Main.spritesheet.getSpritesheet(0, 0, 8, 8));
 		Main.entities.add(Main.player);
-		Main.boss_1 = new Finn(228, 140, 16, 16, Entity.FINN_EN);
-		Main.boss_2 = new FireP(144, 680, 16, 16, Entity.FIRE_EN);
-		Main.boss_3 = new IceKing(826, 752, 16, 16, Entity.ICE_EN);
-		Main.isBossG = true;
-		Main.isBossF = true;
-		Main.isBossI = true;
 		
-		Main.teleporters();
 		
-		Main.puppy = new Puppy(67  *8, 63 * 8, 16, 16, Entity.PUPPY_TALK_0);
-		Main.entities.add(Main.puppy);
+		if(Main.atualWorld == "/world2.png") {
+			Main.portais();
+			Main.teleporters();
+			
+			Main.boss_1 = new Finn(228 , 140, 16, 16, Entity.FINN_EN);
+			Main.boss_2 = new FireP(144, 680, 16, 16, Entity.FIRE_EN);
+			Main.boss_3 = new IceKing(826, 752, 16, 16, Entity.ICE_EN);
+			Main.puppy = new Puppy(67  *8, 63 * 8, 16, 16, Entity.PUPPY_TALK_0);
+			Main.entities.add(Main.puppy);
+
+			Main.isBossG = true;
+			Main.isBossF = true;
+			Main.isBossI = true;
+			
+			Main.teleporters();
+
+		}
+		else if(Main.atualWorld == "/world.png") {
+
+			
+			Main.sakura_trees.clear();
+			Main.sakura_trees = new ArrayList<Sakura>();
+			
+			
+			
+			Main.isBossS = true;
+			Main.boss_A = new Spooky(472, 472, 16, 16, Entity.SPOOKY_EN);
+		}
+		
+		
+		
+		
+		
+
 	}
 	
 }
